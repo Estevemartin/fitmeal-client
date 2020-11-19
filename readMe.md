@@ -130,9 +130,9 @@ User model
   password: {type: String, required: true},
   profilePictureUrl:{type: String},
   backgroundPictureUrl:{type:String},
-  saved: {type:Array, default:[]},
-  recipes: {type:Array, default:[]},
-  plans: {type:Array, default:[]},
+  saved: {type:Schema.Types.ObjectId, ref:'Recipes',type:Schema.Types.ObjectId, ref:'Plans', default:[]},
+  recipes: {type:Schema.Types.ObjectId, ref:'Recipes', default:[]},
+  plans: {type:Schema.Types.ObjectId, ref:'Plans', default:[]},
 
 }
 ```
@@ -144,7 +144,7 @@ Recipes model
 ```javascript
  {
    title: {type: String, required: true},
-   author: {type: String, required: true},
+   author: {type: Schema.Types.ObjectId, ref:'User', required: true},
    picture: {type: String},
    ingredientsText: {type: String, required:true},
    preparation: {type: String, required:true},
@@ -160,57 +160,57 @@ Meal Plan model
 ```javascript
 {
   title: {type: String, required: true},
-   author: {type: String, required: true},
+   author: {type: Schema.Types.ObjectId, ref:'User', required: true},
    picture: {type: String},
    plan:{
        monday:{
-           breakfast:{type:String},
-           brunch:{type:String},
-           lunch:{type:String},
-           snack:{type:String},
-           dinner:{type:String}
+           breakfast:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           brunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           lunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           snack:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           dinner:{type:Schema.Types.ObjectId, ref:'Recipes'}
        },
        tuesday:{
-           breakfast:{type:String},
-           brunch:{type:String},
-           lunch:{type:String},
-           snack:{type:String},
-           dinner:{type:String}
+           breakfast:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           brunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           lunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           snack:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           dinner:{type:Schema.Types.ObjectId, ref:'Recipes'}
        },
        wednesday:{
-           breakfast:{type:String},
-           brunch:{type:String},
-           lunch:{type:String},
-           snack:{type:String},
-           dinner:{type:String}
+           breakfast:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           brunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           lunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           snack:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           dinner:{type:Schema.Types.ObjectId, ref:'Recipes'}
        },
        thursday:{
-           breakfast:{type:String},
-           brunch:{type:String},
-           lunch:{type:String},
-           snack:{type:String},
-           dinner:{type:String}
+           breakfast:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           brunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           lunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           snack:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           dinner:{type:Schema.Types.ObjectId, ref:'Recipes'}
        },
        friday:{
-           breakfast:{type:String},
-           brunch:{type:String},
-           lunch:{type:String},
-           snack:{type:String},
-           dinner:{type:String}
+           breakfast:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           brunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           lunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           snack:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           dinner:{type:Schema.Types.ObjectId, ref:'Recipes'}
        },
        saturday:{
-           breakfast:{type:String},
-           brunch:{type:String},
-           lunch:{type:String},
-           snack:{type:String},
-           dinner:{type:String}
+           breakfast:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           brunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           lunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           snack:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           dinner:{type:Schema.Types.ObjectId, ref:'Recipes'}
        },
        sunday:{
-           breakfast:{type:String},
-           brunch:{type:String},
-           lunch:{type:String},
-           snack:{type:String},
-           dinner:{type:String}
+           breakfast:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           brunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           lunch:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           snack:{type:Schema.Types.ObjectId, ref:'Recipes'},
+           dinner:{type:Schema.Types.ObjectId, ref:'Recipes'}
        }       
    }
 }
