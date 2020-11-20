@@ -128,3 +128,85 @@ button.signup-btn {
   height: auto;
   padding: 0 100px;
 }
+
+/*----- ADD NEW RECIPE ------*/
+.add-new-recipe-form{
+  display:flex;
+  flex-direction: column;
+}
+.add-new-recipe-form>.image-selector{
+  /* width: 375px; */
+  height: 274px;
+  /* margin: 131px 0 18px; */
+  /* padding: 96px 119px 97px 118px; */
+  background-color: #ddefec;
+}
+
+.add-new-recipe-form>.title1{
+  width: 266px;
+  /* margin: 18px 94px 46px 15px; */
+  margin:18px 15px 30px 15px;
+  font-size: 34px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #454545;
+  border:none;
+  outline:none;
+}
+.add-new-recipe-form>.selector-container{
+  margin:15px;
+}
+.add-new-recipe-form>.selector-container>select{
+  /*width: 81px;*/
+  /* margin: 48px 2px 29px 8px; */
+  font-size: 18px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  color: #454545;
+  border:none;
+  outline:none;
+}
+.add-new-recipe-form>h2{
+  /* width: 153px; */
+  margin: 25px 13px 16px 40px;
+  font-size: 28px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #454545;
+}
+.add-new-recipe-form>textarea{
+  /* width: 281px; */
+  height: 148px;
+  margin: 15px 40px;
+  padding: 25px;
+  border-radius: 15px;
+  border: solid 1px #b2e0d8;
+  /* text-align: center; */
+}
+.add-new-recipe-form>.submitDiv{
+  display:flex;
+  justify-content: center;
+	align-items: center;
+}
+.add-new-recipe-form>.submitDiv>[type=submit]{
+  width: 117px;
+  height: 36px;
+  margin: 46px 18px 46px 2px;
+  /* padding: 1px 33px 6px 34px; */
+  border-radius: 29px;
+  background-color: #8bbeb5;
+  outline:none;
+  border:none;
+  color:white;
+  font-size:22px;
+  /* padding:10px; */
+}
