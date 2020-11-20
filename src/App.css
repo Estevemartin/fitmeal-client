@@ -1,31 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --grey: #F2F2F2;
+  --grey1: #DADADA;
+  --grey2: #bdbdbd;
+  --grey3: #595959;
+  --text-color: #454545;
+  --shadow: 2px 2px 2px 1px rgba(0,0,0,20);
+  --white: #FFFFFF;
+  --green: #DDEFEC;
+  --green1: #B2E0D8;
+  --green2: #8BBEB5;
+  --green3: #5FA397;
+}
+
+html, body{
+  font-family: 'Poppins', sans-serif;
 }
 
 .App {
   padding: 20px;;
 }
 
+/*-------------------- landing page --------------------*/
+
+
+/*-------------------- navbar landing page --------------------*/
+
 nav.navbar { 
+  position: fixed;
+  top:0;
   display: flex;
-  padding: 20px;
-  background: #686de0; 
+  justify-content: space-between;
+  padding: 20px 100px 20px 100px;
+  width: 100%;
+  background: var(--white); 
 }
 
 nav.navbar .navbar-user{
   margin-left: 10px;
-  color: white;
+  color: var(--white);
 }
 
 button.navbar-button {
-  padding: 5px 20px;
+  padding: 8px 15px;
+  font-size: 16px;
+  font-weight: 500;
   width: 100px;
-  border-radius: 3px;
+  border: none;
+  outline: none;
+  border-radius: 25px;
   margin: 0 10px;
+  color: var(--text-color);
+}
+
+button.login-btn {
+  background: var(--green);
+  border: 2px solid var(--green);
+}
+
+button.signup-btn {
+  background: var(--green1);
+  border: 2px solid var(--green1);
 }
 
 #home-btn {
-  color: white;
   text-decoration: none;
+  display: inline-flex;
+}
+
+#home-btn h4{
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+#home-btn span img{
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+}
+
+.auth-section{
+  display: inline-flex;
+}
+
+/*-------------------- landing page container --------------------*/
+
+.header{
+  height: 100vh;
+  background-image: url("/img/landin-page.png");
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.header-text-container{
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  /* margin-left: 200px; */
+}
+
+.header-text-container h3{
+  font-weight: 200;
+  font-size: 18px;
+}
+
+.header-text-container h1{
+  font-weight: 600;
+  font-size: 36px;
+}
+
+.header-text-container h2{
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.app-home-mockup{
+  width: 450px;
+  height: auto;
+  padding: 0 100px;
 }

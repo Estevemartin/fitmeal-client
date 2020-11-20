@@ -8,25 +8,28 @@ class Navbar extends Component {
     return (
       <nav className='navbar'>
         <Link to={"/"} id='home-btn'>
-          <h4>Home</h4>
+          <span><img src="./favicon.ico" alt="Logo"/></span>
+          <h4>fitmeal.</h4>
         </Link>
         {isLoggedin ? (
           <>
-            <p className='navbar-user'>username: {user.username}</p>
+            <span><img src={user.profilePictureUrl} alt="Profile"/></span>
+            <p className='navbar-user'>{user.username}</p>
+
             <button className='navbar-button' onClick={logout}>
               Logout
             </button>
           </>
         ) : (
-          <>
+          <div className='auth-section'>
             <Link to='/login'>
-              <button className='navbar-button'>Login</button>
+              <button className='navbar-button login-btn'>Login</button>
             </Link>
             <br />
             <Link to='/signup'>
-              <button className='navbar-button'>Sign Up</button>
+              <button className='navbar-button signup-btn'>Sign Up</button>
             </Link>
-          </>
+          </div>
         )}
       </nav>
     );
