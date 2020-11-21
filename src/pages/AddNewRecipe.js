@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-// import { withAuth } from "../lib/AuthProvider";
+import { withAuth } from "../lib/AuthProvider";
+// import axios from 'axios';
+import service from "../api/service";
+
 
 class AddNewRecipe extends Component {
   state = {
-      image: "", 
+      imageUrl: "", 
+      author: "",
       title: "Write a nice title",
       prepTime: "",
       difficulty: "",
@@ -11,29 +15,82 @@ class AddNewRecipe extends Component {
       preparation: "explain the magic"
      };
 
-  handleFormSubmit = (event) => {
+
+    handleChange = (event) => {
+      const { name, value } = event.target;
+      this.setState({ [name]: value });
+    };
+
+     handleFileUpload = async (e) => {
+      console.log("the file to be uploaded is: ", e.target.files[0]);
+  
+      // creamos un nuevo objeto FormData
+      const uploadData = new FormData();
+  
+      // imageUrl (este nombre tiene que ser igual que en el modelo, ya que usaremos req.body como argumento del método .create() cuando creemos una nueva movie en la ruta POST '/api/movies/create')
+      uploadData.append("imageUrl", e.target.files[0]);
+  
+      try {
+        console.log('esto es uploadData', uploadData)
+        const res = await service.handleUpload(uploadData);
+  
+        console.log("response is", res);
+  
+        this.setState({ imageUrl: res.secure_url });
+      } catch (error) {
+        console.log("Error while uploading the file: ", error);
+      }
+    };
+
+  // handleFormSubmit = async (event) => {
+  //   console.log(this.state)
+  //   event.preventDefault();
+  //   // const { image, title, prepTime, difficulty, ingredients, preparation } = this.state;
+  //   await axios.post('http://localhost:4000/createRecipe', {recipe: this.state, _id:this.props.user._id})
+  //   // await axios.get('http://localhost:3000/private')
+  //   //console.log('Login -> form submit', { username, password });
+  //   // this.props.login({ username, password });
+  //   // return <Redirect to="http://localhost:3000/" />
+  //   return this.props.history.push("/");
+  // };
+
+  handleFormSubmit = async (event) => {
     event.preventDefault();
-    // const { image, title, prepTime, difficulty, ingredients, preparation } = this.state;
-    //console.log('Login -> form submit', { username, password });
-    // this.props.login({ username, password });
+    try {
+      const res = await service.saveNewRecipe(this.state);
+      console.log("added", res);
+      console.log(this.state.imageUrl)
+
+      this.setState({
+        imageUrl: "", 
+        author: "",
+        title: "Write a nice title",
+        prepTime: "",
+        difficulty: "",
+        ingredients: "list the ingredients",
+        preparation: "explain the magic"
+      });
+
+      // this.props.getRecipes()
+    } catch (error) {
+        console.log("Error while adding the movie: ", error);
+    }
   };
 
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
+
 
   render() {
-    const { image, title, ingredients, preparation } = this.state;
+    console.log(this.props)
+    const { imageUrl, title, ingredients, preparation } = this.state;
 
     return (
       <>
-        <form className='add-new-recipe-form' onSubmit={this.handleFormSubmit}>
-            <input className='image-selector' type='file' name='image' value={image} onChange={this.handleChange} />
+        <form method="POST" action="/createRecipe" className='add-new-recipe-form' onSubmit={this.handleFormSubmit}>
+            <input className='image-selector' type='file' name='image' value={imageUrl} onChange={(e) => this.handleFileUpload(e)} />
 
             <input className='title1' type='text' name='title' placeholder={title} onChange={this.handleChange} />
             <div className="selector-container">
-                <select className='prep-time' name='prepTime' type='text'>
+                <select className='prep-time' name='prepTime' type='text' onChange={this.handleChange}>
                     <option selected hidden>Prep Time</option>
                     <option>0 - 15 mins</option>
                     <option>15 - 30 mins</option>
@@ -41,7 +98,7 @@ class AddNewRecipe extends Component {
                     <option>+ 45 mins</option>
                 </select>
 
-                <select className='difficulty' name='difficulty' type='text' >
+                <select className='difficulty' name='difficulty' type='text' onChange={this.handleChange} >
                     <option selected hidden>Difficulty</option>
                     <option>Easy</option>
                     <option>Medium</option>
@@ -63,4 +120,4 @@ class AddNewRecipe extends Component {
   }
 }
 
-export default AddNewRecipe;
+export default withAuth(AddNewRecipe);

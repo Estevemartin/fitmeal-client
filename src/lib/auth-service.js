@@ -9,6 +9,7 @@ class Auth {
   }
 
   signup({ username, password }) {
+    username = "@" + username
     return this.auth
       .post("/auth/signup", { username, password })
       .then(({ data }) => data);

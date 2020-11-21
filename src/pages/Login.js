@@ -20,7 +20,8 @@ class Login extends Component {
     const { username, password } = this.state;
 
     return (
-      <div>
+      <div className='container-page'>
+        <div className='login'>
         <h1>Login</h1>
 
         <form onSubmit={this.handleFormSubmit}>
@@ -42,6 +43,7 @@ class Login extends Component {
 
           <input type='submit' value='Login' />
         </form>
+        </div>
       </div>
     );
   }
