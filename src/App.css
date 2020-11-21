@@ -21,7 +21,7 @@
   --green3: #5FA397;
 }
 
-html, body, a{
+html, body, a, input, button, textarea{
   font-family: 'Poppins', sans-serif;
   text-decoration: none;
 }
@@ -38,12 +38,16 @@ html, body, a{
 /*-------------------- landing page --------------------*/
 /*-------------------- navbar landing page --------------------*/
 
+nav{
+  display: none;
+}
+
 nav.navbar { 
   position: fixed;
   top:0;
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
-  padding: 20px 100px 20px 100px;
+  padding: 20px 10px 10px 10px;
   width: 100%;
   background: var(--white); 
   box-shadow: 2px 0 10px var(--grey1);
@@ -212,22 +216,22 @@ button.signup-btn {
 
 /*-------------------- home mobile --------------------*/
 /*-------------------- add new recipe --------------------*/
-.add-new-recipe-form{
+/* .add-new-recipe-form{
   display:flex;
   flex-direction: column;
 }
 .add-new-recipe-form .image-selector{
   /* width: 375px; */
-  height: 274px;
+  /* height: 274px; */
   /* margin: 131px 0 18px; */
   /* padding: 96px 119px 97px 118px; */
-  background-color: #ddefec;
-}
+  /* background-color: #ddefec; */
+/* } */
 
-.add-new-recipe-form .title1{
-  width: 266px;
+/* .add-new-recipe-form .title1{ */
+  /* width: 266px; */
   /* margin: 18px 94px 46px 15px; */
-  margin:18px 15px 30px 15px;
+  /* margin:18px 15px 30px 15px;
   font-size: 34px;
   font-weight: 600;
   font-stretch: normal;
@@ -237,14 +241,14 @@ button.signup-btn {
   color: #454545;
   border:none;
   outline:none;
-}
-.add-new-recipe-form .selector-container{
+/* } */
+/* .add-new-recipe-form .selector-container{
   margin:15px;
-}
-.add-new-recipe-form .selector-container select{
+} */
+/* .add-new-recipe-form .selector-container select{ */
   /*width: 81px;*/
   /* margin: 48px 2px 29px 8px; */
-  font-size: 18px;
+  /* font-size: 18px;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
@@ -254,9 +258,9 @@ button.signup-btn {
   border:none;
   outline:none;
 }
-.add-new-recipe-form h2{
+.add-new-recipe-form h2{ */
   /* width: 153px; */
-  margin: 25px 13px 16px 40px;
+  /* margin: 25px 13px 16px 40px;
   font-size: 28px;
   font-weight: 500;
   font-stretch: normal;
@@ -264,16 +268,16 @@ button.signup-btn {
   line-height: normal;
   letter-spacing: normal;
   color: #454545;
-}
-.add-new-recipe-form textarea{
+} */
+/* .add-new-recipe-form textarea{ */
   /* width: 281px; */
-  height: 148px;
+  /* height: 148px;
   margin: 15px 40px;
   padding: 25px;
   border-radius: 15px;
-  border: solid 1px #b2e0d8;
+  border: solid 1px #b2e0d8; */
   /* text-align: center; */
-}
+/* }
 .add-new-recipe-form .submitDiv{
   display:flex;
   justify-content: center;
@@ -282,13 +286,273 @@ button.signup-btn {
 .add-new-recipe-form .submitDiv [type=submit]{
   width: 117px;
   height: 36px;
-  margin: 46px 18px 46px 2px;
+  margin: 46px 18px 46px 2px; */
   /* padding: 1px 33px 6px 34px; */
-  border-radius: 29px;
+  /* border-radius: 29px;
   background-color: #8bbeb5;
   outline:none;
   border:none;
   color:white;
-  font-size:22px;
+  font-size:22px; */
   /* padding:10px; */
+/* }  */
+
+.box{
+  width: 100%;
+  height: 132px;
+  padding: 78px 26px 32px 131px;
+  background-color: #ffffff;
+  /* display: flex; */
+  /* flex-direction: row;
+  align-items: center; */
 }
+
+.box>div{
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.box h4{
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1.15px;
+  text-align: center;
+  color: #454545;
+}
+
+.box button{
+  border: none;
+  background-color: transparent;
+  color: var(--green3);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.15px;
+}
+
+.box-green{
+  padding: 28px 25px 27px 26px;
+  background-color: #ddefec;
+}
+
+.create-recipe-titles{
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.create-recipe-titles>span{
+  font-weight: 700;
+  color: #ec5e5e;
+}
+
+.create-section{
+  display: flex;
+  flex-direction: column;
+  margin: 30px 20px 45px 20px;
+}
+
+.add-new-recipe-form label{
+  margin-bottom: 10px;
+}
+
+/*Name recipe create*/
+.input-title-recipe{
+  border: none;
+  outline: none;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--text-color);
+  padding: 10px 0 8px 0;
+  border-bottom: 1px solid var(--grey2);
+}
+
+/*img upload*/
+.upload-img-text [type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.img-text-box{
+  margin-top: 15px;
+  background-color: var(--grey);
+  border-radius: 5px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-text-box label{
+  width: 130px;
+  text-align: left;
+  font-size: 19px;
+  font-weight: 300;
+  line-height: 28px;
+}
+
+.img-text-box ion-icon{
+  font-size: 30px;
+  margin-right: 10px;
+  color: var(--text-color);
+}
+
+.upload-img-text [type="file"] + .img-text-box {
+  cursor: pointer;
+}
+
+/*portions section*/
+.portions-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/*difficulty section*/
+.diff-btn-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.difficulty-section button{
+  padding: 8px 20px;
+  border-radius: 5px;
+  border: 1px solid var(--green);
+  background-color: var(--green);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/*prep time*/
+.selector-container{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.text-box-select p{
+  width: 200px;
+  font-size: 14px;
+  color: #707070;
+}
+
+
+
+/*input select underline*/
+.select-underline{
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: var(--green3);
+  font-weight: bold;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--grey2);
+}
+
+/*ingredients*/
+.ingredients-options{
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+  padding: 10px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+.amount{
+  width: 80px;
+  text-align: center;
+}
+
+.amount::placeholder{
+  color: var(--green3);
+  font-weight: 500;
+}
+
+.unit{
+  text-align: center;
+  width: 60px;
+  padding: 13px 0;
+}
+
+.ingredients-text{
+  text-align: center;
+  width: 120px;
+  color: var(--green3);
+}
+
+.ingredients-text::placeholder{
+  color: var(--green3);
+  font-weight: 500;
+}
+
+.ingredients-options ion-icon{
+  font-size: 30px;
+  color: #ec5e5e;
+}
+
+
+.add-btn{
+  border: 1px solid var(--green3);
+  border-radius: 5px;
+  padding: 13px 40px;
+  font-size: 19px;
+  color: var(--green3);
+  background: none;
+  margin: 35px 0;
+}
+
+
+/*steps*/
+.textarea-create{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.textarea-placeholder-create{
+  padding: 14px 10px;
+  border-radius: 5px;
+  width: 285px;
+  border: solid 1px #aaaaaa;
+  outline: none;
+  resize: none;
+  font-size: 16px;
+  min-height: 120px;
+}
+
+.textarea-create ion-icon{
+  font-size: 30px;
+  color: #ec5e5e;
+}
+
+.textarea-placeholder-create::placeholder{
+  font-size: 16px;
+  font-weight: 400;
+}
+
+form{
+display: flex;
+flex-direction: column;
+justify-content: center;
+margin-bottom: 80px;
+}
+
+.submitDiv{
+  text-align: center;
+  margin: 0 auto;
+  width: 117px;
+  border-radius: 5px;
+  background-color: #8bbeb5;
+  outline:none;
+  border:none;
+  color:white;
+  font-size:18px;
+  padding:10px;
+} 
+

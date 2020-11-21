@@ -12,8 +12,8 @@ class AddNewRecipe extends Component {
       title: "Write a nice title",
       prepTime: "",
       difficulty: "",
-      ingredients: "list the ingredients",
-      preparation: "explain the magic"
+      ingredients: "Ingredient",
+      preparation: "Start writing the steps here"
      };
 
 
@@ -67,8 +67,8 @@ class AddNewRecipe extends Component {
         title: "Write a nice title",
         prepTime: "",
         difficulty: "",
-        ingredients: "list the ingredients",
-        preparation: "explain the magic"
+        ingredients: "Ingredient",
+        preparation: "Start writing the steps here"
       });
 
       // this.props.getRecipes()
@@ -85,35 +85,127 @@ class AddNewRecipe extends Component {
 
     return (
       <>
+
+        <div className="box">
+          <div>
+            <h4>add a recipe.</h4>
+            <button>Close</button>
+          </div>
+        </div>
+
+        <div className="box-green">
+          <p>We’re excited to see your recipe! Let’s start with the basics</p>
+        </div>
+
         <form method="POST" action="/createRecipe" className='add-new-recipe-form' onSubmit={this.handleFormSubmit}>
-            <input className='image-selector' type='file' onChange={(e) => this.handleFileUpload(e)}/>
-
-            <input className='title1' type='text' name='title' placeholder={title} onChange={this.handleChange} />
-            <div className="selector-container">
-                <select className='prep-time' name='prepTime' type='text' onChange={this.handleChange}>
-                    <option selected hidden>Prep Time</option>
-                    <option>0 - 15 mins</option>
-                    <option>15 - 30 mins</option>
-                    <option>30 - 45 mins</option>
-                    <option>+ 45 mins</option>
-                </select>
-
-                <select className='difficulty' name='difficulty' type='text' onChange={this.handleChange} >
-                    <option selected hidden>Difficulty</option>
-                    <option>Easy</option>
-                    <option>Medium</option>
-                    <option>Hard</option>
-                </select>
-            </div>
-            <h2>ingredients</h2>
-            <textarea name='ingredients' placeholder={ingredients} onChange={this.handleChange}>
-                
-            </textarea>
-            <h2>preparation</h2>
-            <textarea name='preparation' placeholder={preparation} onChange={this.handleChange}>
-            </textarea>
-            <div className="submitDiv"><input type='submit' value='Save' /></div>
             
+           {/* name your recipe */}
+           <div className="create-section">
+            <label className="create-recipe-titles" htmlFor="">Name your recipe<span>*</span></label>
+            <input className="input-title-recipe" type='text' name='title' placeholder={title} onChange={this.handleChange} />
+          </div>
+
+           {/* image recipe */}
+           <div className="img-create create-section">
+           <label className="create-recipe-titles" htmlFor="">Add a recipe photo<span>*</span></label>
+           <div className="upload-img-text">
+              <div className="img-text-box">
+                <ion-icon name="add-circle-outline"></ion-icon>
+                <label htmlFor="file">Upload a final photo of your dish</label>
+                <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
+            </div>
+            </div>
+            </div>
+
+            <div className="box-green">
+              <p>Something’s cooking! Let’s add a few more details…</p>
+            </div>
+
+            {/* portions*/}
+            <div className="portions-section create-section">
+              <label className="create-recipe-titles" htmlFor="">Portions<span>*</span></label>
+              <select className='portions select-underline' name='portions' type='text' onChange={this.handleChange}>
+                      <option hidden>nº servings</option>
+                      <option value="1 serving">1 serving</option>
+                      <option value="2 serving">2 serving</option>
+                      <option value="3 serving">3 serving</option>
+                      <option value="4 serving">4 serving</option>
+                      <option value="5 serving">5 serving</option>
+                      <option value="6 serving">6 serving</option>
+                      <option value="7 serving">7 serving</option>
+                      <option value="8 serving">8 serving</option>
+                      <option value="9 serving">9 serving</option>
+                      <option value="10 serving">10 serving</option>
+                </select> 
+            </div>
+
+
+            {/* difficulty */}
+            <div className="difficulty-section create-section">
+                <label className="create-recipe-titles" htmlFor="">Difficulty<span>*</span></label>
+                <div className="diff-btn-section">
+                        <button>Easy</button>
+                        <button>Medium</button>
+                        <button>Hard</button>
+                </div>
+            </div>
+
+            {/* prep time */}
+            <div className="selector-container create-section">
+                  <div className="text-box-select">
+                        <label className="create-recipe-titles" htmlFor="">Prep time<span>*</span></label>
+                        <p>How much time do you spend making the dish?</p>
+                  </div>
+                  <select className='prep-time select-underline' name='prepTime' type='text' onChange={this.handleChange}>
+                        <option hidden>0 min</option>
+                        <option value="0 - 15 mins">0 - 15 mins</option>
+                        <option value="15 - 30 mins">15 - 30 mins</option>
+                        <option value="30 - 45 mins">30 - 45 mins</option>
+                        <option value="+ 45 mins">+ 45 mins</option>
+                  </select> 
+            </div>
+
+            <div className="box-green">
+                  <p>A recipe would be nothing without the ingredients! What goes in your dish?</p>
+            </div>
+
+            <div className="ingredients-create create-section">
+                  <label className="create-recipe-titles" htmlFor="">Ingredients<span>*</span></label>
+                  <div className="ingredients-options">
+                      <input className="amount select-underline" type="number" name="amount" placeholder="Amount" onChange={this.handleChange} />
+                      <select className="select-underline unit" name='unit' type='text' onChange={this.handleChange} >
+                                <option hidden>Unit</option>
+                                <option value=""> - </option>
+                                <option value="tbsp">tbsp</option>
+                                <option value="tbs">tbs</option>
+                                <option value="cup">cup</option>
+                                <option value="g">g</option>
+                                <option value="kg">kg</option>
+                                <option value="ml">ml</option>
+                                <option value="l">l</option>
+                      </select>
+                      <input className="ingredients-text select-underline" type="text" placeholder={ingredients} onChange={this.handleChange}/>
+                      <ion-icon name="close-circle-outline"></ion-icon>
+                  </div>
+                  <button className="add-btn"><span>+ </span>Add an ingredient</button>
+            </div>
+            
+            <div className="box-green">
+                  <p>Sound delicious! Now, it's time to add the steps...</p>
+            </div>
+
+            <div className="steps-create create-section">
+                  <label className="create-recipe-titles" htmlFor="">Steps<span>*</span></label>
+                  <div className="textarea-create">
+                      <textarea className="textarea-placeholder-create" name='preparation' placeholder={preparation} onChange={this.handleChange}>
+                      </textarea>
+                      <ion-icon name="close-circle-outline"></ion-icon>
+                  </div>
+                  <button className="add-btn"><span>+ </span>Add a step</button>
+            </div>
+
+            
+            <input className="submitDiv" type='submit' value='Save' />
         </form>
       </>
     );
