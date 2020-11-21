@@ -1,13 +1,14 @@
 import React, { Component } from "react";
+import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
 // import axios from 'axios';
-import service from "../api/service";
+
 
 
 class AddNewRecipe extends Component {
   state = {
       imageUrl: "", 
-      author: "",
+      author: this.props.user._id,
       title: "Write a nice title",
       prepTime: "",
       difficulty: "",
@@ -21,7 +22,7 @@ class AddNewRecipe extends Component {
       this.setState({ [name]: value });
     };
 
-     handleFileUpload = async (e) => {
+    handleFileUpload = async (e) => {
       console.log("the file to be uploaded is: ", e.target.files[0]);
   
       // creamos un nuevo objeto FormData
@@ -31,12 +32,11 @@ class AddNewRecipe extends Component {
       uploadData.append("imageUrl", e.target.files[0]);
   
       try {
-        console.log('esto es uploadData', uploadData)
         const res = await service.handleUpload(uploadData);
   
         console.log("response is", res);
   
-        this.setState({ imageUrl: res.secure_url });
+        this.setState({ imageUrl: res });
       } catch (error) {
         console.log("Error while uploading the file: ", error);
       }
@@ -73,7 +73,7 @@ class AddNewRecipe extends Component {
 
       // this.props.getRecipes()
     } catch (error) {
-        console.log("Error while adding the movie: ", error);
+        console.log("Error while adding the recipe: ", error);
     }
   };
 
@@ -81,12 +81,12 @@ class AddNewRecipe extends Component {
 
   render() {
     console.log(this.props)
-    const { imageUrl, title, ingredients, preparation } = this.state;
+    const { title, ingredients, preparation } = this.state;
 
     return (
       <>
         <form method="POST" action="/createRecipe" className='add-new-recipe-form' onSubmit={this.handleFormSubmit}>
-            <input className='image-selector' type='file' name='image' value={imageUrl} onChange={(e) => this.handleFileUpload(e)} />
+            <input className='image-selector' type='file' onChange={(e) => this.handleFileUpload(e)}/>
 
             <input className='title1' type='text' name='title' placeholder={title} onChange={this.handleChange} />
             <div className="selector-container">

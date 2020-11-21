@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { Switch } from "react-router-dom";
 import AuthProvider from "./lib/AuthProvider";
+import service from "./api/service";
 
 import Navbar from "./components/Navbar";
 import Signup from "./pages/Signup";
@@ -13,6 +14,22 @@ import Landingpage from "./pages/Landingpage"
 import AddNewRecipe from "./pages/AddNewRecipe";
 
 class App extends Component {
+
+  state = {
+    recipes: []
+  }
+
+  getRecipes = async () => {
+    const res = await service.getRecipes();
+    console.log(res);
+    this.setState({recipes: res})
+  }
+
+  componentDidMount = () => {
+    this.getRecipes();
+  }
+
+
   render() {
     return (
       <AuthProvider>

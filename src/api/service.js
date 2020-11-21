@@ -14,8 +14,8 @@ class Service {
 
     try {
       const res = await this.service.post("/upload", theFile);
-      console.log('res.data', res.data)
-      return res.data;
+      console.log('res', res.data.secure_url)
+      return res.data.secure_url;
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +25,7 @@ class Service {
     console.log("new thing is: ", newRecipe);
 
     try {
-      const res = await this.service.post("/createRecipe", newRecipe);
+      const res = await this.service.post("/recipes/create", newRecipe);
       return res.data;
     } catch (error) {
       console.log(error);
