@@ -21,7 +21,7 @@ class App extends Component {
 
   getRecipes = async () => {
     const res = await service.getRecipes();
-    console.log(res);
+    // console.log(res);
     this.setState({recipes: res})
   }
 
