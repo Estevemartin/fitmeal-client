@@ -8,6 +8,16 @@ class Service {
     });
   }
 
+  getRecipeDetails = async (recipeId) => {
+    try {
+      // console.log("Im inside Service and the Id is:",recipeId)
+      const res = await this.service.get("/recipes/"+recipeId);
+      // console.log('Response From Server Inside Service.js', res.data)
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   handleUpload = async (theFile) => {
     // console.log("file in service: ", theFile);
@@ -35,7 +45,7 @@ class Service {
   getRecipes = async () => {
     try {
       const res = await this.service.get("/recipes");
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     } catch (error) {
       console.log(error);

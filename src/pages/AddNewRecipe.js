@@ -48,6 +48,8 @@ class AddNewRecipe extends Component {
       case "Units":
         stateCopy[result].units = e.target.value
         break
+      default:
+        break
     }
     this.setState({ingredients:stateCopy})
   };
@@ -158,7 +160,7 @@ class AddNewRecipe extends Component {
       
       this.setState({
         imageUrl: "", 
-        author: this.props.user._id,
+        author: this.props.user.username,
         title: "Write a nice title",
         prepTime: 0,
         difficulty: "Easy",

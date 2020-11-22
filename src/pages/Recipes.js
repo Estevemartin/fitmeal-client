@@ -12,7 +12,7 @@ class Recipes extends Component {
   }
   getRecipes = async () => {
     const res = await service.getRecipes();
-    console.log(res);
+    // console.log(res);
     this.setState({recipes: res})
   }
 
@@ -39,8 +39,8 @@ class Recipes extends Component {
           <h2>Popular recipes</h2>
           <div className="cards-recipes">
             {
-            this.state.recipes.map((recipe, index) => {
-              return (<CardRecipe key={index} imageUrl={recipe.imageUrl} title={recipe.title} popularity={recipe.popularity}/>
+            this.state.recipes.map((recipe,index) => {
+            return (<CardRecipe key={recipe._id} {...recipe}/>
             )})}
 
             {/* {this.state.recipes.map((recipe => {
