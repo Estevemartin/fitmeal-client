@@ -31,10 +31,9 @@ class Navbar extends Component {
             <Link to='/login'>
               <button className='navbar-button login-btn'>Login</button>
             </Link>
-            <br />
-            <Link to='/signup'>
+            {/* <Link to='/signup'>
               <button className='navbar-button signup-btn'>Sign Up</button>
-            </Link>
+            </Link> */}
           </div>
         )}
       </nav>

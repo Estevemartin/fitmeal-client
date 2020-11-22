@@ -108,13 +108,13 @@ class AddNewRecipe extends Component {
            {/* image recipe */}
            <div className="img-create create-section">
            <label className="create-recipe-titles" htmlFor="">Add a recipe photo<span>*</span></label>
-           <div className="upload-img-text">
+           <label  htmlFor="file" className="upload-img-text">
               <div className="img-text-box">
                 <ion-icon name="add-circle-outline"></ion-icon>
-                <label htmlFor="file">Upload a final photo of your dish</label>
+                <p >Upload a final photo of your dish</p>
                 <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
             </div>
-            </div>
+            </label>
             </div>
 
             <div className="box-green">
