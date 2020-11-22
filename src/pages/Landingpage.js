@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 
-function Landingpage() {
+function landingPage() {
   return (
     <div className='header'> 
     <Navbar />
@@ -19,4 +19,4 @@ function Landingpage() {
   )
 }
 
-export default Landingpage;
+export default landingPage;

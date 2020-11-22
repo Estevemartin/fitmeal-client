@@ -13,11 +13,13 @@ class NavbarMobile extends Component {
       }
     }
 
-    const { user, logout, isLoggedin } = this.props;
+
+
+    const { user, logout } = this.props;
     return (
 
       <nav className='navbar-mobile'>
-         {/* <ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon>    */}
+         <ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon>   
                 <div className="navbar-icons-mobile">
                     {/* <img src="/img/recipe-icon.png" alt="recipe-icon"/> */}
                     <ion-icon name="nutrition-outline"></ion-icon>

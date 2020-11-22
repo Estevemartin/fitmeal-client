@@ -135,11 +135,11 @@ button.signup-btn {
   outline: 0;
 }
 
-.container-page input:focus, input:valid {
+.container-page input:focus,.container-page input:valid {
   border-color: var(--green3);
 }
 
-.container-page input:focus ~ label, input:valid ~ label {
+.container-page input:focus ~ label,.container-page input:valid ~ label {
   font-size: 14px;
   top: -24px;
   color: var(--green3);
@@ -427,6 +427,20 @@ color: var(--grey2);
   flex-direction: row;
   justify-content: space-between;
 }
+/*category section*/
+.cat-btn-section{
+  display: flex;
+  /* flex-direction: row; */
+  flex-wrap: wrap;
+  justify-content: space;
+  margin-top: 10px;
+}
+
+
+.cat-btn-section button{
+  margin: 10px 5px;
+}
+
 
 /*difficulty section*/
 .diff-btn-section{
@@ -468,6 +482,7 @@ color: var(--grey2);
   color: var(--green3);
   font-weight: bold;
   padding: 10px 0;
+  background: transparent;
   border-bottom: 1px solid var(--grey2);
 }
 
@@ -533,7 +548,7 @@ color: var(--grey2);
 .textarea-placeholder-create{
   padding: 14px 10px;
   border-radius: 5px;
-  width: 285px;
+  width: 100%;
   border: solid 1px #aaaaaa;
   outline: none;
   resize: none;

@@ -43,6 +43,6 @@ class Service {
   };
 }
 
-const axiosRequestFunctions = new Service();
 
+const axiosRequestFunctions = new Service();
 export default axiosRequestFunctions;

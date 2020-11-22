@@ -6,7 +6,7 @@ import CardRecipe from "../components/CardRecipe";
 
 
 
-class Home extends Component {
+class Recipes extends Component {
   state={
     recipes: []
   }
@@ -39,8 +39,8 @@ class Home extends Component {
           <h2>Popular recipes</h2>
           <div className="cards-recipes">
             {
-            this.state.recipes.map(recipe => {
-            return (<CardRecipe getRecipes={this.getRecipes}/>
+            this.state.recipes.map((recipe, index) => {
+              return (<CardRecipe key={index} imageUrl={recipe.imageUrl} title={recipe.title} popularity={recipe.popularity}/>
             )})}
 
             {/* {this.state.recipes.map((recipe => {
@@ -56,4 +56,4 @@ class Home extends Component {
   }
 }
 
-export default withAuth(Home);
+export default withAuth(Recipes);
