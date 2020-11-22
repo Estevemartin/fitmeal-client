@@ -20,11 +20,14 @@ class AddNewRecipe extends Component {
       numberOfSteps:[0]
   };
   handleChange = (e) => {
+    e.preventDefault();
+
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
   handleFileUpload = async (e) => {
     // console.log("the file to be uploaded is: ", e.target.files[0]);
+    e.preventDefault();
 
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
@@ -43,6 +46,8 @@ class AddNewRecipe extends Component {
     this.setState({difficulty:e.target.value})
   };
   addIngredient = (e) => {
+    e.preventDefault();
+
     let nIng = this.state.numberOfIngredients
     // console.log("nIng: ",nIng)
     let maxNumber = Math.max(...nIng)+1
@@ -59,6 +64,8 @@ class AddNewRecipe extends Component {
     return this.setState({numberOfIngredients:nIng,ingredients:newIngState})
   };
   handleChangeField = (e,x,field) => {
+    e.preventDefault();
+
     let stateCopy = this.state.ingredients
     var result=0
     stateCopy.forEach((num, ind)=>{
@@ -78,24 +85,27 @@ class AddNewRecipe extends Component {
     this.setState({ingredients:stateCopy})
   };
   addStep = (e) => {
+    e.preventDefault();
+
     let nSteps = this.state.numberOfSteps
-    console.log("nSteps: ",nSteps)
+    // console.log("nSteps: ",nSteps)
     let maxNumber = Math.max(...nSteps)+1
-    console.log("Max:",maxNumber)
+    // console.log("Max:",maxNumber)
     nSteps.push(maxNumber)
-    console.log("nSteps.push(MaxNumber): ",nSteps)
+    // console.log("nSteps.push(MaxNumber): ",nSteps)
 
     let newStep = ""
-    console.log("newStep: ",newStep)
+    // console.log("newStep: ",newStep)
     let newStepState = [...this.state.steps]
-    console.log("newStepState:",newStepState)
+    // console.log("newStepState:",newStepState)
     newStepState.push(newStep)
-    console.log("newStepState.push(newStep):",newStepState)
+    // console.log("newStepState.push(newStep):",newStepState)
 
     return this.setState({numberOfSteps:nSteps,steps:newStepState})
   };
   handleDeleteIngredient = (x) => {
-    
+    // e.preventDefault();
+
     // console.log("X:", x)
     const filteredCopy = this.state.ingredients.filter((element,ind)=>ind!==x)
     // console.log("Filtered Copy:",filteredCopy)
@@ -109,23 +119,25 @@ class AddNewRecipe extends Component {
       this.setState({numberOfIngredients:numIngreResultArray,ingredients:filteredCopy})
     }
   };
-  addIngredient = (e) => {
-    let nIng = this.state.numberOfIngredients
-    // console.log("nIng: ",nIng)
-    let maxNumber = Math.max(...nIng)+1
-    // console.log("Max:",maxNumber)
-    nIng.push(maxNumber)
-    // console.log("nIng.push(MaxNumber): ",nIng)
-    let newIngredient = {ingredientId:maxNumber, name:"",amount:"",units:""}
-    // console.log("NewIngredient: ",newIngredient)
-    let newIngState = [...this.state.ingredients]
-    // console.log("newIngState:",newIngState)
-    newIngState.push(newIngredient)
-    // console.log("resultIng:",resultIng)
-    // console.log("Ingredients about to be in state:",this.state.ingredients.push(newIngredient))
-    return this.setState({numberOfIngredients:nIng,ingredients:newIngState})
-  };
+  // addIngredient = (e) => {
+  //   let nIng = this.state.numberOfIngredients
+  //   // console.log("nIng: ",nIng)
+  //   let maxNumber = Math.max(...nIng)+1
+  //   // console.log("Max:",maxNumber)
+  //   nIng.push(maxNumber)
+  //   // console.log("nIng.push(MaxNumber): ",nIng)
+  //   let newIngredient = {ingredientId:maxNumber, name:"",amount:"",units:""}
+  //   // console.log("NewIngredient: ",newIngredient)
+  //   let newIngState = [...this.state.ingredients]
+  //   // console.log("newIngState:",newIngState)
+  //   newIngState.push(newIngredient)
+  //   // console.log("resultIng:",resultIng)
+  //   // console.log("Ingredients about to be in state:",this.state.ingredients.push(newIngredient))
+  //   return this.setState({numberOfIngredients:nIng,ingredients:newIngState})
+  // };
   handleStepChange = (e,x) => {
+    e.preventDefault();
+
     // console.log("X:",)
     let stateCopy = this.state.steps
 
@@ -141,9 +153,9 @@ class AddNewRecipe extends Component {
     try {
       // const {author,difficulty,imageUrl,ingredients,portions,prepTime,title,steps} = this.state
       const res = await service.saveNewRecipe(this.state);
-      // console.log("added", res);
+      console.log("SUCCESS: RECIPE CREATED -->", res);
       // console.log(this.state.imageUrl)
-
+      
       this.setState({
         imageUrl: "", 
         author: this.props.user._id,
@@ -257,7 +269,7 @@ class AddNewRecipe extends Component {
                 this.state.ingredients.forEach((element, ind)=>{
                   if (element.ingredientId===num){result = ind}
                 })
-                console.log("numberOfIngredients:",num,"(value) ",index,"(index) | Ingredient:", this.state.ingredients[result].ingredientId,"(value) ", result,"(index)")
+                {/* console.log("numberOfIngredients:",num,"(value) ",index,"(index) | Ingredient:", this.state.ingredients[result].ingredientId,"(value) ", result,"(index)") */}
 
                 return <Ingredients 
                   index={num} 
