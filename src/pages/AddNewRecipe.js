@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
+import Ingredients from "../components/Ingredients"
 // import axios from 'axios';
 
 
@@ -10,79 +11,162 @@ class AddNewRecipe extends Component {
       imageUrl: "", 
       author: this.props.user._id,
       title: "Write a nice title",
-      prepTime: "",
-      difficulty: "",
-      ingredients: "Ingredient",
-      preparation: "Start writing the steps here"
-     };
+      prepTime: 0,
+      difficulty: "Easy",
+      portions:"",
+      ingredients: [{ingredientId:0,name:"",amount:"",units:""}],
+      steps: [''],
+      numberOfIngredients: [0],
+      numberOfSteps:[0]
+  };
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+  handleFileUpload = async (e) => {
+    // console.log("the file to be uploaded is: ", e.target.files[0]);
 
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);
 
-    handleChange = (event) => {
-      const { name, value } = event.target;
-      this.setState({ [name]: value });
-    };
+    try {
+      const res = await service.handleUpload(uploadData);
+      // console.log("response is", res);
+      this.setState({ imageUrl: res });
+    } catch (error) {
+      console.log("Error while uploading the file: ", error);
+    }
+  };
+  handleLevelClick = (e) => {
+    e.preventDefault();
+    // console.log(e.target.value)
+    this.setState({difficulty:e.target.value})
+  };
+  addIngredient = (e) => {
+    let nIng = this.state.numberOfIngredients
+    // console.log("nIng: ",nIng)
+    let maxNumber = Math.max(...nIng)+1
+    // console.log("Max:",maxNumber)
+    nIng.push(maxNumber)
+    // console.log("nIng.push(MaxNumber): ",nIng)
+    let newIngredient = {ingredientId:maxNumber, name:"",amount:"",units:""}
+    // console.log("NewIngredient: ",newIngredient)
+    let newIngState = [...this.state.ingredients]
+    // console.log("newIngState:",newIngState)
+    newIngState.push(newIngredient)
+    // console.log("resultIng:",resultIng)
+    // console.log("Ingredients about to be in state:",this.state.ingredients.push(newIngredient))
+    return this.setState({numberOfIngredients:nIng,ingredients:newIngState})
+  };
+  handleChangeField = (e,x,field) => {
+    let stateCopy = this.state.ingredients
+    var result=0
+    stateCopy.forEach((num, ind)=>{
+      if (num.ingredientId===x){result = ind}
+    })
+    switch (field){
+      case "Name":
+        stateCopy[result].name = e.target.value
+        break
+      case "Amount":
+        stateCopy[result].amount = e.target.value
+        break
+      case "Units":
+        stateCopy[result].units = e.target.value
+        break
+    }
+    this.setState({ingredients:stateCopy})
+  };
+  addStep = (e) => {
+    let nSteps = this.state.numberOfSteps
+    console.log("nSteps: ",nSteps)
+    let maxNumber = Math.max(...nSteps)+1
+    console.log("Max:",maxNumber)
+    nSteps.push(maxNumber)
+    console.log("nSteps.push(MaxNumber): ",nSteps)
 
-    handleFileUpload = async (e) => {
-      console.log("the file to be uploaded is: ", e.target.files[0]);
-  
-      // creamos un nuevo objeto FormData
-      const uploadData = new FormData();
-  
-      // imageUrl (este nombre tiene que ser igual que en el modelo, ya que usaremos req.body como argumento del método .create() cuando creemos una nueva movie en la ruta POST '/api/movies/create')
-      uploadData.append("imageUrl", e.target.files[0]);
-  
-      try {
-        const res = await service.handleUpload(uploadData);
-  
-        console.log("response is", res);
-  
-        this.setState({ imageUrl: res });
-      } catch (error) {
-        console.log("Error while uploading the file: ", error);
-      }
-    };
+    let newStep = ""
+    console.log("newStep: ",newStep)
+    let newStepState = [...this.state.steps]
+    console.log("newStepState:",newStepState)
+    newStepState.push(newStep)
+    console.log("newStepState.push(newStep):",newStepState)
 
-  // handleFormSubmit = async (event) => {
-  //   console.log(this.state)
-  //   event.preventDefault();
-  //   // const { image, title, prepTime, difficulty, ingredients, preparation } = this.state;
-  //   await axios.post('http://localhost:4000/createRecipe', {recipe: this.state, _id:this.props.user._id})
-  //   // await axios.get('http://localhost:3000/private')
-  //   //console.log('Login -> form submit', { username, password });
-  //   // this.props.login({ username, password });
-  //   // return <Redirect to="http://localhost:3000/" />
-  //   return this.props.history.push("/");
-  // };
+    return this.setState({numberOfSteps:nSteps,steps:newStepState})
+  };
+  handleDeleteIngredient = (x) => {
+    
+    // console.log("X:", x)
+    const filteredCopy = this.state.ingredients.filter((element,ind)=>ind!==x)
+    // console.log("Filtered Copy:",filteredCopy)
+
+    const numIngreResultArray = this.state.numberOfIngredients.filter((element,ind)=>ind!==x)
+    // console.log("Num Ingr Arr:",numIngreResultArray)
+
+    if (numIngreResultArray.length===0){
+      this.setState({numberOfIngredients:[0],ingredients: [{ingredientId:0,name:"",amount:"",units:""}]})
+    } else{
+      this.setState({numberOfIngredients:numIngreResultArray,ingredients:filteredCopy})
+    }
+  };
+  addIngredient = (e) => {
+    let nIng = this.state.numberOfIngredients
+    // console.log("nIng: ",nIng)
+    let maxNumber = Math.max(...nIng)+1
+    // console.log("Max:",maxNumber)
+    nIng.push(maxNumber)
+    // console.log("nIng.push(MaxNumber): ",nIng)
+    let newIngredient = {ingredientId:maxNumber, name:"",amount:"",units:""}
+    // console.log("NewIngredient: ",newIngredient)
+    let newIngState = [...this.state.ingredients]
+    // console.log("newIngState:",newIngState)
+    newIngState.push(newIngredient)
+    // console.log("resultIng:",resultIng)
+    // console.log("Ingredients about to be in state:",this.state.ingredients.push(newIngredient))
+    return this.setState({numberOfIngredients:nIng,ingredients:newIngState})
+  };
+  handleStepChange = (e,x) => {
+    // console.log("X:",)
+    let stateCopy = this.state.steps
+
+    stateCopy[x] = e.target.value
+    // console.log("StateCopy:",stateCopy)
+    
+    this.setState({steps:stateCopy})
+  };
+  
 
   handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
+      // const {author,difficulty,imageUrl,ingredients,portions,prepTime,title,steps} = this.state
       const res = await service.saveNewRecipe(this.state);
-      console.log("added", res);
-      console.log(this.state.imageUrl)
+      // console.log("added", res);
+      // console.log(this.state.imageUrl)
 
       this.setState({
         imageUrl: "", 
-        author: "",
+        author: this.props.user._id,
         title: "Write a nice title",
-        prepTime: "",
-        difficulty: "",
-        ingredients: "Ingredient",
-        preparation: "Start writing the steps here"
+        prepTime: 0,
+        difficulty: "Easy",
+        portions:"",
+        ingredients: [{ingredientId:0,name:"",amount:"",units:""}],
+        steps: [''],
+        numberOfIngredients: [0],
+        numberOfSteps:[0]
       });
 
+      return this.props.history.push("/")
       // this.props.getRecipes()
     } catch (error) {
         console.log("Error while adding the recipe: ", error);
     }
   };
 
-
-
   render() {
-    console.log(this.props)
-    const { title, ingredients, preparation } = this.state;
-
+    // console.log(this.props)
+    const { title, prepTime} = this.state;
     return (
       <>
 
@@ -101,13 +185,13 @@ class AddNewRecipe extends Component {
             
            {/* name your recipe */}
            <div className="create-section">
-            <label className="create-recipe-titles" htmlFor="">Name your recipe<span>*</span></label>
+            <label className="create-recipe-titles">Name your recipe<span>*</span></label>
             <input className="input-title-recipe" type='text' name='title' placeholder={title} onChange={this.handleChange} />
           </div>
 
            {/* image recipe */}
            <div className="img-create create-section">
-           <label className="create-recipe-titles" htmlFor="">Add a recipe photo<span>*</span></label>
+           <label className="create-recipe-titles">Add a recipe photo<span>*</span></label>
            <label  htmlFor="file" className="upload-img-text">
               <div className="img-text-box">
                 <ion-icon name="add-circle-outline"></ion-icon>
@@ -116,6 +200,7 @@ class AddNewRecipe extends Component {
             </div>
             </label>
             </div>
+
 
             <div className="box-green">
               <p>Something’s cooking! Let’s add a few more details…</p>
@@ -127,27 +212,26 @@ class AddNewRecipe extends Component {
               <select className='portions select-underline' name='portions' type='text' onChange={this.handleChange}>
                       <option hidden>nº servings</option>
                       <option value="1 serving">1 serving</option>
-                      <option value="2 serving">2 serving</option>
-                      <option value="3 serving">3 serving</option>
-                      <option value="4 serving">4 serving</option>
-                      <option value="5 serving">5 serving</option>
-                      <option value="6 serving">6 serving</option>
-                      <option value="7 serving">7 serving</option>
-                      <option value="8 serving">8 serving</option>
-                      <option value="9 serving">9 serving</option>
-                      <option value="10 serving">10 serving</option>
+                      <option value="2 servings">2 servings</option>
+                      <option value="3 servings">3 servings</option>
+                      <option value="4 servings">4 servings</option>
+                      <option value="5 servings">5 servings</option>
+                      <option value="6 servings">6 servings</option>
+                      <option value="7 servings">7 servings</option>
+                      <option value="8 servings">8 servings</option>
+                      <option value="9 servings">9 servings</option>
+                      <option value="10 servings">10 servings</option>
                 </select> 
             </div>
 
-
-            {/* difficulty */}
-            <div className="difficulty-section create-section">
-                <label className="create-recipe-titles" htmlFor="">Difficulty<span>*</span></label>
-                <div className="diff-btn-section">
-                        <button>Easy</button>
-                        <button>Medium</button>
-                        <button>Hard</button>
-                </div>
+              {/* difficulty */}
+              <div className="difficulty-section create-section">
+              <label className="create-recipe-titles">Difficulty<span>*</span></label>
+              <div className="diff-btn-section">
+                <button onClick={(e)=>this.handleLevelClick(e)} value="Easy">Easy</button>
+                <button onClick={(e)=>this.handleLevelClick(e)} value="Medium">Medium</button>
+                <button onClick={(e)=>this.handleLevelClick(e)} value="Hard">Hard</button>
+              </div>
             </div>
 
             {/* prep time */}
@@ -156,7 +240,8 @@ class AddNewRecipe extends Component {
                         <label className="create-recipe-titles" htmlFor="">Prep time<span>*</span></label>
                         <p>How much time do you spend making the dish?</p>
                   </div>
-                  <select className='prep-time select-underline' name='prepTime' type='text' onChange={this.handleChange}>
+                  <select className='prep-time select-underline' name='prepTime' type='text' value={prepTime} onChange={this.handleChange}>
+                {/* <input type="number" name="prepTime" value={prepTime} min="0" placeholder="0 min" onChange={this.handleChange}/> */}
                         <option hidden>0 min</option>
                         <option value="0 - 15 mins">0 - 15 mins</option>
                         <option value="15 - 30 mins">15 - 30 mins</option>
@@ -165,45 +250,60 @@ class AddNewRecipe extends Component {
                   </select> 
             </div>
 
+  
+                
+       
+
             <div className="box-green">
                   <p>A recipe would be nothing without the ingredients! What goes in your dish?</p>
             </div>
 
-            <div className="ingredients-create create-section">
-                  <label className="create-recipe-titles" htmlFor="">Ingredients<span>*</span></label>
-                  <div className="ingredients-options">
-                      <input className="amount select-underline" type="number" name="amount" placeholder="Amount" onChange={this.handleChange} />
-                      <select className="select-underline unit" name='unit' type='text' onChange={this.handleChange} >
-                                <option hidden>Unit</option>
-                                <option value=""> - </option>
-                                <option value="tbsp">tbsp</option>
-                                <option value="tbs">tbs</option>
-                                <option value="cup">cup</option>
-                                <option value="g">g</option>
-                                <option value="kg">kg</option>
-                                <option value="ml">ml</option>
-                                <option value="l">l</option>
-                      </select>
-                      <input className="ingredients-text select-underline" type="text" placeholder={ingredients} onChange={this.handleChange}/>
-                      <ion-icon name="close-circle-outline"></ion-icon>
-                  </div>
-                  <button className="add-btn"><span>+ </span>Add an ingredient</button>
-            </div>
+
+             {/* Ingredients */}
+             <div className="ingredients-create create-section">
+              <label className="create-recipe-titles">Ingredients<span>*</span></label>
+              {/* {console.log("Array de Ingredients ID:",this.state.numberOfIngredients,"Ingredientes en State:",this.state.ingredients)} */}
+
+              {this.state.numberOfIngredients.map((num,index)=>{
+                
+                {/* console.log("---------------- start map ------------") */}
+                var result=0
+                this.state.ingredients.forEach((element, ind)=>{
+                  if (element.ingredientId===num){result = ind}
+                })
+                console.log("numberOfIngredients:",num,"(value) ",index,"(index) | Ingredient:", this.state.ingredients[result].ingredientId,"(value) ", result,"(index)")
+
+                return <Ingredients 
+                  index={num} 
+                  key={num} 
+                  handleDelete={()=>this.handleDeleteIngredient(result)} 
+                  handleChangeName = {(e)=>this.handleChangeField(e,num,"Name")}
+                  handleChangeUnits = {(e)=>this.handleChangeField(e,num,"Units")}
+                  handleChangeAmount = {(e)=>this.handleChangeField(e,num,"Amount")}
+                  amount={this.state.ingredients[result].amount}
+                  units={this.state.ingredients[result].units}
+                  name={this.state.ingredients[result].name} 
+                />
+              })}
+              
+              <button  onClick ={(e)=>this.addIngredient(e)} className="add-btn"><span>+ </span>Add an ingredient</button>
+              </div>
             
             <div className="box-green">
                   <p>Sound delicious! Now, it's time to add the steps...</p>
-            </div>
-
+            </div>    
+            
+            {/* Steps */}
             <div className="steps-create create-section">
-                  <label className="create-recipe-titles" htmlFor="">Steps<span>*</span></label>
-                  <div className="textarea-create">
-                      <textarea className="textarea-placeholder-create" name='preparation' placeholder={preparation} onChange={this.handleChange}>
-                      </textarea>
-                      <ion-icon name="close-circle-outline"></ion-icon>
-                  </div>
-                  <button className="add-btn"><span>+ </span>Add a step</button>
+              <label className="create-recipe-titles">Steps<span>*</span></label>
+              {this.state.numberOfSteps.map((num,index)=>{
+                return <div className="textarea-create">
+                            <textarea key={num} id={'preparation-step-'+num} placeholder="Write here the steps..." onChange={(e)=>this.handleStepChange(e,num)}></textarea>
+                      </div>
+              })}
+              
+              <button  className="add-btn"  onClick ={(e)=>this.addStep(e)} ><span>+ </span>Add a step</button>
             </div>
-
             
             <input className="submitDiv" type='submit' value='Save' />
         </form>

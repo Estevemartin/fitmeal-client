@@ -10,11 +10,11 @@ class Service {
 
 
   handleUpload = async (theFile) => {
-    console.log("file in service: ", theFile);
+    // console.log("file in service: ", theFile);
 
     try {
       const res = await this.service.post("/upload", theFile);
-      console.log('res', res.data.secure_url)
+      // console.log('res', res.data.secure_url)
       return res.data.secure_url;
     } catch (error) {
       console.log(error);
@@ -22,7 +22,7 @@ class Service {
   };
 
   saveNewRecipe = async (newRecipe) => {
-    console.log("new thing is: ", newRecipe);
+    // console.log("new thing is: ", newRecipe);
 
     try {
       const res = await this.service.post("/recipes/create", newRecipe);

@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 :root{
   --grey: #F2F2F2;
   --grey1: #DADADA;
@@ -27,7 +25,6 @@ html, body, a, input, button, textarea{
   outline: none;
   color: var(--text-color);
 }
-
 .App {
   padding: 20px;;
 }
@@ -39,18 +36,16 @@ html, body, a, input, button, textarea{
 nav.navbar { 
   position: fixed;
   top:0;
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   padding: 20px 20px 10px 20px;
   width: 100%;
   background: var(--white); 
   box-shadow: 2px 0 10px var(--grey1);
 }
-
 nav.navbar .navbar-user{
   margin-left: 10px;
 }
-
 button.navbar-button, .join-signup {
   padding: 2px 10px;
   font-size: 16px;
@@ -62,55 +57,46 @@ button.navbar-button, .join-signup {
   color: var(--text-color);
   cursor: pointer;
 }
-
 button.login-btn {
   background: var(--green);
   border: 2px solid var(--green);
 }
-
 button.signup-btn {
   background: var(--green1);
   border: 2px solid var(--green1);
 }
-
 #home-btn {
   text-decoration: none;
   display: inline-flex;
 }
-
 #home-btn h4{
   font-size: 20px;
   font-weight: 600;
   color: var(--text-color);
 }
-
 #home-btn span img{
   width: 30px;
   height: 30px;
   margin-right: 10px;
 }
-
 .auth-section{
   display: inline-flex;
 }
 
 
 /*-------------------- login / signup --------------------*/
-
 .container-page{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
-
 .login, .signup{
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 100px auto 0 auto;
 }
-
 .form-auth{
   display: flex;
   flex-direction: column;
@@ -187,7 +173,6 @@ color: var(--grey2);
 
 
 /*-------------------- landing page container --------------------*/
-
 .header{
   height: 100vh;
   background: url("/img/mockup.png") no-repeat 50% 90%;
@@ -196,7 +181,6 @@ color: var(--grey2);
   display: flex;
   align-items: center;
 }
-
 .header-text-container{
   display: flex;
   flex-direction: column;
@@ -204,25 +188,21 @@ color: var(--grey2);
   margin: -120px 0 0 40px;
   color: black;
 }
-
 .header-text-container h3{
   font-weight: 200;
   font-size: 16px;
   margin-bottom: -5px;
 }
-
 .header-text-container h1{
   font-weight: 600;
   font-size: 30px;
   letter-spacing: 1px;
 }
-
 .header-text-container h2{
   font-weight: 300;
   font-size: 20px;
   line-height: 25px;
 }
-
 .join-signup{
   background-color: black;
   text-align: center;
@@ -230,7 +210,6 @@ color: var(--grey2);
   padding: 10px 15px;
   margin-top: 20px;
 }
-
 .join-signup-btn{
   background-color: transparent;
   color: var(--white);
@@ -240,7 +219,6 @@ color: var(--grey2);
   font-weight: 500;
   cursor: pointer;
 }
-
 .join-signup:hover{
   background-color:var(--green3);
 }
@@ -253,7 +231,6 @@ color: var(--grey2);
   flex-direction: row;
   align-items: center;
 }
-
 .profile-picture{
   border-radius: 25px;
   width: 35px;
@@ -262,7 +239,6 @@ color: var(--grey2);
 .avatar-color{
   background: var(--green1);
 }
-
 .logout-icon{
   font-size: 20px;
 }
