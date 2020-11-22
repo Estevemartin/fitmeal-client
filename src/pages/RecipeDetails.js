@@ -11,7 +11,7 @@ class recipeDetails extends Component {
         const id = this.props.match.params.id
         // console.log("Id:",id)
         const recipe = await service.getRecipeDetails(id)
-        console.log("Response from Service en RecipeDetails.js",recipe)
+        // console.log("Response from Service en RecipeDetails.js",recipe)
         this.setState(recipe)
     }
     
@@ -25,7 +25,7 @@ class recipeDetails extends Component {
                 return (
                     ingredients.map((ingredient,index)=>{
                         if (ingredient.amount==="" && ingredient.units==="" && ingredient.name===""  ){
-                            
+
                         } else {
                             return <li key={index}><input type="checkbox"></input>{ingredient.amount} {ingredient.units} {ingredient.name}  </li>
                         }
@@ -59,7 +59,7 @@ class recipeDetails extends Component {
         const {title,author,difficulty, ingredients,popularity,portions,prepTime,steps,imageUrl} = this.state
         return (
             <div className='container-recipe-details'> 
-                <div className="image-recipe"><img src={imageUrl} alt="Recipe Image" height="100"/></div>
+                <div className="image-recipe"><img src={imageUrl} alt="Recipe" height="100"/></div>
                 <p>{title}</p>
                 <div className="media">
                     <span><ion-icon name="heart-outline"> </ion-icon>{popularity} likes</span>

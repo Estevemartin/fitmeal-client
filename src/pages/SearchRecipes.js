@@ -3,21 +3,22 @@ import { withAuth } from "../lib/AuthProvider";
 import NavbarMobile from "../components/NavbarMobile";
 import service from "../api/service";
 import CardRecipe from "../components/CardRecipe";
-import Slider from "../components/Slider"
+// import Slider from "../components/Slider"
 
 
-class Recipes extends Component {
+class SearchRecipes extends Component {
   state={
     recipes: []
   }
-  getRecipes = async () => {
-    const res = await service.getRecipes();
+  getRecipesByCategory = async (category) => {
+    const res = await service.getRecipesByCategory(category);
     // console.log(res);
     this.setState({recipes: res})
   }
 
   componentDidMount = () => {
-    this.getRecipes();
+    const category = this.props.match.params.category
+    this.getRecipesByCategory(category);
   }
 
   render() {
@@ -29,7 +30,7 @@ class Recipes extends Component {
             <h4>recipes.</h4>
             {/* <button>Close</button> */}
           </div>
-          <h2>Discover</h2>
+          {/* <h2>Discover</h2>
           <div className="discover-img" style={{backgroundImage: "linear-gradient(0deg, rgba(95, 163, 151, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url('/img/mockup.png')"}}>
                   <div className="discover-title"></div>
                   <div className="info-icons-recipe">
@@ -37,7 +38,7 @@ class Recipes extends Component {
           </div>
           <h2>Categories</h2>
           <Slider/>
-          <h2>Popular recipes</h2>
+          <h2>Popular recipes</h2> */}
           <div className="cards-recipes">
             {
             this.state.recipes.map((recipe,index) => {
@@ -57,4 +58,4 @@ class Recipes extends Component {
   }
 }
 
-export default withAuth(Recipes);
+export default withAuth(SearchRecipes);

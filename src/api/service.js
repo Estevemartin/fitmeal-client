@@ -41,7 +41,15 @@ class Service {
       console.log(error);
     }
   };
-
+  getRecipesByCategory = async (category)=>{
+    try {
+      const res = await this.service.get("/category/"+category);
+      // console.log(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
   getRecipes = async () => {
     try {
       const res = await this.service.get("/recipes");
