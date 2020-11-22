@@ -1,8 +1,25 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import NavbarMobile from "../components/NavbarMobile";
+import service from "../api/service";
+import CardRecipe from "../components/CardRecipe";
+
+
 
 class Home extends Component {
+  state={
+    recipes: []
+  }
+  getRecipes = async () => {
+    const res = await service.getRecipes();
+    console.log(res);
+    this.setState({recipes: res})
+  }
+
+  componentDidMount = () => {
+    this.getRecipes();
+  }
+
   render() {
     return (
       <div className="container">
@@ -21,7 +38,17 @@ class Home extends Component {
           <h2>Categories</h2>
           <h2>Popular recipes</h2>
           <div className="cards-recipes">
-            
+            {
+            this.state.recipes.map(recipe => {
+            return (<CardRecipe getRecipes={this.getRecipes}/>
+            )})}
+
+            {/* {this.state.recipes.map((recipe => {
+              return (<CardRecipe
+                        key={recipe.id}
+                        {...recipe}/>);
+            }))} */}
+
           </div>
         </div>
       </div>

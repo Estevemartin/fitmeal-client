@@ -109,22 +109,22 @@ class AddNewRecipe extends Component {
       this.setState({numberOfIngredients:numIngreResultArray,ingredients:filteredCopy})
     }
   };
-  addIngredient = (e) => {
-    let nIng = this.state.numberOfIngredients
-    // console.log("nIng: ",nIng)
-    let maxNumber = Math.max(...nIng)+1
-    // console.log("Max:",maxNumber)
-    nIng.push(maxNumber)
-    // console.log("nIng.push(MaxNumber): ",nIng)
-    let newIngredient = {ingredientId:maxNumber, name:"",amount:"",units:""}
-    // console.log("NewIngredient: ",newIngredient)
-    let newIngState = [...this.state.ingredients]
-    // console.log("newIngState:",newIngState)
-    newIngState.push(newIngredient)
-    // console.log("resultIng:",resultIng)
-    // console.log("Ingredients about to be in state:",this.state.ingredients.push(newIngredient))
-    return this.setState({numberOfIngredients:nIng,ingredients:newIngState})
-  };
+  // addIngredient = (e) => {
+  //   let nIng = this.state.numberOfIngredients
+  //   // console.log("nIng: ",nIng)
+  //   let maxNumber = Math.max(...nIng)+1
+  //   // console.log("Max:",maxNumber)
+  //   nIng.push(maxNumber)
+  //   // console.log("nIng.push(MaxNumber): ",nIng)
+  //   let newIngredient = {ingredientId:maxNumber, name:"",amount:"",units:""}
+  //   // console.log("NewIngredient: ",newIngredient)
+  //   let newIngState = [...this.state.ingredients]
+  //   // console.log("newIngState:",newIngState)
+  //   newIngState.push(newIngredient)
+  //   // console.log("resultIng:",resultIng)
+  //   // console.log("Ingredients about to be in state:",this.state.ingredients.push(newIngredient))
+  //   return this.setState({numberOfIngredients:nIng,ingredients:newIngState})
+  // };
   handleStepChange = (e,x) => {
     // console.log("X:",)
     let stateCopy = this.state.steps
@@ -157,8 +157,8 @@ class AddNewRecipe extends Component {
         numberOfSteps:[0]
       });
 
-      return this.props.history.push("/")
-      // this.props.getRecipes()
+      // return this.props.history.push("/")
+      this.props.getRecipes()
     } catch (error) {
         console.log("Error while adding the recipe: ", error);
     }
@@ -271,7 +271,7 @@ class AddNewRecipe extends Component {
                 this.state.ingredients.forEach((element, ind)=>{
                   if (element.ingredientId===num){result = ind}
                 })
-                console.log("numberOfIngredients:",num,"(value) ",index,"(index) | Ingredient:", this.state.ingredients[result].ingredientId,"(value) ", result,"(index)")
+                // console.log("numberOfIngredients:",num,"(value) ",index,"(index) | Ingredient:", this.state.ingredients[result].ingredientId,"(value) ", result,"(index)")
 
                 return <Ingredients 
                   index={num} 
@@ -286,7 +286,7 @@ class AddNewRecipe extends Component {
                 />
               })}
               
-              <button  onClick ={(e)=>this.addIngredient(e)} className="add-btn"><span>+ </span>Add an ingredient</button>
+              <button  onClick={(e)=>this.addIngredient(e)} className="add-btn"><span>+ </span>Add an ingredient</button>
               </div>
             
             <div className="box-green">
@@ -297,8 +297,8 @@ class AddNewRecipe extends Component {
             <div className="steps-create create-section">
               <label className="create-recipe-titles">Steps<span>*</span></label>
               {this.state.numberOfSteps.map((num,index)=>{
-                return <div className="textarea-create">
-                            <textarea key={num} id={'preparation-step-'+num} placeholder="Write here the steps..." onChange={(e)=>this.handleStepChange(e,num)}></textarea>
+                return <div className="textarea-create" key={num}>
+                            <textarea id={'preparation-step-'+num} placeholder="Write here the steps..." onChange={(e)=>this.handleStepChange(e,num)}></textarea>
                       </div>
               })}
               
