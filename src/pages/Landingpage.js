@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 
 function Landingpage() {
   return (
     <div className='header'> 
+    <Navbar />
         <div className='header-text-container'>
             <h3>welcome to</h3>
             <h1>fitmeal app</h1>

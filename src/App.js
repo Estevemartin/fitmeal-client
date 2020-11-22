@@ -4,7 +4,6 @@ import { Switch } from "react-router-dom";
 import AuthProvider from "./lib/AuthProvider";
 import service from "./api/service";
 
-import Navbar from "./components/Navbar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -34,7 +33,7 @@ class App extends Component {
     return (
       <AuthProvider>
         <div className='container'>
-          <Navbar />
+          
 
           <Switch>
             <AnonRoute exact path='/' component={Landingpage} />

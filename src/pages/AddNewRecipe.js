@@ -169,8 +169,8 @@ class AddNewRecipe extends Component {
         numberOfSteps:[0]
       });
 
-      return this.props.history.push("/")
-      // this.props.getRecipes()
+      // return this.props.history.push("/")
+      this.props.getRecipes()
     } catch (error) {
         console.log("Error while adding the recipe: ", error);
     }
@@ -181,41 +181,48 @@ class AddNewRecipe extends Component {
     const { title, prepTime} = this.state;
     return (
       <>
+
         <div className="box">
           <div>
             <h4>add a recipe.</h4>
             <button>Close</button>
           </div>
         </div>
+
         <div className="box-green">
-          <p>We're excited to see your recipe! Let's start with the basics</p>
+          <p>We’re excited to see your recipe! Let’s start with the basics</p>
         </div>
+
         <form method="POST" action="/createRecipe" className='add-new-recipe-form' onSubmit={this.handleFormSubmit}>
-            {/* name your recipe */}
-            <div className="create-section">
-              <label className="create-recipe-titles" htmlFor="">Name your recipe<span>*</span></label>
-              <input className="input-title-recipe" type='text' name='title' placeholder={title} onChange={this.handleChange} />
-            </div>
-            {/* image recipe */}
-            <div className="img-create create-section">
-              <label className="create-recipe-titles" htmlFor="">Add a recipe photo<span>*</span></label>
-              <div className="upload-img-text">
-                <div className="img-text-box">
-                  <ion-icon name="add-circle-outline"></ion-icon>
-                  <label htmlFor="file">Upload a final photo of your dish</label>
-                  <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
-                </div>
-              </div>
-            </div>
             
-            <div className="box-green">
-              <p>Something's cooking! Let's add a few more details…</p>
+           {/* name your recipe */}
+           <div className="create-section">
+            <label className="create-recipe-titles">Name your recipe<span>*</span></label>
+            <input className="input-title-recipe" type='text' name='title' placeholder={title} onChange={this.handleChange} />
+          </div>
+
+           {/* image recipe */}
+           <div className="img-create create-section">
+           <label className="create-recipe-titles">Add a recipe photo<span>*</span></label>
+           <label  htmlFor="file" className="upload-img-text">
+              <div className="img-text-box">
+                <ion-icon name="add-circle-outline"></ion-icon>
+                <p >Upload a final photo of your dish</p>
+                <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
             </div>
+            </label>
+            </div>
+
+
+            <div className="box-green">
+              <p>Something’s cooking! Let’s add a few more details…</p>
+            </div>
+
             {/* portions*/}
             <div className="portions-section create-section">
               <label className="create-recipe-titles" htmlFor="">Portions<span>*</span></label>
               <select className='portions select-underline' name='portions' type='text' onChange={this.handleChange}>
-                      <option hidden className="selected-hidden">nº servings</option>
+                      <option hidden>nº servings</option>
                       <option value="1 serving">1 serving</option>
                       <option value="2 servings">2 servings</option>
                       <option value="3 servings">3 servings</option>
@@ -228,37 +235,44 @@ class AddNewRecipe extends Component {
                       <option value="10 servings">10 servings</option>
                 </select> 
             </div>
-            {/* difficulty */}
-            <div className="difficulty-section create-section">
-              <label className="create-recipe-titles" htmlFor="">Difficulty<span>*</span></label>
+
+              {/* difficulty */}
+              <div className="difficulty-section create-section">
+              <label className="create-recipe-titles">Difficulty<span>*</span></label>
               <div className="diff-btn-section">
                 <button onClick={(e)=>this.handleLevelClick(e)} value="Easy">Easy</button>
                 <button onClick={(e)=>this.handleLevelClick(e)} value="Medium">Medium</button>
                 <button onClick={(e)=>this.handleLevelClick(e)} value="Hard">Hard</button>
               </div>
             </div>
+
             {/* prep time */}
             <div className="selector-container create-section">
-                <div className="text-box-select">
-                      <label className="create-recipe-titles" htmlFor="">Prep time<span>*</span></label>
-                      <p>How much time do you spend making the dish?</p>
-                </div>
-                <input type="number" name="prepTime" value={prepTime} min="0" placeholder="0 min" onChange={this.handleChange}/>
-                {/* <select className='prep-time' name='prepTime' type='text' onChange={this.handleChange}>
-                      <option selected hidden>0 min</option>
-                      <option>0 - 15 mins</option>
-                      <option>15 - 30 mins</option>
-                      <option>30 - 45 mins</option>
-                      <option>+ 45 mins</option>
-                </select> */}
-            </div>
-        
-            <div className="box-green">
-              <p>A recipe would be nothing without the ingredients! What goes in your dish?</p>
+                  <div className="text-box-select">
+                        <label className="create-recipe-titles" htmlFor="">Prep time<span>*</span></label>
+                        <p>How much time do you spend making the dish?</p>
+                  </div>
+                  <select className='prep-time select-underline' name='prepTime' type='text' value={prepTime} onChange={this.handleChange}>
+                {/* <input type="number" name="prepTime" value={prepTime} min="0" placeholder="0 min" onChange={this.handleChange}/> */}
+                        <option hidden>0 min</option>
+                        <option value="0 - 15 mins">0 - 15 mins</option>
+                        <option value="15 - 30 mins">15 - 30 mins</option>
+                        <option value="30 - 45 mins">30 - 45 mins</option>
+                        <option value="+ 45 mins">+ 45 mins</option>
+                  </select> 
             </div>
 
-            {/* Ingredients */}
-            <div className="ingredients-create create-section">
+  
+                
+       
+
+            <div className="box-green">
+                  <p>A recipe would be nothing without the ingredients! What goes in your dish?</p>
+            </div>
+
+
+             {/* Ingredients */}
+             <div className="ingredients-create create-section">
               <label className="create-recipe-titles">Ingredients<span>*</span></label>
               {/* {console.log("Array de Ingredients ID:",this.state.numberOfIngredients,"Ingredientes en State:",this.state.ingredients)} */}
 
@@ -284,24 +298,26 @@ class AddNewRecipe extends Component {
                 />
               })}
               
-              <button  onClick ={(e)=>this.addIngredient(e)} className="add-btn"><span>+ </span>Add an ingredient</button>
-            </div>
-        
+              <button  onClick={(e)=>this.addIngredient(e)} className="add-btn"><span>+ </span>Add an ingredient</button>
+              </div>
+            
             <div className="box-green">
-              <p>Sound delicious! Now, it's time to add the steps...</p>
-            </div>
+                  <p>Sound delicious! Now, it's time to add the steps...</p>
+            </div>    
             
             {/* Steps */}
             <div className="steps-create create-section">
-              <label htmlFor="">Steps<span>*</span></label>
+              <label className="create-recipe-titles">Steps<span>*</span></label>
               {this.state.numberOfSteps.map((num,index)=>{
-                return <textarea key={num} id={'preparation-step-'+num} placeholder="Write here the steps..." onChange={(e)=>this.handleStepChange(e,num)}></textarea>
+                return <div className="textarea-create" key={num}>
+                            <textarea id={'preparation-step-'+num} placeholder="Write here the steps..." onChange={(e)=>this.handleStepChange(e,num)}></textarea>
+                      </div>
               })}
               
-              <button  onClick ={(e)=>this.addStep(e)} ><span>+ </span>Add a step</button>
+              <button  className="add-btn"  onClick ={(e)=>this.addStep(e)} ><span>+ </span>Add a step</button>
             </div>
             
-            <div className="submitDiv"><input type='submit' value='Save' /></div>
+            <input className="submitDiv" type='submit' value='Save' />
         </form>
       </>
     );

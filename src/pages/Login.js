@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
+import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
+
 
 class Login extends Component {
   state = { username: "", password: "" };
@@ -21,28 +24,27 @@ class Login extends Component {
 
     return (
       <div className='container-page'>
+        <Navbar/>
         <div className='login'>
         <h1>Login</h1>
 
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
-          <input
-            type='text'
-            name='username'
-            value={username}
-            onChange={this.handleChange}
-          />
+        <form className='form-auth' onSubmit={this.handleFormSubmit}>
+        <div className="input-field">
+          <input id="username" type='text' name='username' value={username} onChange={this.handleChange}  required />
+          <label htmlFor="username">Username:</label>
+        </div>
 
-          <label>Password:</label>
-          <input
-            type='password'
-            name='password'
-            value={password}
-            onChange={this.handleChange}
-          />
+        <div className="input-field">
+          <input id="password" type='password' name='password' value={password} onChange={this.handleChange}  required />
+          <label htmlFor="password">Password:</label>
+        </div>
 
-          <input type='submit' value='Login' />
+          <input id="login-submit" className="sumbit-input" type='submit' value='Login' />
         </form>
+
+        <p>Don't have account? <Link to={"/signup"}> Go to Sign Up</Link></p>
+
+
         </div>
       </div>
     );

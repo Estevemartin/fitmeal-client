@@ -18,25 +18,27 @@
   --green2: #8BBEB5;
   --green3: #5FA397;
 }
-html, body, a, input, button{
+
+html, body, a, input, button, textarea{
   font-family: 'Poppins', sans-serif;
   text-decoration: none;
+  outline: none;
+  color: var(--text-color);
 }
 .App {
   padding: 20px;;
 }
-/*-------------------- desktop --------------------*/
+
+
 /*-------------------- landing page --------------------*/
-/*-------------------- navbar landing page --------------------*/
-nav{
-  display: none;
-}
+/*-------------------- navbar landing page desktop --------------------*/
+
 nav.navbar { 
   position: fixed;
   top:0;
   /* display: flex; */
   justify-content: space-between;
-  padding: 20px 10px 10px 10px;
+  padding: 20px 20px 10px 20px;
   width: 100%;
   background: var(--white); 
   box-shadow: 2px 0 10px var(--grey1);
@@ -45,14 +47,13 @@ nav.navbar .navbar-user{
   margin-left: 10px;
 }
 button.navbar-button, .join-signup {
-  padding: 8px 15px;
+  padding: 2px 10px;
   font-size: 16px;
   font-weight: 500;
   width: 100px;
   border: none;
   outline: none;
-  border-radius: 25px;
-  margin: 0 10px;
+  border-radius: 5px;
   color: var(--text-color);
   cursor: pointer;
 }
@@ -76,11 +77,13 @@ button.signup-btn {
 #home-btn span img{
   width: 30px;
   height: 30px;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 .auth-section{
   display: inline-flex;
 }
+
+
 /*-------------------- login / signup --------------------*/
 .container-page{
   display: flex;
@@ -91,11 +94,84 @@ button.signup-btn {
 .login, .signup{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin: 100px auto 0 auto;
 }
 .form-auth{
   display: flex;
   flex-direction: column;
+  margin: 0 auto 40px auto;
 }
+
+.container-page .input-field {
+  position: relative;
+  width: 250px;
+  height: 44px;
+  line-height: 44px;
+  margin: 20px 0;
+}
+
+.container-page label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #d3d3d3;
+  transition: 0.2s all;
+  cursor: text;
+}
+
+.container-page input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid #d3d3d3;
+  box-shadow: none;
+  color: #111;
+}
+
+.container-page input:invalid {
+  outline: 0;
+}
+
+.container-page input:focus, input:valid {
+  border-color: var(--green3);
+}
+
+.container-page input:focus ~ label, input:valid ~ label {
+  font-size: 14px;
+  top: -24px;
+  color: var(--green3);
+}
+
+.container-page .sumbit-input{
+  border: none;
+  width: 150px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: var(--green1);
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.signup p, .login p{
+padding: 30px 0 10px 0;
+font-size: 14px;
+color: var(--grey2);
+}
+
+.signup a, .login a{
+  color: var(--green3);
+  font-weight: 500;
+}
+
+
+
+
+
 /*-------------------- landing page container --------------------*/
 .header{
   height: 100vh;
@@ -108,31 +184,31 @@ button.signup-btn {
 .header-text-container{
   display: flex;
   flex-direction: column;
-  width: 420px;
-  margin: 130px 0 0 140px;
+  width: 290px;
+  margin: -120px 0 0 40px;
   color: black;
 }
 .header-text-container h3{
   font-weight: 200;
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: -5px;
 }
 .header-text-container h1{
   font-weight: 600;
-  font-size: 50px;
+  font-size: 30px;
   letter-spacing: 1px;
 }
 .header-text-container h2{
   font-weight: 300;
-  font-size: 25px;
-  line-height: 35px;
+  font-size: 20px;
+  line-height: 25px;
 }
 .join-signup{
   background-color: black;
   text-align: center;
   width: 150px;
   padding: 10px 15px;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .join-signup-btn{
   background-color: transparent;
@@ -140,14 +216,16 @@ button.signup-btn {
   border: none;
   outline: none;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
 }
 .join-signup:hover{
   background-color:var(--green3);
 }
-/*-------------------- home --------------------*/
-/*-------------------- navbar home --------------------*/
+
+
+
+/*-------------------- navbar home desktop --------------------*/
 .profile-navbar{
   display: flex;
   flex-direction: row;
@@ -164,87 +242,74 @@ button.signup-btn {
 .logout-icon{
   font-size: 20px;
 }
-/*-------------------- home mobile --------------------*/
-/*-------------------- add new recipe --------------------*/
-/* .add-new-recipe-form{
-  display:flex;
+
+
+
+
+/*------------------- mobile container -----------------------*/
+
+/* .container{
+ height: 100vh;
+} */
+
+/*-------------------- navbar mobile --------------------------*/
+.box-noIcon{
+  width: 100%;
+  height: 132px;
+  padding: 78px 0px 32px 0px;
+  background-color: #ffffff;
+}
+
+.box>div{
+  width: 100%;
+}
+
+.navbar-mobile{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+  /* position: absolute; */
+  /* bottom: 0; */
+  background-color: var(--green);
+}
+
+.navbar-icons-mobile{
+  display: flex;
   flex-direction: column;
-}
-.add-new-recipe-form .image-selector{
-  /* width: 375px; */
-  /* height: 274px; */
-  /* margin: 131px 0 18px; */
-  /* padding: 96px 119px 97px 118px; */
-  /* background-color: #ddefec; */
-/* } */
-/* .add-new-recipe-form .title1{ */
-  /* width: 266px; */
-  /* margin: 18px 94px 46px 15px; */
-  /* margin:18px 15px 30px 15px;
-  font-size: 34px;
-  font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #454545;
-  border:none;
-  outline:none;
-/* } */
-/* .add-new-recipe-form .selector-container{
-  margin:15px;
-} */
-/* .add-new-recipe-form .selector-container select{ */
-  /*width: 81px;*/
-  /* margin: 48px 2px 29px 8px; */
-  /* font-size: 18px;
-  font-weight: 300;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.17;
-  letter-spacing: normal;
-  color: #454545;
-  border:none;
-  outline:none;
-}
-.add-new-recipe-form h2{ */
-  /* width: 153px; */
-  /* margin: 25px 13px 16px 40px;
-  font-size: 28px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #454545;
-} */
-/* .add-new-recipe-form textarea{ */
-  /* width: 281px; */
-  /* height: 148px;
-  margin: 15px 40px;
-  padding: 25px;
-  border-radius: 15px;
-  border: solid 1px #b2e0d8; */
-  /* text-align: center; */
-/* }
-.add-new-recipe-form .submitDiv{
-  display:flex;
   justify-content: center;
-	align-items: center;
+  text-align: center;
+  align-items: center;
 }
-.add-new-recipe-form .submitDiv [type=submit]{
-  width: 117px;
-  height: 36px;
-  margin: 46px 18px 46px 2px; */
-  /* padding: 1px 33px 6px 34px; */
-  /* border-radius: 29px;
-  background-color: #8bbeb5;
-  outline:none;
-  border:none;
-  color:white;
-  font-size:22px; */
-  /* padding:10px; */
-/* }  */
+
+.navbar-mobile span{
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+}
+
+.navbar-icons-mobile ion-icon{
+  font-size: 30px;
+}
+
+.navbar-icons-mobile p{
+  font-size: 14px;
+}
+
+
+/*------------------- home recipes ------------------------*/
+.discover-img{
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  color: white;
+  padding: 20px;
+}
+
+
+/*-------------------- add new recipe mobile --------------------*/
+
 .box{
   width: 100%;
   height: 132px;
@@ -254,18 +319,23 @@ button.signup-btn {
   /* flex-direction: row;
   align-items: center; */
 }
+
 .box>div{
   width: 100%;
+  max-width: 300px;
+  float: right;
   display: inline-flex;
   justify-content: space-between;
 }
-.box h4{
+
+.box h4, .box-noIcon h4{
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 1.15px;
   text-align: center;
   color: #454545;
 }
+
 .box button{
   border: none;
   background-color: transparent;
@@ -274,26 +344,32 @@ button.signup-btn {
   font-weight: 600;
   letter-spacing: 1.15px;
 }
+
 .box-green{
   padding: 28px 25px 27px 26px;
   background-color: #ddefec;
 }
+
 .create-recipe-titles{
   font-size: 19px;
   font-weight: 500;
 }
+
 .create-recipe-titles>span{
   font-weight: 700;
   color: #ec5e5e;
 }
+
 .create-section{
   display: flex;
   flex-direction: column;
   margin: 30px 20px 45px 20px;
 }
+
 .add-new-recipe-form label{
   margin-bottom: 10px;
 }
+
 /*Name recipe create*/
 .input-title-recipe{
   border: none;
@@ -304,6 +380,8 @@ button.signup-btn {
   padding: 10px 0 8px 0;
   border-bottom: 1px solid var(--grey2);
 }
+
+/*img upload*/
 .upload-img-text [type="file"] {
   border: 0;
   clip: rect(0, 0, 0, 0);
@@ -314,6 +392,7 @@ button.signup-btn {
   white-space: nowrap;
   width: 1px;
 }
+
 .img-text-box{
   margin-top: 15px;
   background-color: var(--grey);
@@ -323,22 +402,165 @@ button.signup-btn {
   justify-content: center;
   align-items: center;
 }
-.img-text-box label{
+
+.img-text-box p{
   width: 130px;
   text-align: left;
   font-size: 19px;
   font-weight: 300;
   line-height: 28px;
 }
+
 .img-text-box ion-icon{
   font-size: 30px;
   margin-right: 10px;
   color: var(--text-color);
 }
+
 .upload-img-text [type="file"] + .img-text-box {
   cursor: pointer;
 }
-.submitDiv [type=submit]{
+
+/*portions section*/
+.portions-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/*difficulty section*/
+.diff-btn-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.difficulty-section button{
+  padding: 8px 20px;
+  border-radius: 5px;
+  border: 1px solid var(--green);
+  background-color: var(--green);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/*prep time*/
+.selector-container{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.text-box-select p{
+  width: 200px;
+  font-size: 14px;
+  color: #707070;
+}
+
+
+
+/*input select underline*/
+.select-underline{
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: var(--green3);
+  font-weight: bold;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--grey2);
+}
+
+/*ingredients*/
+.ingredients-options{
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+  padding: 10px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+.amount{
+  width: 80px;
+  text-align: center;
+}
+
+.amount::placeholder{
+  color: var(--green3);
+  font-weight: 500;
+}
+
+.unit{
+  text-align: center;
+  width: 60px;
+  padding: 13px 0;
+}
+
+.ingredients-text{
+  text-align: center;
+  width: 120px;
+  color: var(--green3);
+}
+
+.ingredients-text::placeholder{
+  color: var(--green3);
+  font-weight: 500;
+}
+
+.ingredients-options ion-icon{
+  font-size: 30px;
+  color: #ec5e5e;
+}
+
+
+.add-btn{
+  border: 1px solid var(--green3);
+  border-radius: 5px;
+  padding: 13px 40px;
+  font-size: 19px;
+  color: var(--green3);
+  background: none;
+  margin: 35px 0;
+}
+
+
+/*steps*/
+.textarea-create{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.textarea-placeholder-create{
+  padding: 14px 10px;
+  border-radius: 5px;
+  width: 285px;
+  border: solid 1px #aaaaaa;
+  outline: none;
+  resize: none;
+  font-size: 16px;
+  min-height: 120px;
+}
+
+.textarea-create ion-icon{
+  font-size: 30px;
+  color: #ec5e5e;
+}
+
+.textarea-placeholder-create::placeholder{
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.add-new-recipe-form{
+display: flex;
+flex-direction: column;
+justify-content: center;
+margin-bottom: 80px;
+}
+
+.submitDiv{
+  text-align: center;
+  margin: 0 auto;
   width: 117px;
   border-radius: 5px;
   background-color: #8bbeb5;
@@ -348,3 +570,4 @@ button.signup-btn {
   font-size:18px;
   padding:10px;
 } 
+
