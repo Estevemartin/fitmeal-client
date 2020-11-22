@@ -80,6 +80,7 @@ class AuthProvider extends React.Component {
       // si está loading, devuelve un <div> y sino devuelve un componente <Provider> con un objeto con los valores: { isLoggedin, user, login, logout, signup}
       // el objeto pasado en la prop value estará disponible para todos los componentes <Consumer>
       <div>Loading</div>
+      
     ) : (
       <Provider value={{ isLoggedin, user, login, logout, signup }}>
         {this.props.children}

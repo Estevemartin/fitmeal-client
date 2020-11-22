@@ -13,7 +13,7 @@ class NavbarMobile extends Component {
       }
     }
 
-    const { user, logout, isLoggedin } = this.props;
+    const { user } = this.props;
     return (
 
       <nav className='navbar-mobile'>

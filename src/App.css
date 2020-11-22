@@ -308,6 +308,8 @@ color: var(--grey2);
 }
 
 
+
+
 /*-------------------- add new recipe mobile --------------------*/
 
 .box{
@@ -570,4 +572,11 @@ margin-bottom: 80px;
   font-size:18px;
   padding:10px;
 } 
+
+
+
+
+/*-------------------- recipes details --------------------*/
+
+
 

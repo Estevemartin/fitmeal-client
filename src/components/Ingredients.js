@@ -20,7 +20,7 @@ class Ingredients extends Component{
                         <option value="l">l</option>
             </select>
             <input className="ingredients-text select-underline" type="text" placeholder="Ingredient" onChange={this.props.handleChangeName} id={"ingredient-name-" +this.props.index} />
-            <button onClick={this.props.handleDelete}><ion-icon name="close-circle-outline"></ion-icon></button>
+            <ion-icon onClick={this.props.handleDelete} name="close-circle-outline"></ion-icon>
 
 
 
