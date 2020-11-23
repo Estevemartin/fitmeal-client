@@ -239,6 +239,7 @@ class AddNewRecipe extends Component {
             </label>
           </div>
 
+
           {/* CATEGORY */}
           <div className="difficulty-section create-section">
             <label className="create-recipe-titles">Category<span>*</span></label>
