@@ -37,9 +37,9 @@ class Profile extends Component {
                 <button>Edit profile</button>
         </div>
         <div className="nav-profile">
-                <Link>My recipes</Link>
-                <Link>My plans</Link>
-                <Link>Save</Link>
+                <Link to="#">My recipes</Link>
+                <Link to="#">My plans</Link>
+                <Link to="#">Save</Link>
         </div>
         <div className="recipes-container">
             <ProfileEditCard imageUrl="/img/guacamole.jpeg" />

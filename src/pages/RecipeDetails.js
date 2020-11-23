@@ -64,55 +64,52 @@ class recipeDetails extends Component {
                 <span><Link to="/"><ion-icon name="arrow-back-outline"></ion-icon></Link></span>
                 <img src={imageUrl} alt="Recipe"/>
             </div>
+
             <div className='container-recipe-details'> 
                 <p>{title}</p>
                 <div className="media">
-                    <span><ion-icon name="heart-outline"> </ion-icon>{popularity} likes</span>
+                    <span><ion-icon name="heart-outline"></ion-icon>{popularity} likes</span>
                     <span><ion-icon name="bookmark-outline"></ion-icon>Save</span>
                 </div>
                 <div className="author">
                     <span style={{width: "30px", padding: "0px 5px", height:"30px", borderRadius: "25px"}} className="profile-picture-mobile avatar-color">a</span>
                     <h4>{displayAuthorUserName(author)}</h4>
                 </div>
-                <article>
+            </div>
+
+            <article>
                 <p className="create-recipe-titles">Difficulty</p>
                 <p>{difficulty}</p>
+            </article>
+
+            <section>
+                <article>
+                    <p className="create-recipe-titles">Prep Time</p>
+                    <p>{prepTime} mins</p>
                 </article>
-                <section>
-                        <article>
-                        <p className="create-recipe-titles">Prep Time</p>
-                        <p>{prepTime} mins</p>
-                        </article>
-                        <article>
-                        <p className="create-recipe-titles">Serving</p>
-                        <p>{portions}</p>
-                        </article>
-                </section>
-                <section>
-                        <article>
-                        <p className="create-recipe-titles">Ingredients</p>
-                            
-                            <ul>
-                                {displayIngredients(ingredients)}
-                            </ul>
-                        </article>
-                        <article>
-                        <p className="create-recipe-titles">Steps</p>
 
-                            {/* <ol>
-                            {steps.map((step,index)=>{
-                        if (step!==""  ){
-                            return <li key={index}> {step} </li>
-                        }
-                    })}
+                <article>
+                    <p className="create-recipe-titles">Serving</p>
+                    <p>{portions}</p>
+                </article>
+            </section>
 
-                            </ol> */}
-                            <ul>
-                                    {displaySteps(steps)}
-                                    </ul>
-                        </article>
-                </section>
-            </div>
+            <section>
+                <article>
+                    <p className="create-recipe-titles">Ingredients</p>
+                    
+                    <ul>
+                        {displayIngredients(ingredients)}
+                    </ul>
+                </article>
+
+                <article>
+                    <p className="create-recipe-titles">Steps</p>
+                    <ul>
+                        {displaySteps(steps)}
+                    </ul>
+                </article>
+            </section>
             </>
           )
     }

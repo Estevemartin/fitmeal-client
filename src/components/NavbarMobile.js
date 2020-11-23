@@ -33,10 +33,10 @@ class NavbarMobile extends Component {
                 </div>
 
 
-                <div className="navbar-icons-mobile">
+                <Link to="/AddNewRecipe" className="navbar-icons-mobile">
                     <ion-icon name="add-circle-outline"></ion-icon>
-                    <p className='icons-text'>Add</p>  
-                </div>
+                    <p className='icons-text'>Add</p>
+                </Link>
 
 
                 <div className="navbar-icons-mobile">
@@ -45,12 +45,12 @@ class NavbarMobile extends Component {
                 </div>
 
 
-                <div className="user-mobile">
+                <Link to="/profile" className="user-mobile">
                         {/* {isLoggedin ? ( */}
                         <div className='navbar-icons-mobile'>
                             {/* <Link to={`/profile/${user._id}`}>{displayAvatar(user)} */}
-                            {displayAvatar(user)}
-                            <Link to="/profile"><p className='icons-text'>Me</p></Link>
+                              {displayAvatar(user)}
+                             <p className='icons-text'>Me</p>
                         </div>
                          {/* ) : ( */}
                             {/* <div className='navbar-icons-mobile'>
@@ -58,7 +58,7 @@ class NavbarMobile extends Component {
                             <p className='icons-text'>Me</p>
                          </div> */}
                         {/* )} */}
-                </div>
+                </Link>
       </nav>
     );
   }
