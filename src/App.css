@@ -595,3 +595,34 @@ margin-bottom: 80px;
 
 
 
+/*--------------------- search bar -------------------------*/
+.searchbar{
+  display: flex;
+  align-items: center;
+}
+.searchbar input{
+  position: relative;
+  margin: 40px 20px;
+
+  }
+
+.searchbar ion-icon{
+  position: absolute;
+  z-index: 1;
+  right: 45px;
+  font-size: 20px;
+  color: var(--grey3);
+}
+
+.input-search-bar{
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 30px;
+  border: none;
+  color: var(--grey3);
+  font-size: 16px;
+  border-radius: 25px;
+  background:var(--grey);
+  box-shadow: inset 6px 6px 12px #dddddd, 
+              inset -6px -6px 12px var(--white);
+}

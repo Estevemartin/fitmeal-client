@@ -14,7 +14,7 @@ import Recipes from "./pages/Recipes";
 
 import AddNewRecipe from "./pages/AddNewRecipe";
 import RecipeDetails from "./pages/RecipeDetails";
-
+import Profile from "./pages/Profile"
 
 class App extends Component {
  render() {
@@ -27,9 +27,11 @@ class App extends Component {
             <AnonRoute exact path='/' component={Landingpage} />
             <AnonRoute exact path='/signup' component={Signup} />
             <AnonRoute exact path='/login' component={Login} />
+
             <PrivateRoute exact path='/recipes' component={Recipes} />
             <PrivateRoute exact path='/addNewRecipe' component={AddNewRecipe}/>
             <PrivateRoute exact path='/recipes/:id' component={RecipeDetails}/>
+            <PrivateRoute exact path='/profile' component={Profile}/>
           </Switch>
         </div>
       </AuthProvider>

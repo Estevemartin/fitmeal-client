@@ -3,13 +3,15 @@ import { withAuth } from "../lib/AuthProvider";
 import NavbarMobile from "../components/NavbarMobile";
 import service from "../api/service";
 import CardRecipe from "../components/CardRecipe";
+import Search from "../components/Search"
 
 
 
 class Recipes extends Component {
   state={
-    recipes: []
+    recipes: [],
   }
+
   getRecipes = async () => {
     const res = await service.getRecipes();
     // console.log(res);
@@ -21,6 +23,7 @@ class Recipes extends Component {
   }
 
   render() {
+
     return (
       <div className="container">
         <NavbarMobile />
@@ -29,6 +32,10 @@ class Recipes extends Component {
             <h4>recipes.</h4>
             {/* <button>Close</button> */}
           </div>
+          <section className="search-bar">
+                <Search/>
+          </section>
+
           <h2>Discover</h2>
           <div className="discover-img" style={{backgroundImage: "linear-gradient(0deg, rgba(95, 163, 151, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url('/img/mockup.png')"}}>
                   <div className="discover-title"></div>

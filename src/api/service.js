@@ -51,6 +51,15 @@ class Service {
       console.log(error);
     }
   };
+
+  // deleteCard = async (oneRecipe) =>{
+  //   try {
+  //     const res = await this.service.post("/deleteCard", oneRecipe);
+  //     return res.data;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 }
 
 

@@ -59,7 +59,7 @@ class recipeDetails extends Component {
         const {title,author,difficulty, ingredients,popularity,portions,prepTime,steps,imageUrl} = this.state
         return (
             <div className='container-recipe-details'> 
-                <div className="image-recipe"><img src={imageUrl} alt="Recipe Image" height="100"/></div>
+                <div className="image-recipe"><img src={imageUrl} alt="Recipe" height="100"/></div>
                 <p>{title}</p>
                 <div className="media">
                     <span><ion-icon name="heart-outline"> </ion-icon>{popularity} likes</span>

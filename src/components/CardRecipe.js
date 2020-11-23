@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+
+//card recipe home & searchbar & filter categories
 const CardRecipe = ({imageUrl, title, popularity, _id}) => {
 
     return (
