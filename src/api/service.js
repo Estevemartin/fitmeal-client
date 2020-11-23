@@ -50,6 +50,18 @@ class Service {
       console.log(error);
     }
   }
+
+  getRecipesByDifficulty = async (difficulty)=>{
+    try {
+      console.log("about to go to backend", difficulty)
+      const res = await this.service.get("/difficulty/"+difficulty);
+      // console.log(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   getRecipes = async () => {
     try {
       const res = await this.service.get("/recipes");

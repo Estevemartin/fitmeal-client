@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
-import Ingredients from "../components/Ingredients"
+import Ingredients from "../components/Ingredients";
+import { Link } from "react-router-dom";
 // import axios from 'axios';
 
 
@@ -12,7 +13,7 @@ class AddNewRecipe extends Component {
       author: this.props.user._id,
       title: "Write a nice title",
       prepTime: 0,
-      difficulty: "Easy",
+      difficulty: "easy",
       portions:"",
       ingredients: [{ingredientId:0,name:"",amount:"",units:""}],
       steps: [''],
@@ -163,7 +164,7 @@ class AddNewRecipe extends Component {
         author: this.props.user.username,
         title: "Write a nice title",
         prepTime: 0,
-        difficulty: "Easy",
+        difficulty: "easy",
         portions:"",
         ingredients: [{ingredientId:0,name:"",amount:"",units:""}],
         steps: [''],
@@ -208,8 +209,9 @@ class AddNewRecipe extends Component {
         {/* HEADER */}
         <div className="box">
           <div>
-            <h4>add a recipe.</h4>
-            <button>Close</button>
+            <span></span>
+            <h4 className="section-box">add a recipe.</h4>
+            <button><Link to="/">Close</Link></button>
           </div>
         </div>
 
@@ -275,9 +277,9 @@ class AddNewRecipe extends Component {
           <div className="difficulty-section create-section">
             <label className="create-recipe-titles">Difficulty<span>*</span></label>
             <div className="diff-btn-section">
-              <button onClick={(e)=>this.handleLevelClick(e)} value="Easy">Easy</button>
-              <button onClick={(e)=>this.handleLevelClick(e)} value="Medium">Medium</button>
-              <button onClick={(e)=>this.handleLevelClick(e)} value="Hard">Hard</button>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="easy">Easy</button>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="medium">Medium</button>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="hard">Hard</button>
             </div>
           </div>
 

@@ -11,7 +11,7 @@
   --grey3: #595959;
   --text-color: #454545;
   --text-color-rgb: rgb(69,69,69);
-  --shadow: 2px 2px 2px 1px rgba(0,0,0,20);
+  --shadow: 2px 2px 2px 1px rgba(0,0,0,0.05);
   --white: #FFFFFF;
   --green: #DDEFEC;
   --green1: #B2E0D8;
@@ -253,13 +253,6 @@ color: var(--grey2);
 } */
 
 /*-------------------- navbar mobile --------------------------*/
-.box-noIcon{
-  width: 100%;
-  height: 132px;
-  padding: 78px 0px 32px 0px;
-  background-color: #ffffff;
-}
-
 .box>div{
   width: 100%;
 }
@@ -316,27 +309,23 @@ color: var(--grey2);
 
 
 
-/*-------------------- add new recipe mobile --------------------*/
+/*-------------------- header mobile --------------------*/
 
 .box{
   width: 100%;
   height: 132px;
-  padding: 78px 26px 32px 131px;
+  padding: 78px 26px 32px 26px;
   background-color: #ffffff;
-  /* display: flex; */
-  /* flex-direction: row;
-  align-items: center; */
+  box-shadow: var(--shadow);
 }
 
 .box>div{
-  width: 100%;
-  max-width: 300px;
-  float: right;
-  display: inline-flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  text-align: justify;
 }
 
-.box h4, .box-noIcon h4{
+.box h4{
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 1.15px;
@@ -347,11 +336,22 @@ color: var(--grey2);
 .box button{
   border: none;
   background-color: transparent;
+  text-align: right;
+}
+
+.box button a{
   color: var(--green3);
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 1.15px;
 }
+
+.box span ion-icon{
+  font-size: 26px;
+  color: var(--green3);
+}
+
+/*-------------------- add new recipe mobile --------------------*/
 
 .box-green{
   padding: 28px 25px 27px 26px;
@@ -594,10 +594,44 @@ margin-bottom: 80px;
   padding:10px;
 } 
 
+/*-------------------- recipes details -------------------*/
+.image-recipe{
+  height: 500px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-recipe span{
+  position: absolute;
+  padding-top: 5px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0 0 30px;
+  background-color: rgba( 0, 0, 0, 0.6);
+}
+
+.image-recipe span ion-icon{
+  color: var(--white);
+  font-size: 26px;
+}
+
+.image-recipe>img{
+  width: 100%;
+  object-fit: cover;
+  /* display: block; */
+}
+
+.container-recipe-details{
+  margin: 40px 15px;
+}
 
 
-
-/*-------------------- recipes details --------------------*/
+/*-------------------- scroll options --------------------*/
 
 .scrollable {
   width: 500px;

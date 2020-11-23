@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
+import { Link } from "react-router-dom";
 
 
 class recipeDetails extends Component {
@@ -58,8 +59,12 @@ class recipeDetails extends Component {
 
         const {title,author,difficulty, ingredients,popularity,portions,prepTime,steps,imageUrl} = this.state
         return (
+            <>
+            <div className="image-recipe">
+                <span><Link to="/"><ion-icon name="arrow-back-outline"></ion-icon></Link></span>
+                <img src={imageUrl} alt="Recipe"/>
+            </div>
             <div className='container-recipe-details'> 
-                <div className="image-recipe"><img src={imageUrl} alt="Recipe" height="100"/></div>
                 <p>{title}</p>
                 <div className="media">
                     <span><ion-icon name="heart-outline"> </ion-icon>{popularity} likes</span>
@@ -108,6 +113,7 @@ class recipeDetails extends Component {
                         </article>
                 </section>
             </div>
+            </>
           )
     }
     

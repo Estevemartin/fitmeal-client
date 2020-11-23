@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
 import ProfileEditCard from "../components/ProfileEditCard"
@@ -26,7 +25,7 @@ class Profile extends Component {
 
 
 
-        const { profilePictureUrl, backgroundPictureUrl, saved, recipes, plans, username } = this.props.user 
+        const { profilePictureUrl, backgroundPictureUrl, username } = this.props.user 
         
         console.log(username)
     return(
