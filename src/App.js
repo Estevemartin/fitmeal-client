@@ -15,6 +15,8 @@ import Recipes from "./pages/Recipes";
 import AddNewRecipe from "./pages/AddNewRecipe";
 import RecipeDetails from "./pages/RecipeDetails";
 import Profile from "./pages/Profile"
+import SearchRecipes from "./pages/SearchRecipes";
+
 
 class App extends Component {
  render() {
@@ -32,6 +34,7 @@ class App extends Component {
             <PrivateRoute exact path='/addNewRecipe' component={AddNewRecipe}/>
             <PrivateRoute exact path='/recipes/:id' component={RecipeDetails}/>
             <PrivateRoute exact path='/profile' component={Profile}/>
+            <PrivateRoute exact path='/category/:category' component={SearchRecipes}/>
           </Switch>
         </div>
       </AuthProvider>

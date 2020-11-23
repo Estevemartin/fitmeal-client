@@ -311,7 +311,7 @@ class AddNewRecipe extends Component {
                 if (element.ingredientId===num){result = ind}
               })
 
-              {/* console.log("numberOfIngredients:",num,"(value) ",index,"(index) | Ingredient:", this.state.ingredients[result].ingredientId,"(value) ", result,"(index)") */}
+              /* console.log("numberOfIngredients:",num,"(value) ",index,"(index) | Ingredient:", this.state.ingredients[result].ingredientId,"(value) ", result,"(index)") */
 
               return <Ingredients 
                 index={num} 
