@@ -16,6 +16,7 @@ import AddNewRecipe from "./pages/AddNewRecipe";
 import RecipeDetails from "./pages/RecipeDetails";
 import Profile from "./pages/Profile"
 import Search from "./pages/Search";
+import EditProfile from "./pages/EditProfile"
 
 
 class App extends Component {
@@ -34,6 +35,7 @@ class App extends Component {
             <PrivateRoute exact path='/addNewRecipe' component={AddNewRecipe}/>
             <PrivateRoute exact path='/recipes/:id' component={RecipeDetails}/>
             <PrivateRoute exact path='/profile' component={Profile}/>
+            <PrivateRoute exact path='/profile/edit' component={EditProfile}/>
             <PrivateRoute exact path='/search/:query' component={Search}/>
             <PrivateRoute exact path='/editRecipe/:id' component={AddNewRecipe}/>
           </Switch>

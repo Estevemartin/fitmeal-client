@@ -7,7 +7,7 @@ class Ingredients extends Component{
     // console.log("Ingredients Props:", this.props)
     return (
         <div className="ingredients-options" key={this.props.index}>
-            <input className="amount select-underline" type="number" name="amount" placeholder="Amount" value={this.props.amount} onChange={this.props.handleChangeAmount} id={"ingredient-amount-" +this.props.index}/>
+            <input className="amount select-underline" type="text" name="amount" placeholder="Amount" value={this.props.amount} onChange={this.props.handleChangeAmount} id={"ingredient-amount-" +this.props.index}/>
             <select className="select-underline unit" name='unit' type='text' onChange={this.props.handleChangeUnits} id={"ingredient-units-" +this.props.index} value={this.props.units}>
                         <option hidden>Unit</option>
                         <option value=""> - </option>

@@ -332,19 +332,23 @@ class AddNewRecipe extends Component {
     const displayPhotobackground = (imageUrl) =>{
       if(imageUrl===""){
         return(
-          <div className="img-text-box" style={{background:'#dadada'}}>
-            <ion-icon name="add-circle-outline"></ion-icon>
-            <p>Upload a final photo of your dish</p>
-            <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
-          </div>
+          <label  htmlFor="file" className="upload-img-text">
+            <div className="img-text-box" style={{background:'#dadada'}}>
+              <ion-icon name="add-circle-outline"></ion-icon>
+              <p>Upload a final photo of your dish</p>
+              <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
+            </div>
+          </label>
           )
       } else {
         return(
-          <div className="img-text-box" style={{background:'#ddefec'}}>
-            <ion-icon name="add-circle-outline"></ion-icon>
-            <p>Picture Uploaded</p>
-            <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
-          </div>
+          <label  htmlFor="file" className="upload-img-text">
+            <div className="img-text-box" style={{background:'#ddefec'}}>
+              <ion-icon name="add-circle-outline"></ion-icon>
+              <p>Picture Uploaded</p>
+              <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
+            </div>
+          </label>
           )
       }
     }
@@ -398,9 +402,7 @@ class AddNewRecipe extends Component {
           {/* IMAGE */}
           <div className="img-create create-section">
             <label className="create-recipe-titles">Add a recipe photo<span>*</span></label>
-            <label  htmlFor="file" className="upload-img-text">
               {displayPhotobackground(imageUrl)}
-            </label>
           </div>
 
 
