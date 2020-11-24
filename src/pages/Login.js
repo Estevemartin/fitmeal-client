@@ -39,7 +39,7 @@ class Login extends Component {
           <label htmlFor="password">Password:</label>
         </div>
 
-          <input id="login-submit" className="sumbit-input" type='submit' value='Login' />
+          <input id="login-submit" className="submit-input" type='submit' value='Login' />
         </form>
 
         <p>Don't have account? <Link to={"/signup"}> Go to Sign Up</Link></p>
