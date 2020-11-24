@@ -95,6 +95,17 @@ class Service {
     }
   };
 
+
+  updateUserProfile = async (user) => {
+    try {
+      console.log(user)
+      const res = await this.service.post("/profile/update",user);
+      // console.log(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
   // deleteCard = async (oneRecipe) =>{
   //   try {
   //     const res = await this.service.post("/deleteCard", oneRecipe);

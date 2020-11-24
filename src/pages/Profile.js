@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import ProfileEditCard from "../components/ProfileEditCard"
 import service from "../api/service";
 
+import NavbarMobile from "../components/NavbarMobile";
+
 class Profile extends Component {
     state={
 
@@ -23,23 +25,35 @@ class Profile extends Component {
             if(profilePictureUrl){
                 return <span className="profile-img"><img src={profilePictureUrl} alt="profileImg"/></span>
             } else {
-                return <div className="profile-picture-mobile avatar-color"></div>
+                return <div className="profile-picture-mobile2 avatar-color"></div>
             }
         }
 
         const displayBackgroundPicture = backgroundPictureUrl => {
             if(backgroundPictureUrl){
-                return <span className="bg bg-img"><img src={backgroundPictureUrl} alt="backgroundImg"/></span>
+                return (
+                    <span className="bg bg-img">
+                        <img src={backgroundPictureUrl} width="25px" alt="backgroundImg"/>
+                    </span>
+                )
             } else {
-                return <div className="bg bg-color"></div>
+                return (
+                    <div className="bg bg-color">
+                        <span>
+                            <Link to="/">
+                                <ion-icon name="arrow-back-outline"></ion-icon>
+                            </Link>
+                        </span>
+                    </div>
+                )
             }
         }
 
         const displayMyRecipes = () =>{
             const recipes = this.state.recipes
-            console.log("Inside Display My Recipes:", recipes)
+            // console.log("Inside Display My Recipes:", recipes)
             if(recipes!==undefined){
-                console.log("WE HAVE STATE")
+                // console.log("WE HAVE STATE")
                 return (<>
                     {recipes.map((recipe,index)=>{
                         return <ProfileEditCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id} />
@@ -53,16 +67,14 @@ class Profile extends Component {
         // console.log(username)
     return(
         <>
-        <div className="bg-profile">{displayBackgroundPicture(backgroundPictureUrl)}</div>
+        <div className="bg-profile2">{displayBackgroundPicture(backgroundPictureUrl)}</div>
         <div className="user-info">
-                {displayProfilePicture(profilePictureUrl)}
-                {/* <div className="user-info-container"> */}
-                    <div className="user-info-container">
-                        <h4>{username}</h4>
-                        <p>@{username}</p>
-                    </div>
-                    <button>edit profile</button>
-                {/* </div> */}
+            {displayProfilePicture(profilePictureUrl)}
+            <div className="user-info-container">
+                <h4>{username}</h4>
+                <p>@{username}</p>
+            </div>
+            <Link to="/profile/edit" ><button>edit profile</button></Link>
         </div>
         <div className="nav-profile">
                 <Link to="#" className="active">My recipes</Link>
@@ -73,6 +85,7 @@ class Profile extends Component {
             {displayMyRecipes()}
             {/* <ProfileEditCard imageUrl="/img/guacamole.jpeg" /> */}
         </div>
+        <NavbarMobile />
         </>
     )
 }}
