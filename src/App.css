@@ -243,9 +243,134 @@ color: var(--grey2);
   font-size: 20px;
 }
 
+/*-------------------- profile --------------------*/
+
+.bg-profile{
+  height: 200px;
+}
+
+.bg-color{
+  background-color: var(--green1);
+  height: 200px;
+  width: 100%;
+}
+
+.user-info{
+  display:flex;
+  justify-content: flex-end;
+  justify-content: space-between;
+  margin-bottom:60px;
+}
+
+.user-info button {
+  /* width:90px; */
+  height: 32px;
+  border-radius: 50px;
+  outline: none;
+  border:none;
+  background-color: var(--green2);
+  color:white;
+  padding:3px 10px;
+  font-size: 12pt;
+  margin-top:15px;
+  margin-right: 20px;
+}
 
 
+.user-info-container{
+  /* display:flex; */
+  /* margin-left: 15px; */
+  /* align-items: center; */
+  /* width: auto; */
+  /* margin-right: 15px; */
+  margin-left: -35px;
+  margin-top:10px;
+}
 
+.user-info-container h4 {
+  text-transform: capitalize;
+  font-size: 14pt;
+}
+
+.user-info-container>p{
+  font-size: 10pt;
+  color:var(--grey2)
+}
+
+.profile-picture-mobile{
+  background-color: var(--green3);
+  height: 100px;
+  width: 100px;
+  border-radius:50px;
+  border:5px solid white;
+  margin-left:10px;
+  margin-top:-40px;
+}
+
+
+.nav-profile{
+  display:flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+  border-bottom: 5px solid var(--grey);
+  margin-left: 15px;
+  margin-right: 15px;
+  /* padding-bottom: 8px; */
+  box-sizing: border-box;
+}
+
+.nav-profile a{
+  width: 100px;
+  text-align: center;
+
+}
+.nav-profile .active{
+  border-bottom: 5px solid var(--green2);
+  padding:0px;
+  margin:0px;
+  box-sizing: content-box;
+
+
+}
+
+
+.recipes-container{
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-end;
+	align-content: flex-start;
+}
+.recipes-container .card-profile{
+  border:1px solid black;
+  margin:10px;
+  width: 150px;
+  font-size: 12px;
+  border-radius: 15px;
+}
+.card-profile img{
+  width: 100%;
+  height: 150px;
+  object-fit:cover;
+  border-radius:15px 15px 0px 0px;
+}
+
+.card-profile h3 {
+  margin-top:10px;
+  margin-left: 10px;
+  font-size: 10pt;
+  font-weight: 600;
+}
+.card-profile .icons-actions{
+  display:flex;
+  justify-content: flex-end;
+  margin:10px;
+  font-size: 16px;
+}
+.card-profile .icons-actions ion-icon{
+  margin-left:5px
+}
 /*------------------- mobile container -----------------------*/
 
 /* .container{
@@ -266,6 +391,9 @@ color: var(--grey2);
   /* position: absolute; */
   /* bottom: 0; */
   background-color: var(--green);
+  position:fixed;
+  z-index: 999;
+  bottom:0px;
 }
 
 .navbar-icons-mobile{
@@ -361,6 +489,7 @@ color: var(--grey2);
 .create-recipe-titles{
   font-size: 19px;
   font-weight: 500;
+  margin:10px 0px 20px 0px;
 }
 
 .create-recipe-titles>span{
@@ -371,12 +500,11 @@ color: var(--grey2);
 .create-section{
   display: flex;
   flex-direction: column;
-  margin: 30px 20px 45px 20px;
+  margin: 30px 20px 30px 20px;
+  
 }
 
-.add-new-recipe-form label{
-  margin-bottom: 10px;
-}
+
 
 /*Name recipe create*/
 .input-title-recipe{
@@ -442,7 +570,9 @@ color: var(--grey2);
   flex-wrap: wrap;
   justify-content: space;
   margin-top: 10px;
+  
 }
+
 
 
 .cat-btn-section button{
@@ -460,7 +590,7 @@ color: var(--grey2);
 .difficulty-section button{
   padding: 8px 20px;
   border-radius: 5px;
-  border: 1px solid var(--green);
+  border: 2px solid var(--green);
   background-color: var(--green);
   font-size: 16px;
   font-weight: 500;
@@ -552,6 +682,8 @@ color: var(--grey2);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom:20px;
+  /* margin-top:10px; */
 }
 .textarea-placeholder-create{
   padding: 14px 10px;
@@ -579,6 +711,11 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 margin-bottom: 80px;
+}
+
+.add-new-recipe-form hr{
+  margin:0 15px;
+  border: 1px solid var(--grey);
 }
 
 .submitDiv{

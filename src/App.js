@@ -35,6 +35,7 @@ class App extends Component {
             <PrivateRoute exact path='/recipes/:id' component={RecipeDetails}/>
             <PrivateRoute exact path='/profile' component={Profile}/>
             <PrivateRoute exact path='/search/:query' component={Search}/>
+            <PrivateRoute exact path='/editRecipe/:id' component={AddNewRecipe}/>
           </Switch>
         </div>
       </AuthProvider>
