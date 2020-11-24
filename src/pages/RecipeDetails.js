@@ -7,7 +7,10 @@ import { Link } from "react-router-dom";
 
 
 class recipeDetails extends Component {
-    state={}
+    state={
+
+    }
+
     componentDidMount = async () => {
         const id = this.props.match.params.id
         // console.log("Id:",id)
@@ -28,7 +31,10 @@ class recipeDetails extends Component {
                         if (ingredient.amount==="" && ingredient.units==="" && ingredient.name===""  ){
 
                         } else {
-                            return <li key={index}><input type="checkbox"></input>{ingredient.amount} {ingredient.units} {ingredient.name}  </li>
+                            return <li className="list-ingredients" key={index}>
+                                        <input type="checkbox"/>
+                                        {ingredient.amount} {ingredient.units} {ingredient.name}
+                                    </li>
                         }
                     })
                 )
@@ -41,7 +47,7 @@ class recipeDetails extends Component {
                 return (
                     steps.map((step,index)=>{
                         if (step!==""){
-                            return <li key={index} style={{display:"flex",flexDirection:"row" }}><span style={{width:"15px",display:"flex",marginRight:"10px",justifyContent:"flex-end", }}>{index+1+"."}</span> {step} </li>
+                            return <li key={index} style={{display:"flex",flexDirection:"row", marginBottom: "20px" }}><span style={{width:"15px",display:"flex", marginLeft: "10px",marginRight:"10px",justifyContent:"flex-end", }}>{index+1+"."}</span> {step} </li>
                         }
                     })
                 )
@@ -64,47 +70,48 @@ class recipeDetails extends Component {
                 <span><Link to="/"><ion-icon name="arrow-back-outline"></ion-icon></Link></span>
                 <img src={imageUrl} alt="Recipe"/>
             </div>
-
-            <div className='container-recipe-details'> 
-                <p>{title}</p>
-                <div className="media">
-                    <span><ion-icon name="heart-outline"></ion-icon>{popularity} likes</span>
-                    <span><ion-icon name="bookmark-outline"></ion-icon>Save</span>
-                </div>
-                <div className="author">
-                    <span style={{width: "30px", padding: "0px 5px", height:"30px", borderRadius: "25px"}} className="profile-picture-mobile avatar-color">a</span>
-                    <h4>{displayAuthorUserName(author)}</h4>
+            <div className="recipe-wrapped">
+                <div className='container-recipe-details'> 
+                    <h1>{title}</h1>
+                    <div className="media">
+                        <div><ion-icon name="heart-outline"></ion-icon><span>{popularity} likes</span></div>
+                        <div><ion-icon name="bookmark-outline"></ion-icon><span>Save</span></div>
+                        <div><ion-icon name="share-outline"></ion-icon><span>Share</span></div>
+                    </div>
+                    <div className="author">
+                        <span className="profile-picture-mobile"></span>
+                        <h4>{displayAuthorUserName(author)}</h4>
+                    </div>
                 </div>
             </div>
 
-            <article>
-                <p className="create-recipe-titles">Difficulty</p>
-                <p>{difficulty}</p>
-            </article>
+            
 
-            <section>
+            <section className="info-details-recipe">
                 <article>
-                    <p className="create-recipe-titles">Prep Time</p>
-                    <p>{prepTime} mins</p>
+                    <span>{difficulty}</span>
+                    <p>Difficulty</p>
                 </article>
-
                 <article>
-                    <p className="create-recipe-titles">Serving</p>
-                    <p>{portions}</p>
+                    <span>{prepTime ? prepTime.replace(" mins", "''").replace(" -", "'' -") : ""}</span>
+                    <p>Prep Time</p>
+                </article>
+                <article>     
+                    <span>{portions ? portions.replace(" serving", "").replace("s", "") : ""}</span>
+                    <p>Serving</p>
                 </article>
             </section>
 
-            <section>
+            <section className="info-recipe-ingred-steps">
                 <article>
-                    <p className="create-recipe-titles">Ingredients</p>
-                    
+                    <h3>Ingredients</h3>
                     <ul>
                         {displayIngredients(ingredients)}
                     </ul>
                 </article>
 
                 <article>
-                    <p className="create-recipe-titles">Steps</p>
+                    <h3>Steps</h3>
                     <ul>
                         {displaySteps(steps)}
                     </ul>

@@ -22,7 +22,7 @@ class App extends Component {
  render() {
     return (
       <AuthProvider>
-        <div className='container'>
+        <>
           
 
           <Switch>
@@ -36,7 +36,7 @@ class App extends Component {
             <PrivateRoute exact path='/profile' component={Profile}/>
             <PrivateRoute exact path='/search/:query' component={Search}/>
           </Switch>
-        </div>
+        </>
       </AuthProvider>
     );
   }
