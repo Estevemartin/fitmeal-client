@@ -136,6 +136,16 @@ class Service {
       console.log(error)
     }
   }
+  getSavedRecipes= async(userId)=>{
+    try{
+      // console.log(userId,recipeId)
+      const res = await this.service.post("/recipes/saved",{userId});
+      console.log("SERVICE RESPONSE: ",res.data[0].saved);
+      return res.data[0].saved;
+    }catch(error){
+      console.log(error)
+    }
+  }
 
   getUserInfo = async(userId) =>{
     try{

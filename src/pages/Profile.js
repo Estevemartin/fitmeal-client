@@ -15,9 +15,16 @@ class Profile extends Component {
         // console.log(res);
         this.setState({recipes: res})
     }
+
+    getMySavedrecipes = async () => {
+        const recipes = await service.getSavedRecipes(this.props.user._id)
+
+        this.setState({savedRecipes:recipes})
+    }
     
     componentDidMount = () => {
         this.getMyRecipes() 
+        this.getMySavedrecipes()
     }
       
     render() {
@@ -51,8 +58,10 @@ class Profile extends Component {
 
         const displayMyRecipes = () =>{
             const recipes = this.state.recipes
+            
             // console.log("Inside Display My Recipes:", recipes)
             if(recipes!==undefined){
+                // console.log(recipes)
                 // console.log("WE HAVE STATE")
                 return (<>
                     {recipes.map((recipe,index)=>{
@@ -62,7 +71,34 @@ class Profile extends Component {
             }
         }
 
-        const { profilePictureUrl, backgroundPictureUrl, username } = this.props.user 
+        const displaySavedRecipes = () =>{
+            // console.log(userId)
+            // const recipes = await service.getSavedRecipes(this.props.user._id)
+            const recipes = this.state.savedRecipes
+
+            // console.log(recipes)
+            if(recipes!==undefined){
+                // console.log("WE HAVE STATE")
+                return (<>
+                    {recipes.map((recipe,index)=>{
+                        {/* console.log(recipe) */}
+                        return <ProfileEditCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id} />
+                    })}
+                </>)
+            }
+        }
+
+        const display = () =>{
+            let currentUrl = this.props.location.pathname
+            console.log(currentUrl)
+            if (currentUrl === "/profile"){
+                return displayMyRecipes()
+            } else if (currentUrl === "/profile/savedRecipes"){
+                return displaySavedRecipes()
+            }
+        }
+
+        const { profilePictureUrl, backgroundPictureUrl, username, _id } = this.props.user 
         
         // console.log(username)
     return(
@@ -77,13 +113,12 @@ class Profile extends Component {
             <Link to="/profile/edit" ><button>edit profile</button></Link>
         </div>
         <div className="nav-profile">
-                <Link to="#" className="active">My recipes</Link>
+                <Link to="/profile" className="active">My recipes</Link>
                 <Link to="#">My plans</Link>
-                <Link to="#">Save</Link>
+                <Link to="/profile/savedRecipes">Save</Link>
         </div>
         <div className="recipes-container">
-            {displayMyRecipes()}
-            {/* <ProfileEditCard imageUrl="/img/guacamole.jpeg" /> */}
+            {display()}
         </div>
         <NavbarMobile />
         </>
