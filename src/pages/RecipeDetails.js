@@ -32,8 +32,8 @@ class recipeDetails extends Component {
 
                         } else {
                             return <li className="list-ingredients" key={index}>
-                                        <input type="checkbox"/>
-                                        {ingredient.amount} {ingredient.units} {ingredient.name}
+                                        <input id={"ingredient-id-"+index} type="checkbox" data-content={ingredient.amount +" "+ ingredient.units +" "+ ingredient.name}/>
+                                        <label htmlFor={"ingredient-id-"+index}>{ingredient.amount} {ingredient.units} {ingredient.name}</label>
                                     </li>
                         }
                     })
