@@ -115,7 +115,44 @@ class Service {
   //     console.log(error);
   //   }
   // }
+
+  like = async(userId,recipeId)=>{
+    try{
+      // console.log(userId,recipeId)
+      const res = await this.service.post("/like",{userId,recipeId});
+      // console.log(res.data);
+      return res.data;
+    }catch(error){
+      console.log(error)
+    }
+  }
+  save = async(userId,recipeId)=>{
+    try{
+      // console.log(userId,recipeId)
+      const res = await this.service.post("/save",{userId,recipeId});
+      // console.log(res.data);
+      return res.data;
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  getUserInfo = async(userId) =>{
+    try{
+      // console.log(userId,recipeId)
+      const res = await this.service.post("/profile",{_id:userId});
+      // console.log(res.data);
+      return res.data;
+    }catch(error){
+      console.log(error)
+    }
+  }
 }
+
+
+
+
+
 
 
 const axiosRequestFunctions = new Service();
