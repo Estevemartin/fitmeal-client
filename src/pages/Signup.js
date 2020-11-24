@@ -46,7 +46,7 @@ class Signup extends Component {
                   <label htmlFor="password">Password:</label>
                 </div>
 
-                <input className="sumbit-input" type='submit' value='Signup' />
+                <input className="submit-input" type='submit' value='Signup' />
                 </form>
 
                 <p>Already have account? <Link to={"/login"}> Go to Login</Link></p>

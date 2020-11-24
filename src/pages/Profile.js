@@ -19,32 +19,35 @@ class Profile extends Component {
     componentDidMount = () => {
         this.getMyRecipes() 
     }
-      
+    
+
     render() {
         const displayProfilePicture = profilePictureUrl => {
             if(profilePictureUrl){
-                return <span className="profile-img"><img src={profilePictureUrl} alt="profileImg"/></span>
+                return <img  className="profile-picture2 profile-stroke" src={profilePictureUrl} alt="profileImg"/>
             } else {
-                return <div className="profile-picture-mobile2 avatar-color"></div>
+                return <div className="profile-picture2 profile-stroke avatar-green"></div>
             }
         }
 
         const displayBackgroundPicture = backgroundPictureUrl => {
             if(backgroundPictureUrl){
                 return (
+                    <>
+                    <div className="logout"><ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon></div>
                     <span className="bg bg-img">
-                        <img src={backgroundPictureUrl} width="25px" alt="backgroundImg"/>
+                        <img src={backgroundPictureUrl} alt="backgroundImg"/>
                     </span>
+                    </>
                 )
             } else {
                 return (
+                    <>
+                    <div className="logout"><ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon></div>
                     <div className="bg bg-color">
-                        <span>
-                            <Link to="/">
-                                <ion-icon name="arrow-back-outline"></ion-icon>
-                            </Link>
-                        </span>
+                        
                     </div>
+                    </>
                 )
             }
         }
@@ -62,19 +65,22 @@ class Profile extends Component {
             }
         }
 
-        const { profilePictureUrl, backgroundPictureUrl, username } = this.props.user 
+        const { profilePictureUrl, backgroundPictureUrl, username } = this.props.user
+        const { logout } = this.props;
         
         // console.log(username)
     return(
         <>
-        <div className="bg-profile2">{displayBackgroundPicture(backgroundPictureUrl)}</div>
+        <NavbarMobile />
+        {displayBackgroundPicture(backgroundPictureUrl)}
+        <div className="container-profile">
         <div className="user-info">
             {displayProfilePicture(profilePictureUrl)}
             <div className="user-info-container">
-                <h4>{username}</h4>
-                <p>@{username}</p>
+                <h4>@{username}</h4>
+                {/* <p>{username}</p> */}
             </div>
-            <Link to="/profile/edit" ><button>edit profile</button></Link>
+            <Link className="a-btn" to="/profile/edit">edit profile</Link>
         </div>
         <div className="nav-profile">
                 <Link to="#" className="active">My recipes</Link>
@@ -85,7 +91,7 @@ class Profile extends Component {
             {displayMyRecipes()}
             {/* <ProfileEditCard imageUrl="/img/guacamole.jpeg" /> */}
         </div>
-        <NavbarMobile />
+        </div>
         </>
     )
 }}

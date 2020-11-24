@@ -79,8 +79,8 @@ class recipeDetails extends Component {
                         <div><ion-icon name="share-outline"></ion-icon><span>Share</span></div>
                     </div>
                     <div className="author">
-                        <span className="profile-picture-mobile"></span>
-                        <h4>{displayAuthorUserName(author)}</h4>
+                        <span className="profile-picture"></span>
+                        <h4>@{displayAuthorUserName(author)}</h4>
                     </div>
                 </div>
             </div>

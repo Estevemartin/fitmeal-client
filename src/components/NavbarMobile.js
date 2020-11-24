@@ -7,24 +7,23 @@ class NavbarMobile extends Component {
   render() {
     const displayAvatar = user => {
       if(user.profilePictureUrl){
-          return <Link to="/profile"><span className="profile-picture-mobile"><img src={user.profilePictureUrl} alt="profile"/></span></Link>
+          return <Link to="/profile"><span className="profile-picture"><img src={user.profilePictureUrl} alt="profile"/></span></Link>
       } else {
-          return <span className="profile-picture-mobile avatar-color"></span>
+          return <span className="profile-picture avatar-green"></span>
       }
     }
 
 
 
-    const { user, logout } = this.props;
+    const { user } = this.props;
     return (
 
       <nav className='navbar-mobile'>
-         <ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon>   
-                <div className="navbar-icons-mobile">
+                <Link to="/" className="navbar-icons-mobile">
                     {/* <img src="/img/recipe-icon.png" alt="recipe-icon"/> */}
                     <ion-icon name="nutrition-outline"></ion-icon>
                     <p className='icons-text'>Recipes</p>
-                </div>
+                </Link>
 
 
                 <div className="navbar-icons-mobile">

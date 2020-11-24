@@ -35,7 +35,7 @@ class Search extends Component {
                     </div>
                 </div>
                 <SearchBar/>
-                <p style={{marginLeft:"15px", marginTop:"-25px", marginBottom:"15px"}}><u>Search results for: <i>"{this.state.searchField}"</i></u></p>
+                <p style={{marginLeft:"20px", color: "var(--grey3)", fontSize: "14px",marginTop:"10px", marginBottom:"20px"}}>Search results for: <i>"{this.state.searchField}"</i></p>
                 <SearchRecipes searchField={this.state.searchField}/>
             </div>
         );
