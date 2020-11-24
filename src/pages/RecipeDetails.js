@@ -29,12 +29,14 @@ class recipeDetails extends Component {
                 return (
                     ingredients.map((ingredient,index)=>{
                         if (ingredient.amount==="" && ingredient.units==="" && ingredient.name===""  ){
-
+                            return ""
                         } else {
-                            return <li className="list-ingredients" key={index}>
-                                        <input id={"ingredient-id-"+index} type="checkbox" data-content={ingredient.amount +" "+ ingredient.units +" "+ ingredient.name}/>
-                                        <label htmlFor={"ingredient-id-"+index}>{ingredient.amount} {ingredient.units} {ingredient.name}</label>
-                                    </li>
+                            return (
+                                <li className="list-ingredients" key={index}>
+                                    <input id={"ingredient-id-"+index} type="checkbox" data-content={ingredient.amount +" "+ ingredient.units +" "+ ingredient.name}/>
+                                    <label htmlFor={"ingredient-id-"+index}>{ingredient.amount} {ingredient.units} {ingredient.name}</label>
+                                </li>
+                                )
                         }
                     })
                 )
@@ -48,6 +50,8 @@ class recipeDetails extends Component {
                     steps.map((step,index)=>{
                         if (step!==""){
                             return <li key={index} style={{display:"flex",flexDirection:"row", marginBottom: "20px" }}><span style={{width:"15px",display:"flex", marginLeft: "10px",marginRight:"10px",justifyContent:"flex-end", }}>{index+1+"."}</span> {step} </li>
+                        } else {
+                            return ""
                         }
                     })
                 )
