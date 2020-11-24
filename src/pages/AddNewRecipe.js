@@ -11,7 +11,7 @@ class AddNewRecipe extends Component {
   state = {
       imageUrl: "", 
       author: this.props.user._id,
-      title: "Write a nice title",
+      title: "",
       prepTime: 0,
       difficulty: "easy",
       portions:"",
@@ -19,7 +19,7 @@ class AddNewRecipe extends Component {
       steps: [''],
       numberOfIngredients: [0],
       numberOfSteps:[0],
-      category:"",
+      category:"breakfast",
       errorMsg:null,
       successMsg:null
   };
@@ -178,13 +178,16 @@ class AddNewRecipe extends Component {
     event.preventDefault();
     try {
       let currentUrl = this.props.location.pathname
-      // console.log(currentUrl)
+      console.log("Handle Form Submit, currentUrl:",currentUrl)
       var res
-      if (currentUrl.includes("addNewRecipe")){
+      if (currentUrl.includes("AddNewRecipe")){
+        console.log("Inside AddNewRecipe")
         res = await service.saveNewRecipe(this.state);
         console.log("CREATED RECIPE -->", res);
         // var successMsg = "Recipe Successfully Created!"
       } else if (currentUrl.includes ("editRecipe")){
+        console.log("Inside editRecipe")
+
         res = await service.updateRecipe(this.state);
         console.log("UPDATED RECIPE -->", res);
         // var successMsg = "Recipe Successfully Updated!"
@@ -198,12 +201,13 @@ class AddNewRecipe extends Component {
       this.setState({
         imageUrl: "", 
         author: this.props.user.username,
-        title: "Write a nice title",
+        title: "",
         prepTime: 0,
         difficulty: "easy",
         portions:"",
         ingredients: [{ingredientId:0,name:"",amount:"",units:""}],
         steps: [''],
+        category:"breakfast",
         numberOfIngredients: [0],
         numberOfSteps:[0],
         errorMsg:null,
@@ -332,19 +336,23 @@ class AddNewRecipe extends Component {
     const displayPhotobackground = (imageUrl) =>{
       if(imageUrl===""){
         return(
-          <div className="img-text-box" style={{background:'#dadada'}}>
-            <ion-icon name="add-circle-outline"></ion-icon>
-            <p>Upload a final photo of your dish</p>
-            <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
-          </div>
+          <label  htmlFor="file" className="upload-img-text">
+            <div className="img-text-box" style={{background:'#dadada'}}>
+              <ion-icon name="add-circle-outline"></ion-icon>
+              <p>Upload a final photo of your dish</p>
+              <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
+            </div>
+          </label>
           )
       } else {
         return(
-          <div className="img-text-box" style={{background:'#ddefec'}}>
-            <ion-icon name="add-circle-outline"></ion-icon>
-            <p>Picture Uploaded</p>
-            <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
-          </div>
+          <label  htmlFor="file" className="upload-img-text">
+            <div className="img-text-box" style={{background:'#ddefec'}}>
+              <ion-icon name="add-circle-outline"></ion-icon>
+              <p>Picture Uploaded</p>
+              <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
+            </div>
+          </label>
           )
       }
     }
@@ -398,9 +406,7 @@ class AddNewRecipe extends Component {
           {/* IMAGE */}
           <div className="img-create create-section">
             <label className="create-recipe-titles">Add a recipe photo<span>*</span></label>
-            <label  htmlFor="file" className="upload-img-text">
               {displayPhotobackground(imageUrl)}
-            </label>
           </div>
 
 

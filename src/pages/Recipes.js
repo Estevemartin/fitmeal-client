@@ -5,6 +5,7 @@ import service from "../api/service";
 import CardRecipe from "../components/CardRecipe";
 import SearchBar from "../components/SearchBar"
 import Slider from "../components/Slider"
+import { Link } from "react-router-dom";
 
 
 class Recipes extends Component {
@@ -25,9 +26,40 @@ class Recipes extends Component {
 
   render() {
 
+    const displayRandomRecipe = () =>{
+      const recipes = this.state.recipes
+      if(recipes.length !== 0){
+        // const recipes = this.state.recipes
+        console.log(recipes)
+        const randomRecipeId = Math.floor(Math.random()*recipes.length)
+        console.log(randomRecipeId)
+        const currentRecipe = recipes[randomRecipeId]
+        console.log(currentRecipe)
+
+
+        return (
+          <Link to = {"/recipes/"+currentRecipe._id} >
+            <article style={{margin: "20px"}}>
+              <div className="discover-img" style={{borderRadius: "5px", height: "250px", backgroundImage: "linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%), url('"+currentRecipe.imageUrl+"')"}}>
+                  <div>
+                    <div className="discover-title">{currentRecipe.title}</div>
+                    <div className="info-icons-recipe">
+                      <div><span>{currentRecipe.popularity}</span> <ion-icon name="heart-outline"></ion-icon></div>
+                      <ion-icon name="bookmark-outline"></ion-icon>
+                    </div>
+                  </div>
+              </div>
+            </article>
+          </Link>
+        )
+      }
+    }
+
     return (
       <div className="container">
           <NavbarMobile />
+
+          {/* DISCOVER TITLE */}
           <div className="box">
             <div>
               <span></span>
@@ -37,21 +69,11 @@ class Recipes extends Component {
           </div>
           
           <SearchBar />
+
           <section className="section-cards">
               <h2>Discover</h2>
-              <article style={{margin: "20px"}}>
-                {/* podriamos hacer un componente de esto? */}
-                <div className="discover-img" style={{borderRadius: "5px", height: "250px", backgroundImage: "linear-gradient(0deg, rgba(95, 163, 151, 0.7) 0%, rgba(0, 0, 0, 0) 50%), url('/img/goat-cheese-salad-nuts.jpeg')"}}>
-                    
-                    <div className="discover-title"></div>
-                    <div className="info-icons-recipe">
-                          <div><span></span> <ion-icon name="heart-outline"></ion-icon></div>
-                          <ion-icon name="bookmark-outline"></ion-icon>
-                    </div>
-                </div>
-              </article>
-
-
+              {displayRandomRecipe()}
+              
               <article>
                 <h2>Categories</h2>
                 <Slider/>
