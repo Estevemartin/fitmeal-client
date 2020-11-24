@@ -24,6 +24,29 @@ class AddNewRecipe extends Component {
       successMsg:null
   };
 
+  // FILLING RECIPE ON EDIT
+  getRecipeNumberOf = (steps) => {
+    let resultArray = [0]
+    for (let i=0; i<steps.length-1;i++){
+      resultArray.push(i+1)
+    }
+    return resultArray
+  }
+  componentDidMount = async () =>{
+        const id = this.props.match.params.id
+        // console.log("Id:",id)
+        if(id!==undefined){
+          let recipe = await service.getRecipeDetails(id)
+          // console.log("Response from Service en RecipeDetails.js",recipe)
+          recipe.numberOfSteps = this.getRecipeNumberOf(recipe.steps)
+          // console.log(recipe.numberOfSteps)
+          recipe.numberOfIngredients = this.getRecipeNumberOf(recipe.ingredients)
+          // console.log(recipe.numberOfIngredients)
+
+          this.setState(recipe)
+        }
+  }
+
   // CHANGE HANDLERS
   handleChange = (e) => {
     e.preventDefault();
@@ -154,9 +177,22 @@ class AddNewRecipe extends Component {
   handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      // const {author,difficulty,imageUrl,ingredients,portions,prepTime,title,steps} = this.state
-      const res = await service.saveNewRecipe(this.state);
-      console.log("SUCCESS: RECIPE CREATED -->", res);
+      let currentUrl = this.props.location.pathname
+      // console.log(currentUrl)
+      var res
+      if (currentUrl.includes("addNewRecipe")){
+        res = await service.saveNewRecipe(this.state);
+        console.log("CREATED RECIPE -->", res);
+        // var successMsg = "Recipe Successfully Created!"
+      } else if (currentUrl.includes ("editRecipe")){
+        res = await service.updateRecipe(this.state);
+        console.log("UPDATED RECIPE -->", res);
+        // var successMsg = "Recipe Successfully Updated!"
+      }
+      // console.log("CREATED / UPDATED RECIPE -->", res);
+      
+      // const res = await service.saveNewRecipe(this.state);
+      
       // console.log(this.state.imageUrl)
       
       this.setState({
@@ -173,10 +209,11 @@ class AddNewRecipe extends Component {
         errorMsg:null,
         successMsg:null
       });
+      this.props.history.push('/recipes/'+res._id)
 
       // return this.props.history.push("/")
       // this.props.getRecipes()
-        this.setState({successMsg:"Recipe Successfully Created!"})
+        // this.setState({successMsg:"Recipe Successfully Created!"})
     } catch (error) {
         this.setState({errorMsg:"Make sure to fullfill all the required fields."})
         console.log("Error while adding the recipe: ", error);
@@ -186,7 +223,95 @@ class AddNewRecipe extends Component {
   // RENDER
   render() {
     // console.log(this.props)
-    const { title, prepTime, errorMsg,successMsg} = this.state;
+    const { title, prepTime, portions, errorMsg,successMsg, imageUrl , steps,category,difficulty} = this.state
+
+    const displayDifficultyButtons = (difficulty) => {
+      switch (difficulty) {
+        case "easy":
+          return(
+            <>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="easy" style= {{border:"2px solid var(--green3)", backgroundColor:"white"}}>Easy</button>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="medium">Medium</button>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="hard">Hard</button>
+            </>
+          )
+        case "medium":
+          return(
+            <>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="easy">Easy</button>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="medium" style= {{border:"2px solid var(--green3)", backgroundColor:"white"}}>Medium</button>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="hard">Hard</button>
+            </>
+          )
+        case "hard":
+          return(
+            <>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="easy">Easy</button>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="medium">Medium</button>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="hard" style= {{border:"2px solid var(--green3)", backgroundColor:"white"}}>Hard</button>
+            </>
+          )
+        default:
+          return (<></>)
+      }
+    }
+
+    const displayCategoryButtons = (category) =>{
+      switch (category) {
+        case "breakfast":
+          return(
+            <>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="breakfast" style= {{border:"2px solid var(--green3)", backgroundColor:"white"}}>Breakfast</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="brunch">Brunch</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="lunch">Lunch</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="snack">Snack</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="dinner">Dinner</button>
+            </>
+          )
+        case "brunch":
+          return(
+            <>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="breakfast" >Breakfast</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="brunch" style= {{border:"2px solid var(--green3)", backgroundColor:"white"}}>Brunch</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="lunch">Lunch</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="snack">Snack</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="dinner">Dinner</button>
+            </>
+          )
+        case "lunch":
+          return(
+            <>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="breakfast" >Breakfast</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="brunch">Brunch</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="lunch" style= {{border:"2px solid var(--green3)", backgroundColor:"white"}}>Lunch</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="snack">Snack</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="dinner">Dinner</button>
+            </>
+          )
+        case "snack":
+          return(
+            <>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="breakfast" >Breakfast</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="brunch">Brunch</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="lunch">Lunch</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="snack" style= {{border:"2px solid var(--green3)", backgroundColor:"white"}}>Snack</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="dinner">Dinner</button>
+            </>
+          )
+        case "dinner":
+          return(
+            <>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="breakfast" >Breakfast</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="brunch">Brunch</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="lunch">Lunch</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="snack">Snack</button>
+              <button onClick={(e)=>this.handleCategoryClick(e)} value="dinner" style= {{border:"2px solid var(--green3)", backgroundColor:"white"}}>Dinner</button>
+            </>
+          )
+        default:
+          return (<></>)
+      }
+    }
 
     const displayErrorMsg = (errorMsg) => {
       if (errorMsg !==null){
@@ -194,13 +319,56 @@ class AddNewRecipe extends Component {
       } else{
         return ""
       }
-    };
+    }
 
     const displaySuccessMsg = (successMsg) => {
       if (successMsg !==null){
         return (<div>{successMsg}</div>)
       } else{
         return ""
+      }
+    }
+    
+    const displayPhotobackground = (imageUrl) =>{
+      if(imageUrl===""){
+        return(
+          <div className="img-text-box" style={{background:'#dadada'}}>
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <p>Upload a final photo of your dish</p>
+            <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
+          </div>
+          )
+      } else {
+        return(
+          <div className="img-text-box" style={{background:'#ddefec'}}>
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <p>Picture Uploaded</p>
+            <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
+          </div>
+          )
+      }
+    }
+
+    const displaySteps = () =>{
+    
+      const steps = this.state.steps
+      // console.log("DisplaySteps > this.state.steps:", steps)
+      // console.log("this.state.numberOfSteps:",this.state.numberOfSteps)
+      if (steps!==[""]){
+        return (
+          this.state.numberOfSteps.map((num,index)=>{
+              // let indexInsideSteps = steps.find(step=>step.ingredientId===num)
+              let currentStep = steps[num]
+              // console.log("indexInsideSteps:",indexInsideSteps)
+              // console.log("currentStep:",currentStep)
+            return (
+              <div className="textarea-create" key={num}>
+                <textarea className="textarea-placeholder-create" value={currentStep} id={'preparation-step-'+num} placeholder="Write here the steps..." onChange={(e)=>this.handleStepChange(e,num)}>
+                </textarea>
+              </div>
+            )
+          })
+        )
       }
     }
 
@@ -224,18 +392,14 @@ class AddNewRecipe extends Component {
           {/* TITLE */}
           <div className="create-section">
             <label className="create-recipe-titles">Name your recipe<span>*</span></label>
-            <input className="input-title-recipe" type='text' name='title' placeholder={title} onChange={this.handleChange} />
+            <input className="input-title-recipe" type='text' name='title' value={title} placeholder="Write a nice title" onChange={this.handleChange} />
           </div>
 
           {/* IMAGE */}
           <div className="img-create create-section">
             <label className="create-recipe-titles">Add a recipe photo<span>*</span></label>
             <label  htmlFor="file" className="upload-img-text">
-              <div className="img-text-box">
-                <ion-icon name="add-circle-outline"></ion-icon>
-                <p >Upload a final photo of your dish</p>
-                <input id="file" className='image-selector' type='file' name='file' onChange={(e) => this.handleFileUpload(e)}/>
-            </div>
+              {displayPhotobackground(imageUrl)}
             </label>
           </div>
 
@@ -244,11 +408,7 @@ class AddNewRecipe extends Component {
           <div className="difficulty-section create-section">
             <label className="create-recipe-titles">Category<span>*</span></label>
             <div className="cat-btn-section">
-              <button onClick={(e)=>this.handleCategoryClick(e)} value="breakfast">Breakfast</button>
-              <button onClick={(e)=>this.handleCategoryClick(e)} value="brunch">Brunch</button>
-              <button onClick={(e)=>this.handleCategoryClick(e)} value="lunch">Lunch</button>
-              <button onClick={(e)=>this.handleCategoryClick(e)} value="snack">Snack</button>
-              <button onClick={(e)=>this.handleCategoryClick(e)} value="dinner">Dinner</button>
+              {displayCategoryButtons(category)}
             </div>
           </div>
 
@@ -259,7 +419,7 @@ class AddNewRecipe extends Component {
           {/* PORTIONS */}
           <div className="portions-section create-section">
             <label className="create-recipe-titles" htmlFor="">Portions<span>*</span></label>
-            <select className='portions select-underline' name='portions' type='text' onChange={this.handleChange}>
+            <select className='portions select-underline' name='portions' value={portions} type='text' onChange={this.handleChange}>
               <option hidden>nº servings</option>
               <option value="1 serving">1 serving</option>
               <option value="2 servings">2 servings</option>
@@ -273,16 +433,19 @@ class AddNewRecipe extends Component {
               <option value="10 servings">10 servings</option>
             </select> 
           </div>
+          <hr/>
 
           {/* DIFFICULTY */}
           <div className="difficulty-section create-section">
             <label className="create-recipe-titles">Difficulty<span>*</span></label>
             <div className="diff-btn-section">
-              <button onClick={(e)=>this.handleLevelClick(e)} value="easy">Easy</button>
+              {displayDifficultyButtons(difficulty)}
+              {/* <button onClick={(e)=>this.handleLevelClick(e)} value="easy">Easy</button>
               <button onClick={(e)=>this.handleLevelClick(e)} value="medium">Medium</button>
-              <button onClick={(e)=>this.handleLevelClick(e)} value="hard">Hard</button>
+              <button onClick={(e)=>this.handleLevelClick(e)} value="hard">Hard</button> */}
             </div>
           </div>
+          <hr/>
 
           {/* PREP TIME */}
           <div className="selector-container create-section">
@@ -298,7 +461,7 @@ class AddNewRecipe extends Component {
               <option value="+ 45 mins">+ 45 mins</option>
             </select> 
           </div>
-
+          
           <div className="box-green">
             <p>A recipe would be nothing without the ingredients! What goes in your dish?</p>
           </div>
@@ -339,10 +502,10 @@ class AddNewRecipe extends Component {
           {/* STEPS */}
           <div className="steps-create create-section">
             <label className="create-recipe-titles">Steps<span>*</span></label>
-
-            {this.state.numberOfSteps.map((num,index)=>{
+            {displaySteps(steps)}
+            {/* {this.state.numberOfSteps.map((num,index)=>{
               return <div className="textarea-create " key={num}><textarea className="textarea-placeholder-create" id={'preparation-step-'+num} placeholder="Write here the steps..." onChange={(e)=>this.handleStepChange(e,num)}></textarea></div>
-            })}
+            })} */}
             
             <button  className="add-btn"  onClick ={(e)=>this.addStep(e)} ><span>+ </span>Add a step</button>
           </div>

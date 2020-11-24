@@ -13,8 +13,8 @@ class Search extends Component {
     componentDidMount = () => {
         const query = this.props.match.params.query
         const category = this.props.match.params.category
-        console.log("esto es query",query)
-        console.log("esto es category",category)
+        // console.log("esto es query",query)
+        // console.log("esto es category",category)
         if (query !== undefined) {
             this.setState({searchField:query})
         } else if (category !== undefined){
@@ -23,7 +23,7 @@ class Search extends Component {
     }
 
     render() {
-        console.log("esto es el estado linia 26",this.state.searchField)
+        // console.log("esto es el estado linia 26",this.state.searchField)
         return (
             <div className="container">
                 {/* <NavbarMobile /> */}
@@ -35,10 +35,8 @@ class Search extends Component {
                     </div>
                 </div>
                 <SearchBar/>
-                <h1>{this.state.searchField}</h1>
-    
+                <p style={{marginLeft:"15px", marginTop:"-25px", marginBottom:"15px"}}><u>Search results for: <i>"{this.state.searchField}"</i></u></p>
                 <SearchRecipes searchField={this.state.searchField}/>
-                
             </div>
         );
     }

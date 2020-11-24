@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 //card edit profile
@@ -6,12 +7,12 @@ const ProfileEditCard = (props) => {
 
     return (
         <div className="card-profile">
-            <img src={props.imageUrl} style={{width: "100px"}} alt="img"/>
+            <Link to={"/recipes/" + props.id}> <img src={props.imageUrl}  alt="img"/></Link>
             <div className="info-card-profile">
                 <h3>{props.title}</h3>
                 <div className="icons-actions">
-                        <ion-icon name="close-circle-outline" onClick={props.deleteCard}></ion-icon>
-                        <ion-icon name="create-outline"></ion-icon>
+                    <ion-icon name="close-circle-outline" onClick={props.deleteCard}></ion-icon>
+                    <ion-icon name="create-outline"></ion-icon>
                 </div>
             </div>
         </div>

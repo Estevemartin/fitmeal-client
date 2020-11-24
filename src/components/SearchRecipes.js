@@ -10,11 +10,11 @@ class SearchRecipes extends Component {
   }
 
   getRecipes = async () => {
-    console.log("inicio getRecipes")
+    // console.log("inicio getRecipes")
     const res = await service.getRecipes();
     // console.log(res);
     this.setState({recipes: res})
-    console.log("fin getRecipes")
+    // console.log("fin getRecipes")
   }
 
   getRecipesByCategory = async (category) => {
@@ -30,31 +30,31 @@ class SearchRecipes extends Component {
   }
 
   filterRecipe = (searchWord) => {
-    console.log("inicio filtered")
-    console.log("esto es searchWord",searchWord)
+    // console.log("inicio filtered")
+    // console.log("esto es searchWord",searchWord)
     
     if (searchWord !== undefined){
     const searchedWord = searchWord.toLowerCase();
-    console.log("searchedWord",searchedWord)
+    // console.log("searchedWord",searchedWord)
     const stateList = [...this.state.recipes]
-    console.log("esto es statelist",stateList)
+    // console.log("esto es statelist",stateList)
     const filteredList = stateList.filter(recipe => {
       // console.log(recipe)
       // if (recipe.title !== undefined){
     return recipe.title.toLowerCase().includes(searchedWord);
       // }
     })
-    console.log("filters state", filteredList)
+    // console.log("filters state", filteredList)
 
     this.setState({recipes:filteredList})
     }
-    console.log("fin del filter")
+    // console.log("fin del filter")
   }
 
   componentDidUpdate = async (prevProps) => {
     if(this.props.searchField !== prevProps.searchField){
         const searched = this.props.searchField.toLowerCase()
-        console.log("CDM props", searched)
+        // console.log("CDM props", searched)
 
         if (searched === "easy" || searched === "medium" || searched === "hard"){
           this.getRecipesByDifficulty(searched)

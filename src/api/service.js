@@ -41,6 +41,29 @@ class Service {
       console.log(error);
     }
   };
+
+  getMyRecipes = async (id) => {
+    try{
+      // console.log("Inside getMyRecipes")
+      const res = await this.service.post("/myRecipes",{id})
+      // console.log(res.data)
+      return res.data;
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+
+  updateRecipe = async (recipe) =>{
+    try {
+      // console.log("Recipe en service:", recipe)
+      const res = await this.service.post("/recipes/update", recipe);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   getRecipesByCategory = async (category)=>{
     try {
       const res = await this.service.get("/category/"+category);
@@ -53,7 +76,7 @@ class Service {
 
   getRecipesByDifficulty = async (difficulty)=>{
     try {
-      console.log("about to go to backend", difficulty)
+      // console.log("about to go to backend", difficulty)
       const res = await this.service.get("/difficulty/"+difficulty);
       // console.log(res.data);
       return res.data;
