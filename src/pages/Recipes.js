@@ -28,13 +28,15 @@ class Recipes extends Component {
 
     const displayRandomRecipe = () =>{
       const recipes = this.state.recipes
+      // console.log(this.state)
+      // console.log(this.props)
       if(recipes.length !== 0){
         // const recipes = this.state.recipes
-        console.log(recipes)
+        // console.log(recipes)
         const randomRecipeId = Math.floor(Math.random()*recipes.length)
-        console.log(randomRecipeId)
+        // console.log(randomRecipeId)
         const currentRecipe = recipes[randomRecipeId]
-        console.log(currentRecipe)
+        // console.log(currentRecipe)
 
 
         return (
