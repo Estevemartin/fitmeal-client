@@ -3,8 +3,8 @@ import axios from "axios";
 class Service {
   constructor() {
     this.service = axios.create({
-      baseURL: "http://localhost:4000/api",
-        //  baseURL: process.env.REACT_APP_API_URL + '/api'
+      // baseURL: "http://localhost:4000/api",
+         baseURL: process.env.REACT_APP_API_URL + '/api',
       // withCredentials: true
     });
   }
@@ -33,7 +33,7 @@ class Service {
   };
 
   saveNewRecipe = async (newRecipe) => {
-    // console.log("new thing is: ", newRecipe);
+    console.log("new thing is: ", newRecipe);
 
     try {
       const res = await this.service.post("/recipes/create", newRecipe);
