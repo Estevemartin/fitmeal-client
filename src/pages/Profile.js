@@ -103,7 +103,7 @@ class Profile extends Component {
             }
         }
 
-        const { profilePictureUrl, backgroundPictureUrl, username, _id } = this.props.user 
+        // const { profilePictureUrl, backgroundPictureUrl, username, _id } = this.props.user 
         
         // console.log(username)
     return(
