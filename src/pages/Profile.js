@@ -105,12 +105,25 @@ class Profile extends Component {
                     <div className="user-info-container">
                         <h4>@{username}</h4>
                     </div>
-                    <Link className="a-btn" to="/profile/edit">edit profile</Link>
+                    <Link className="a-btn" to="/profile/edit">edit</Link>
                 </div>
+                
                 <div className="nav-profile">
-                    <Link to="/profile" className="active">My recipes</Link>
-                    <Link to="#">My plans</Link>
-                    <Link to="/profile/savedRecipes">Save</Link>
+                    <hr/>
+                    <div className="nav-profile-actions">
+                        <Link to="/profile">
+                            <span>My recipes</span>
+                            <hr className="active"/>
+                        </Link>
+                        <Link to="#">
+                            <span>My plans</span>
+                            <hr/>
+                        </Link>
+                        <Link to="/profile/savedRecipes">
+                            <span>Save</span>
+                            <hr/>
+                        </Link>
+                    </div>
                 </div>
                 <div className="recipes-container">
                     {display()}

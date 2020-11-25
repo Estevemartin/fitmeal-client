@@ -193,10 +193,10 @@ class EditProfile extends Component {
                     <div className="container-profile">
                     <div className="user-info">
                         {displayProfilePicture(profilePictureUrl)}
-                        <div className="user-info-container">
+                        <div className="user-info-container user-info-edit">
                             <h4>@{username}</h4>
                         </div>
-                        <button className="a-btn" type="submit">save</button>
+                        <button className="a-btn user-info-edit" type="submit">save</button>
                     </div>
 
                     {/* FIELDS */}
