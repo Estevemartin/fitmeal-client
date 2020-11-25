@@ -9,23 +9,19 @@ import NavbarMobile from "../components/NavbarMobile";
 class Profile extends Component {
     state={
     }
-
     getMyRecipes = async () => {
         const res = await service.getMyRecipes(this.props.user._id);
         this.setState({recipes: res})
     }
-
     getMySavedrecipes = async () => {
         const recipes = await service.getSavedRecipes(this.props.user._id)
         this.setState({savedRecipes:recipes})
     }
-    
     componentDidMount = () => {
         this.getMyRecipes() 
         this.getMySavedrecipes()
     }
     
-
     render() {
         const displayProfilePicture = profilePictureUrl => {
             if(profilePictureUrl){
@@ -34,7 +30,6 @@ class Profile extends Component {
                 return <div className="profile-picture2 profile-stroke avatar-green"></div>
             }
         }
-
         const displayBackgroundPicture = backgroundPictureUrl => {
             if(backgroundPictureUrl){
                 return (
@@ -56,7 +51,6 @@ class Profile extends Component {
                 )
             }
         }
-
         const displayMyRecipes = () =>{
             const recipes = this.state.recipes
             if(recipes!==undefined){
@@ -69,12 +63,10 @@ class Profile extends Component {
                 )
             }
         }
-
         const { profilePictureUrl, backgroundPictureUrl, username } = this.props.user
         const { logout } = this.props;
         const displaySavedRecipes = () =>{
-        const recipes = this.state.savedRecipes
-
+            const recipes = this.state.savedRecipes
             if(recipes!==undefined){
                 return (
                     <>
@@ -85,7 +77,30 @@ class Profile extends Component {
                 )
             }
         }
-
+        const displaySecondaryNavBar = () => {
+            let currentUrl = this.props.location.pathname
+            if (currentUrl === "/profile"){
+                return (
+                    <>
+                        <div className="nav-profile">
+                            <Link to="/profile"  className="active">My recipes</Link>
+                            <Link to="#">My plans</Link>
+                            <Link to="/profile/savedRecipes">Save</Link>
+                        </div>
+                    </>
+                )
+            } else if (currentUrl === "/profile/savedRecipes"){
+                return (
+                    <>
+                        <div className="nav-profile">
+                            <Link to="/profile">My recipes</Link>
+                            <Link to="#">My plans</Link>
+                            <Link to="/profile/savedRecipes" className="active" >Save</Link>
+                        </div>
+                    </>
+                )
+            }
+        }
         const display = () =>{
             let currentUrl = this.props.location.pathname
             if (currentUrl === "/profile"){
@@ -107,11 +122,7 @@ class Profile extends Component {
                     </div>
                     <Link className="a-btn" to="/profile/edit">edit profile</Link>
                 </div>
-                <div className="nav-profile">
-                    <Link to="/profile" className="active">My recipes</Link>
-                    <Link to="#">My plans</Link>
-                    <Link to="/profile/savedRecipes">Save</Link>
-                </div>
+                {displaySecondaryNavBar()}
                 <div className="recipes-container">
                     {display()}
                 </div>
