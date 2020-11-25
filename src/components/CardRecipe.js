@@ -4,33 +4,22 @@ import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import service from "../api/service";
 
-// const like = (recipeId) =>{
-//     console.log(this.props)
-//     // var userId = this.props.user._id
-//     // console.log(recipeId)
-//     // console.log(userId)
 
-
-// }
-
-//card recipe home & searchbar & filter categories
-// const CardRecipe = ({imageUrl, title, prepTime, popularity, _id}) => {
 class CardRecipe extends Component {
     state={
        
     }
-    
     save = async (recipeId) => {
         if(this.props.user !== undefined){
             var userId = this.props.user._id
             const savedUser = await service.save(userId,recipeId);
-            console.log(savedUser.currentUser.saved)
+            // console.log(savedUser.currentUser.saved)
             var recipeSaved
             if (savedUser.currentUser.saved.includes(recipeId)){
-                console.log("Saved")
+                // console.log("Saved")
                 recipeSaved=true
             } else {
-                console.log("Unsaved")
+                // console.log("Unsaved")
                 recipeSaved=false
             }
             this.setState({
@@ -38,8 +27,7 @@ class CardRecipe extends Component {
                 saved:recipeSaved,
             })
         }
-   }
-
+    }
     like = async (recipeId) => {
         if(this.props.user !== undefined){
             // console.log(this.props)
@@ -60,10 +48,10 @@ class CardRecipe extends Component {
             // console.log("RECIPE LIKED BY: ",savedRecipe.liked)
             var recipeLiked
             if (currentRecipe.liked.includes(userId)){
-                console.log("Disliked")
+                // console.log("Disliked")
                 recipeLiked=false
             } else {
-                console.log("Liked")
+                // console.log("Liked")
                 recipeLiked=true
             }
             this.setState({
@@ -74,7 +62,6 @@ class CardRecipe extends Component {
             // this.props.user=res.savedUser
         }
     }
-
     componentDidMount = async () => {
     // componentDidUpdate = async (prevProps, prevState) => {
         // if (prevState !== this.state) {
@@ -116,7 +103,6 @@ class CardRecipe extends Component {
         // }
         
     }
-
     displayLikes = (popularity) =>{
         // console.log("inside display likes")
         // console.log(this.state.savedRecipe)
@@ -136,7 +122,6 @@ class CardRecipe extends Component {
 
         const {imageUrl, title, prepTime, popularity, _id} = this.props
 
-        
         return (
             <div className="card-recipe">
                 <Link to={"/recipes/"+_id}><img src={imageUrl}  alt="img"/></Link>

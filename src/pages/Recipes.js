@@ -12,14 +12,11 @@ class Recipes extends Component {
   state={
     recipes: [],
   }
-
   getRecipes = async () => {
     const res = await service.getRecipes();
     // console.log(res);
     this.setState({recipes: res})
   }
-
-
   componentDidMount = () => {
     this.getRecipes();
   }
@@ -57,7 +54,6 @@ class Recipes extends Component {
         )
       }
     }
-
     return (
       <div className="container">
           <NavbarMobile />

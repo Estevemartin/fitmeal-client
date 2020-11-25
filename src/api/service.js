@@ -43,7 +43,7 @@ class Service {
 
   updateUserProfile = async (user) => {
     try {
-      console.log(user)
+      // console.log(user)
       const res = await this.service.patch("/profile/update",user);
       // console.log(res.data);
       return res.data;
@@ -127,7 +127,7 @@ class Service {
     }
   }
   saveNewRecipe = async (newRecipe) => {
-    console.log("new thing is: ", newRecipe);
+    // console.log("new thing is: ", newRecipe);
 
     try {
       const res = await this.service.post("/recipes/create", newRecipe);

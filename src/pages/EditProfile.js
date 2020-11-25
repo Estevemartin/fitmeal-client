@@ -46,7 +46,7 @@ class EditProfile extends Component {
     
         try {
           const res = await service.handleUpload(uploadData);
-          console.log("response is", res);
+        //   console.log("response is", res);
           this.props.user.profilePictureUrl = res
           this.setState({ user: this.props.user });
         } catch (error) {
@@ -55,7 +55,6 @@ class EditProfile extends Component {
     }
 
     // CHANGE HANDLERS
-    
     handleChange = (e) => {
         e.preventDefault();
         const { name, value } = e.target;
@@ -74,41 +73,16 @@ class EditProfile extends Component {
         try {
 
             let currentUser = this.state.user
-            console.log(currentUser)
-            var res
-            res = await service.updateUserProfile(currentUser);
-            console.log("PROFILE UPDATED TO -->", res);
+            // console.log(currentUser)
+            // var res
+            await service.updateUserProfile(currentUser);
+
+            // const res = await service.updateUserProfile(currentUser);
+            // console.log("PROFILE UPDATED TO -->", res);
             // this.props.updateUser(currentUser._id)
             // console.log("PROFILE UPDATED TO -->", res);
             this.props.updateUser(currentUser._id)
-            // var successMsg = "Recipe Successfully Created!"
-            
-            // console.log("CREATED / UPDATED RECIPE -->", res);
-            
-            // const res = await service.saveNewRecipe(this.state);
-            
-            // console.log(this.state.imageUrl)
-            
-            // this.setState({
-            //     imageUrl: "", 
-            //     author: this.props.user.username,
-            //     title: "Write a nice title",
-            //     prepTime: 0,
-            //     difficulty: "easy",
-            //     portions:"",
-            //     ingredients: [{ingredientId:0,name:"",amount:"",units:""}],
-            //     steps: [''],
-            //     numberOfIngredients: [0],
-            //     numberOfSteps:[0],
-            //     errorMsg:null,
-            //     successMsg:null
-            // });
-            // this.props.history.push('/recipes/'+res._id)
-
-            // return this.props.history.push("/")
-            // this.props.getRecipes()
-            // this.setState({successMsg:"Recipe Successfully Created!"})
-
+            this.props.history.push('/profile')
         } catch (error) {
             this.setState({errorMsg:"Make sure to fullfill all the required fields."})
             // console.log("Error while adding the recipe: ", error);
@@ -179,14 +153,6 @@ class EditProfile extends Component {
 
             }
         }
-
-        
-        // const displayUserName = () =>{
-        //     if (this.state.user!==undefined){
-        //         console.log(this.state.user.username)
-        //         return this.state.user.username
-        //     }
-        // }
     
         const { profilePictureUrl, backgroundPictureUrl, username } = this.props.user
         
@@ -196,24 +162,20 @@ class EditProfile extends Component {
                 <form method="POST" action="" className='add-new-recipe-form' onSubmit={this.handleSaveProfileSubmit}>
                     {displayBackgroundPicture(backgroundPictureUrl)}
                     <div className="container-profile">
-                    <div className="user-info">
-                        {displayProfilePicture(profilePictureUrl)}
-                        <div className="user-info-container">
-                            <h4>@{username}</h4>
+                        <div className="user-info">
+                            {displayProfilePicture(profilePictureUrl)}
+                            <div className="user-info-container">
+                                <h4>@{username}</h4>
+                            </div>
+                            <button className="a-btn user-info-edit" type="submit">save</button>
                         </div>
-                        <button className="a-btn user-info-edit" type="submit">save</button>
-                    </div>
 
-                    {/* FIELDS */}
-                    <div className="create-section">
-                        {/* <input className="input-title-recipe" type='text' name='username' placeholder="Write your new username" onChange={this.handleChange} /><br></br> */}
-                        <input className="input-title-recipe" type='text' name='email' placeholder="Write your new email" onChange={this.handleChange} /><br></br>
-                    </div>
-                    <div className="user-info">
-                    </div>
+                        {/* FIELDS */}
+                        <div className="create-section">
+                            <input className="input-title-recipe" type='text' name='email' placeholder="Write your new email" onChange={this.handleChange} /><br></br>
+                        </div>
                     </div>
                 </form>
-                
             </>
         )
     }

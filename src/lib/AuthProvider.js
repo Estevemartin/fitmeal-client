@@ -11,10 +11,7 @@ const withAuth = (WrappedComponent) => {
     render() {
       return (
         <Consumer>
-          {/* El componente <Consumer> provee un callback que recibe el "value" con el objeto Providers */}
           {({ login, signup, user, logout, isLoggedin, actualUser ,updateUser }) => {
-          {/* {({ login, signup, user, logout, isLoggedin }) => { */}
-
             return (
               <WrappedComponent
                 login={login}
@@ -49,7 +46,6 @@ class AuthProvider extends React.Component {
         this.setState({ isLoggedin: false, user: null, isLoading: false })
       );
   }
-
   signup = (user) => {
     const { username, password, email } = user;
 
@@ -60,7 +56,6 @@ class AuthProvider extends React.Component {
         this.setState({ message: response.data.statusMessage })
       );
   };
-
   login = (user) => {
     const { username, password } = user;
 
@@ -69,16 +64,14 @@ class AuthProvider extends React.Component {
       .then((user) => this.setState({ isLoggedin: true, user }))
       .catch((err) => console.log(err));
   };
-
   logout = () => {
     auth
       .logout()
       .then(() => this.setState({ isLoggedin: false, user: null }))
       .catch((err) => console.log(err));
   };
-
   updateUser = (userId) => {
-    console.log("UPDATEUSER AUTHPROV: ",userId)
+    // console.log("UPDATEUSER AUTHPROV: ",userId)
     service
       .getUserInfo(userId)
       .then((newUser) => this.setState({actualUser: newUser}))

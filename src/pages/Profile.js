@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
 import ProfileEditCard from "../components/ProfileEditCard"
+import ProfileSavedCard from "../components/ProfileSavedCard"
 import service from "../api/service";
 
 import NavbarMobile from "../components/NavbarMobile";
@@ -57,7 +58,7 @@ class Profile extends Component {
                 return (
                     <>
                         {recipes.map((recipe,index)=>{
-                            return <ProfileEditCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id} />
+                            return <ProfileEditCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id} showButtons={this.state.showButtons}/>
                         })}
                     </>
                 )
@@ -71,7 +72,7 @@ class Profile extends Component {
                 return (
                     <>
                         {recipes.map((recipe,index)=>{
-                            return <ProfileEditCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id} />
+                            return <ProfileSavedCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id} showButtons={this.state.showButtons} />
                         })}
                     </>
                 )
@@ -80,6 +81,7 @@ class Profile extends Component {
         const displaySecondaryNavBar = () => {
             let currentUrl = this.props.location.pathname
             if (currentUrl === "/profile"){
+                // this.setState({showButtons:true})
                 return (
                     <>
                         <Link to="/profile">
@@ -97,6 +99,7 @@ class Profile extends Component {
                     </>
                 )
             } else if (currentUrl === "/profile/savedRecipes"){
+                // this.setState({showButtons:false})
                 return (
                     <>
                         <Link to="/profile">
@@ -122,27 +125,6 @@ class Profile extends Component {
             } else if (currentUrl === "/profile/savedRecipes"){
                 return displaySavedRecipes()
             }
-        }
-        const displayIcons = (recipeId) => {
-        
-            if (recipeId !== undefined){
-                console.log(this.props)
-                let currentUrl = this.props.location.pathname
-                if (currentUrl.includes("savedRecipes")){
-                    return (
-                        <div className="icons-actions">
-                            <ion-icon name="close-circle-outline" onClick={()=>this.deleteRecipe(this.props.id)}></ion-icon>
-                            <ion-icon name="create-outline"></ion-icon>
-                        </div>
-                    )
-                } else {
-                    return (
-                        <div className="icons-actions">
-                            <ion-icon name="bookmark" ></ion-icon>
-                        </div>
-                    )
-                }
-            } 
         }
         
 

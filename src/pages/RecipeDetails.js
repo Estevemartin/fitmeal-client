@@ -7,19 +7,17 @@ import { Link } from "react-router-dom";
 class recipeDetails extends Component {
     state={
     }
-
-
     save = async (recipeId) => {
         if(this.props.user !== undefined){
             var userId = this.props.user._id
             const savedUser = await service.save(userId,recipeId);
-            console.log(savedUser.currentUser.saved)
+            // console.log(savedUser.currentUser.saved)
             var recipeSaved
             if (savedUser.currentUser.saved.includes(recipeId)){
-                console.log("Saved")
+                // console.log("Saved")
                 recipeSaved=true
             } else {
-                console.log("Unsaved")
+                // console.log("Unsaved")
                 recipeSaved=false
             }
             this.setState({
@@ -27,8 +25,7 @@ class recipeDetails extends Component {
                 saved:recipeSaved,
             })
         }
-   }
-
+    }
     like = async (recipeId) => {
         if(this.props.user !== undefined){
             // console.log(this.props)
@@ -50,11 +47,11 @@ class recipeDetails extends Component {
             var recipeLiked
             var popularity
             if (currentRecipe.liked.includes(userId)){
-                console.log("Disliked") 
+                // console.log("Disliked") 
                 popularity = this.state.popularity -1
                 recipeLiked=false
             } else {
-                console.log("Liked")
+                // console.log("Liked")
                 recipeLiked=true
                 popularity = this.state.popularity +1
             }
@@ -67,45 +64,43 @@ class recipeDetails extends Component {
             // this.props.user=res.savedUser
         }
     }
-
     componentDidMount = async () => {
         const recipeId = this.props.match.params.id
         const recipe = await service.getRecipeDetails(recipeId)
         this.setState(recipe)
 
-                var userId = this.props.user._id
-                // // var recipeId = this.props._id
-                // console.log(userId)
-                const currentUser = await service.getUserInfo(userId)
-                const currentRecipe = await service.getRecipeDetails(recipeId)
-                // console.log(res)
-                // const currentUser = res
-                console.log(currentUser)
-                var iLikeThis
-                if (currentUser.liked.includes(recipeId)){
-                    iLikeThis=true
-                } else {
-                    iLikeThis=false
-                }
+        var userId = this.props.user._id
+        // // var recipeId = this.props._id
+        // console.log(userId)
+        const currentUser = await service.getUserInfo(userId)
+        const currentRecipe = await service.getRecipeDetails(recipeId)
+        // console.log(res)
+        // const currentUser = res
+        // console.log(currentUser)
+        var iLikeThis
+        if (currentUser.liked.includes(recipeId)){
+            iLikeThis=true
+        } else {
+            iLikeThis=false
+        }
 
-                var iSavedThis
-                if (currentUser.saved.includes(recipeId)){
-                    iSavedThis=true
-                } else {
-                    iSavedThis=false
-                }
+        var iSavedThis
+        if (currentUser.saved.includes(recipeId)){
+            iSavedThis=true
+        } else {
+            iSavedThis=false
+        }
 
 
-                // console.log("I Like This? ", iLikeThis)
+        // console.log("I Like This? ", iLikeThis)
 
-                this.setState({
-                    user:currentUser,
-                    like:iLikeThis,
-                    savedRecipe:currentRecipe,
-                    saved:iSavedThis
-                }) 
+        this.setState({
+            user:currentUser,
+            like:iLikeThis,
+            savedRecipe:currentRecipe,
+            saved:iSavedThis
+        }) 
     }
-    
 
     render (){
         const displayIngredients=(ingredients)=>{
@@ -158,13 +153,7 @@ class recipeDetails extends Component {
                 return <span className="profile-picture3 avatar-green"></span>
             }
         }
-        // const displayLike = (like)=>{
-        //     if (like) {
-        //         return <ion-icon name="heart" style={{this.state.like ? "#ec5e5e" : ""}}></ion-icon>
-        //     } else {
-        //         return <ion-icon name={like ? "heart" : "heart-outline"} style={{this.state.like ? "#ec5e5e" : ""}}></ion-icon>
-        //     }
-        // }
+  
         const {title,author,difficulty, ingredients,popularity,portions,prepTime,steps,imageUrl, like,saved,_id} = this.state
         return (
             <>
