@@ -9,7 +9,7 @@ class NavbarMobile extends Component {
       if(user.profilePictureUrl){
           return <span className="profile-picture"><img src={user.profilePictureUrl} alt="profile"/></span>
       } else {
-          return <span className="profile-picture avatar-green"></span>
+          return <span className="profile-picture avatar-green1"></span>
       }
     }
 

@@ -40,10 +40,11 @@ class Service {
       console.log(error)
     }
   }
+
   updateUserProfile = async (user) => {
     try {
       console.log(user)
-      const res = await this.service.post("/profile/update",user);
+      const res = await this.service.patch("/profile/update",user);
       // console.log(res.data);
       return res.data;
     } catch (error) {
