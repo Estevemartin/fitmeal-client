@@ -151,7 +151,10 @@ class recipeDetails extends Component {
             }
         }
         const displayAvatar = (author, recipe) => {
-            if(author!==undefined){
+            console.log("DISPLAY AVATAR AUTHOR:",author)
+
+            if(author!==undefined && author.profilePictureUrl !== ""){
+                // console.log("DISPLAY AVATAR AUTHOR:"author.profilePictureUrl)
                 // mirarse las rutas del perfil
                 return <Link to={"/profile/"+author._id}><span className="profile-picture"><img src={author.profilePictureUrl} alt="profile"/></span></Link>
             } else {

@@ -3,7 +3,7 @@ import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
 // import ProfileEditCard from "../components/ProfileEditCard"
 import service from "../api/service";
-import auth from "../lib/auth-service"; // Importamos funciones para llamadas axios a la API
+// import auth from "../lib/auth-service"; // Importamos funciones para llamadas axios a la API
 
 
 class EditProfile extends Component {
@@ -46,7 +46,7 @@ class EditProfile extends Component {
     
         try {
           const res = await service.handleUpload(uploadData);
-          // console.log("response is", res);
+          console.log("response is", res);
           this.props.user.profilePictureUrl = res
           this.setState({ user: this.props.user });
         } catch (error) {
@@ -78,7 +78,7 @@ class EditProfile extends Component {
             var res
             res = await service.updateUserProfile(currentUser);
             console.log("PROFILE UPDATED TO -->", res);
-            this.props.updateUser(currentUser._id)
+            // this.props.updateUser(currentUser._id)
             // var successMsg = "Recipe Successfully Created!"
             
             // console.log("CREATED / UPDATED RECIPE -->", res);

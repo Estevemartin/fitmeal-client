@@ -123,6 +123,28 @@ class Profile extends Component {
                 return displaySavedRecipes()
             }
         }
+        const displayIcons = (recipeId) => {
+        
+            if (recipeId !== undefined){
+                console.log(this.props)
+                let currentUrl = this.props.location.pathname
+                if (currentUrl.includes("savedRecipes")){
+                    return (
+                        <div className="icons-actions">
+                            <ion-icon name="close-circle-outline" onClick={()=>this.deleteRecipe(this.props.id)}></ion-icon>
+                            <ion-icon name="create-outline"></ion-icon>
+                        </div>
+                    )
+                } else {
+                    return (
+                        <div className="icons-actions">
+                            <ion-icon name="bookmark" ></ion-icon>
+                        </div>
+                    )
+                }
+            } 
+        }
+        
 
     return(
         <>

@@ -88,7 +88,7 @@ class CardRecipe extends Component {
                 const currentRecipe = await service.getRecipeDetails(recipeId)
                 // console.log(res)
                 // const currentUser = res
-                console.log(currentUser)
+                // console.log(currentUser)
                 var iLikeThis
                 if (currentUser.liked.includes(recipeId)){
                     iLikeThis=true
