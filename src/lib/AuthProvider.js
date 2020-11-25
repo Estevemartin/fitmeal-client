@@ -1,5 +1,7 @@
 import React from "react";
 import auth from "./auth-service"; // Importamos funciones para llamadas axios a la API
+import service from "../api/service";
+
 const { Consumer, Provider } = React.createContext();
 
 // HOC para crear Consumer
@@ -10,14 +12,15 @@ const withAuth = (WrappedComponent) => {
       return (
         <Consumer>
           {/* El componente <Consumer> provee un callback que recibe el "value" con el objeto Providers */}
-          {({ login, signup, user, logout, isLoggedin }) => {
+          {({ login, signup, user, logout, isLoggedin, actualUser ,updateUser }) => {
             return (
               <WrappedComponent
                 login={login}
                 signup={signup}
-                user={user}
+                user={actualUser ? actualUser : user}
                 logout={logout}
                 isLoggedin={isLoggedin}
+                updateUser={updateUser}
                 {...this.props}
               />
             );
@@ -71,10 +74,18 @@ class AuthProvider extends React.Component {
       .catch((err) => console.log(err));
   };
 
+  updateUser = (userId) => {
+    console.log("UPDATEUSER AUTHPROV: ",userId)
+    service
+      .getUserInfo(userId)
+      .then((newUser) => this.setState({actualUser: newUser}))
+      .catch((err) => console.log(err));
+  }
+
   render() {
     // destructuramos isLoading, isLoggedin y user de this.state y login, logout y signup de this
-    const { isLoading, isLoggedin, user } = this.state;
-    const { login, logout, signup } = this;
+    const { isLoading, isLoggedin, user, actualUser } = this.state;
+    const { login, logout, signup, updateUser } = this;
 
     return isLoading ? (
       // si está loading, devuelve un <div> y sino devuelve un componente <Provider> con un objeto con los valores: { isLoggedin, user, login, logout, signup}
@@ -82,7 +93,7 @@ class AuthProvider extends React.Component {
       <div>Loading</div>
       
     ) : (
-      <Provider value={{ isLoggedin, user, login, logout, signup }}>
+      <Provider value={{ isLoggedin, user, login, logout, signup , actualUser, updateUser}}>
         {this.props.children}
       </Provider>
     ); /*<Provider> "value={}" datos que estarán disponibles para todos los componentes <Consumer> */

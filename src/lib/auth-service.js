@@ -26,6 +26,10 @@ class Auth {
     return this.auth.post("/auth/logout", {}).then(({ data }) => data);
   }
 
+  updateUser (userId){
+    return this.auth.post("/profile",{_id:userId}).then(({ data}) => data);
+  }
+
   me() {
     return this.auth.get("/auth/me").then(({ data }) => data);
   }
