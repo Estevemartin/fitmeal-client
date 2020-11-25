@@ -118,15 +118,17 @@ class EditProfile extends Component {
         const displayProfilePicture = profilePictureUrl => {
             if(profilePictureUrl){
                 return (
-                    <span className="profile-img">
-                        <img src={profilePictureUrl} alt="profileImg"/>
-                        <input style={{display:"none"}}  id="profile-pic-url" className='image-selector'  type='file' name='profilePictureUrl' onChange={(e) => this.handleProfileFileUpload(e)}/>
-                    </span>
+                    <label className="edit-avatar" htmlFor="profile-pic-url">
+                        <ion-icon name="image-outline"></ion-icon>
+                        <img className="profile-picture2 profile-stroke" src={profilePictureUrl} alt="profileImg"/>
+                        <input style={{display:"none"}} id="profile-pic-url" className='image-selector'  type='file' name='profilePictureUrl' onChange={(e) => this.handleProfileFileUpload(e)}/>
+                    </label>
                 )
             } else {
                 return (
-                    <label htmlFor="profile-pic-url">
-                        <div className="profile-picture-mobile2 avatar-color"></div>
+                    <label  className="edit-avatar" htmlFor="profile-pic-url">
+                        <ion-icon name="image-outline"></ion-icon>
+                        <div className="profile-picture2 avatar-green profile-stroke"><ion-icon name="image-outline"></ion-icon></div>
                         <input style={{display:"none"}} id="profile-pic-url" className='image-selector'  type='file' name='profilePictureUrl' onChange={(e) => this.handleProfileFileUpload(e)}/>
                     </label>
                     )
@@ -137,32 +139,37 @@ class EditProfile extends Component {
             if(backgroundPictureUrl){
 
                 return (
+                    <div className="bg-edit">
+                    <span>
+                        <Link to="/profile">
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                        </Link>
+                    </span>
                     <label htmlFor="bg-pic-url">
-                        <div className="bg bg-img">
-                            <span>
-                                <Link to="/profile">
-                                    <ion-icon name="arrow-back-outline"></ion-icon>
-                                </Link>
-                            </span>
+                        <ion-icon name="image-outline"></ion-icon>
+                        <div className="bg">
                             <img src={backgroundPictureUrl} alt="backgroundImg"/>
                             <input  style={{display:"none"}} id="bg-pic-url" className='image-selector'  type='file' name='backgroundPictureUrl' onChange={(e) => this.handleBackgroundFileUpload(e)} />
                         </div>
                     </label>
+                    </div>
                 )
 
             } else {
 
                 return (
+                    <div className="bg-edit">
+                    <span>  
+                        <Link to="/profile">
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                        </Link>
+                    </span>
                     <label htmlFor="bg-pic-url">
-                        <div className="bg bg-color">
-                            <span>  
-                                <Link to="/profile">
-                                    <ion-icon name="arrow-back-outline"></ion-icon>
-                                </Link>
-                            </span>
+                        <div className="bg">
                             <input  style={{display:"none"}} id="bg-pic-url" className='image-selector'  type='file' name='backgroundPictureUrl' onChange={(e) => this.handleBackgroundFileUpload(e)}/>
                         </div>
                     </label>
+                    </div>
                 )
 
             }
@@ -182,14 +189,14 @@ class EditProfile extends Component {
         return(
             <>
                 <form method="POST" action="" className='add-new-recipe-form' onSubmit={this.handleSaveProfileSubmit}>
-                    <div className="bg-profile2">{displayBackgroundPicture(backgroundPictureUrl)}</div>
+                    {displayBackgroundPicture(backgroundPictureUrl)}
+                    <div className="container-profile">
                     <div className="user-info">
                         {displayProfilePicture(profilePictureUrl)}
                         <div className="user-info-container">
-                            <h4>{username}</h4>
-                            <p>@{username}</p>
+                            <h4>@{username}</h4>
                         </div>
-                        <button style={{width:"105px", backgroundColor:"rgba(0,0,0,0)"}}></button>
+                        <button className="a-btn" type="submit">save</button>
                     </div>
 
                     {/* FIELDS */}
@@ -198,9 +205,10 @@ class EditProfile extends Component {
                         <input className="input-title-recipe" type='text' name='email' placeholder="Write your new email" onChange={this.handleChange} /><br></br>
                     </div>
                     <div className="user-info">
-                        <button type="submit">save changes</button>
+                    </div>
                     </div>
                 </form>
+                
             </>
         )
     }

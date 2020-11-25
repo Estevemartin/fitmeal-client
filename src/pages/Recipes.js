@@ -42,12 +42,13 @@ class Recipes extends Component {
         return (
           <Link to = {"/recipes/"+currentRecipe._id} >
             <article style={{margin: "20px"}}>
-              <div className="discover-img" style={{borderRadius: "5px", height: "250px", backgroundImage: "linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%), url('"+currentRecipe.imageUrl+"')"}}>
+              <div className="discover-img" style={{backgroundImage: "linear-gradient(0deg, rgba(95, 163, 151, 1) 10%, rgba(0, 0, 0, 0) 60%), url('"+currentRecipe.imageUrl+"')", backgroundSize: "cover", backgroundPosition: "50% 50%", backgroundRepeat: "no-repeat"}}>
                   <div>
                     <div className="discover-title">{currentRecipe.title}</div>
                     <div className="info-icons-recipe">
-                      <div><span>{currentRecipe.popularity}</span> <ion-icon name="heart-outline"></ion-icon></div>
-                      <ion-icon name="bookmark-outline"></ion-icon>
+                        <div><ion-icon name="time-outline"></ion-icon><span>{currentRecipe.prepTime.replace(" mins", "''").replace(" -", "'' -")}</span></div>
+                        <div><ion-icon name="heart-outline"></ion-icon><span>{currentRecipe.popularity}</span></div>
+                        <ion-icon name="bookmark-outline"></ion-icon>
                     </div>
                   </div>
               </div>
@@ -64,8 +65,8 @@ class Recipes extends Component {
           {/* DISCOVER TITLE */}
           <div className="box">
             <div>
-              <span></span>
-              <h4>recipes.</h4>
+              <span><img style={{width: "25px"}} src="/favicon2.png" alt=""/></span>
+              <h4>fitmeal.</h4>
               <span></span>
             </div>
           </div>
