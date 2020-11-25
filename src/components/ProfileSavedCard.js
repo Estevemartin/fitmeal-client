@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
 
@@ -27,6 +27,11 @@ class ProfileSavedCard extends Component {
                 user:savedUser,
                 saved:recipeSaved,
             })
+            // this.props.history.push('/profile')
+            // <Redirect to="/profile"/>
+            window.location.reload();
+
+
         }
     }
     

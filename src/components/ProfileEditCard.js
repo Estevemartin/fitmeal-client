@@ -57,7 +57,7 @@ class ProfileEditCard extends Component {
                     {/* {displayIcons(this.props.id)} */}
                     <div className="icons-actions">
                         <ion-icon name="close-circle-outline" onClick={()=>this.deleteRecipe(this.props.id)}></ion-icon>
-                        <ion-icon name="create-outline"></ion-icon>
+                        <Link to ={"/editRecipe/"+this.props.id} ><ion-icon name="create-outline"></ion-icon></Link>
                     </div>
                 </div>
             </div>

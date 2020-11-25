@@ -17,6 +17,7 @@ import RecipeDetails from "./pages/RecipeDetails";
 import Profile from "./pages/Profile"
 import Search from "./pages/Search";
 import EditProfile from "./pages/EditProfile"
+import ProfileId from "./pages/ProfileId"
 
 
 class App extends Component {
@@ -35,7 +36,7 @@ class App extends Component {
             <PrivateRoute exact path='/addNewRecipe' component={AddNewRecipe}/>
             <PrivateRoute exact path='/recipes/:id' component={RecipeDetails}/>
             <PrivateRoute exact path='/profile' component={Profile}/>
-            {/* <PrivateRoute exact path='/profile/:id' component={Profile}/> */}
+            <PrivateRoute exact path='/profile/:id' component={ProfileId}/>
             <PrivateRoute exact path='/profile/savedRecipes' component={Profile}/>
 
             <PrivateRoute exact path='/profile/edit' component={EditProfile}/>

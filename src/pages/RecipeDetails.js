@@ -184,7 +184,7 @@ class recipeDetails extends Component {
                         </div>
                         <div className="author">
                             <span className="profile-picture">{displayAvatar(author)}</span>
-                            <h4>@{displayAuthorUserName(author)}</h4>
+                            <Link to="/profile/:id"><h4>@{displayAuthorUserName(author)}</h4></Link>
                         </div>
                     </div>
                 </div>
