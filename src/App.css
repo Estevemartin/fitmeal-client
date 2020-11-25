@@ -258,13 +258,18 @@ color: var(--grey2);
   align-items: center;
 }
 .avatar-green{
+  background: var(--green);
+}
+
+.avatar-green1{
   background: var(--green1);
 }
 
 .profile-picture, .profile-picture img{
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
 }
 
 .logout-icon{
@@ -280,16 +285,21 @@ color: var(--grey2);
   height: 160px;
   width: 100%;
   overflow: hidden;
-  background-color: var(--green1);
   position: relative;
-  z-index: -1;
+  z-index: -9999;
   }
+
+.bg-color{
+  background-color: var(--green);
+}
  
 .bg img{
   width: 100%;
-  height: 100%;
+  height: 160px;
   object-fit: cover;
   display: block;
+  position: relative;
+  z-index: -1;
 }
 
 .logout{
@@ -304,6 +314,7 @@ color: var(--grey2);
   justify-content: center;
   align-items: center;
   background-color: rgba( 0, 0, 0, 0.6);
+  z-index: 1;
 }
 
 .logout ion-icon{
@@ -320,19 +331,18 @@ color: var(--grey2);
   margin-top: -25px;
 }
 
-.user-info-edit{
-  margin-top: -6px;
-}
-
 .user-info .a-btn {
   border-radius: 5px;
   outline: none;
+  width: 65px;
+  text-align: center;
   border:none;
   background-color: var(--green2);
   color: var(--white);
   padding: 3px 10px;
   font-size: 16px;
 }
+
 .user-info-container{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -347,13 +357,25 @@ color: var(--grey2);
 
 .profile-picture2{
   height: 100px;
-  width: 100px;
+  min-width: 100px;
   border-radius:50%;
   margin-top: -30px;
+  object-fit: cover;
+}
+
+.profile-picture3, .profile-picture3 img{
+  height: 35px;
+  width: 35px;
+  border-radius:50%;
+  object-fit: cover;
 }
 
 .profile-stroke{
   border:5px solid white;
+}
+
+.profile-stroke1{
+  border:2px solid white;
 }
 
 /*----------- navbar profile (meals, plans, save) -------------------*/
@@ -479,7 +501,7 @@ color: var(--grey2);
   padding:20px;
   top: -25px;
   left: 5px;
-  background-color: rgba( 95, 163, 151, 0.3);
+  background-color: rgba( 95, 163, 151, 0.1);
   height: 50px;
   border-radius: 50%;
 }
@@ -503,10 +525,6 @@ color: var(--grey2);
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.navbar-mobile span{
-  height: 30px;
 }
 
 .navbar-icons-mobile ion-icon{

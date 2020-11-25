@@ -37,7 +37,7 @@ class Profile extends Component {
                         <div className="logout">
                             <ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon>
                         </div>
-                        <span className="bg bg-img">
+                        <span className="bg">
                             <img src={backgroundPictureUrl} alt="backgroundImg"/>
                         </span>
                     </>

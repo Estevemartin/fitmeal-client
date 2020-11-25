@@ -79,6 +79,8 @@ class EditProfile extends Component {
             res = await service.updateUserProfile(currentUser);
             console.log("PROFILE UPDATED TO -->", res);
             // this.props.updateUser(currentUser._id)
+            // console.log("PROFILE UPDATED TO -->", res);
+            this.props.updateUser(currentUser._id)
             // var successMsg = "Recipe Successfully Created!"
             
             // console.log("CREATED / UPDATED RECIPE -->", res);
@@ -143,18 +145,18 @@ class EditProfile extends Component {
 
                 return (
                     <div className="bg-edit">
-                    <span>
-                        <Link to="/profile">
-                            <ion-icon name="arrow-back-outline"></ion-icon>
-                        </Link>
-                    </span>
-                    <label htmlFor="bg-pic-url">
-                        <ion-icon name="image-outline"></ion-icon>
-                        <div className="bg">
-                            <img src={backgroundPictureUrl} alt="backgroundImg"/>
-                            <input  style={{display:"none"}} id="bg-pic-url" className='image-selector'  type='file' name='backgroundPictureUrl' onChange={(e) => this.handleBackgroundFileUpload(e)} />
-                        </div>
-                    </label>
+                        <span>
+                            <Link to="/profile">
+                                <ion-icon name="arrow-back-outline"></ion-icon>
+                            </Link>
+                        </span>
+                        <label htmlFor="bg-pic-url">
+                            <ion-icon name="image-outline"></ion-icon>
+                            <div className="bg">
+                                <img src={backgroundPictureUrl} alt="backgroundImg"/>
+                                <input  style={{display:"none"}} id="bg-pic-url" className='image-selector'  type='file' name='backgroundPictureUrl' onChange={(e) => this.handleBackgroundFileUpload(e)} />
+                            </div>
+                        </label>
                     </div>
                 )
 
@@ -162,16 +164,16 @@ class EditProfile extends Component {
 
                 return (
                     <div className="bg-edit">
-                    <span>  
-                        <Link to="/profile">
-                            <ion-icon name="arrow-back-outline"></ion-icon>
-                        </Link>
-                    </span>
-                    <label htmlFor="bg-pic-url">
-                        <div className="bg">
-                            <input  style={{display:"none"}} id="bg-pic-url" className='image-selector'  type='file' name='backgroundPictureUrl' onChange={(e) => this.handleBackgroundFileUpload(e)}/>
-                        </div>
-                    </label>
+                        <span>  
+                            <Link to="/profile">
+                                <ion-icon name="arrow-back-outline"></ion-icon>
+                            </Link>
+                        </span>
+                        <label htmlFor="bg-pic-url">
+                            <div className="bg bg-color">
+                                <input  style={{display:"none"}} id="bg-pic-url" className='image-selector'  type='file' name='backgroundPictureUrl' onChange={(e) => this.handleBackgroundFileUpload(e)}/>
+                            </div>
+                        </label>
                     </div>
                 )
 
@@ -196,7 +198,7 @@ class EditProfile extends Component {
                     <div className="container-profile">
                     <div className="user-info">
                         {displayProfilePicture(profilePictureUrl)}
-                        <div className="user-info-container user-info-edit">
+                        <div className="user-info-container">
                             <h4>@{username}</h4>
                         </div>
                         <button className="a-btn user-info-edit" type="submit">save</button>

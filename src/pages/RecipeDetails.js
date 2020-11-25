@@ -150,15 +150,12 @@ class recipeDetails extends Component {
                 return ""
             }
         }
-        const displayAvatar = (author, recipe) => {
-            console.log("DISPLAY AVATAR AUTHOR:",author)
-
+        const displayAvatar = (author) => {
             if(author!==undefined && author.profilePictureUrl !== ""){
-                // console.log("DISPLAY AVATAR AUTHOR:"author.profilePictureUrl)
                 // mirarse las rutas del perfil
-                return <Link to={"/profile/"+author._id}><span className="profile-picture"><img src={author.profilePictureUrl} alt="profile"/></span></Link>
+                return <Link to={"/profile/"+author._id}><img className="profile-picture3 profile-stroke1" src={author.profilePictureUrl} alt="profile"/></Link>
             } else {
-                return <span className="profile-picture avatar-green"></span>
+                return <span className="profile-picture3 avatar-green"></span>
             }
         }
         // const displayLike = (like)=>{
