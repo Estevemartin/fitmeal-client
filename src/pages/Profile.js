@@ -8,17 +8,15 @@ import NavbarMobile from "../components/NavbarMobile";
 
 class Profile extends Component {
     state={
-
     }
+
     getMyRecipes = async () => {
         const res = await service.getMyRecipes(this.props.user._id);
-        // console.log(res);
         this.setState({recipes: res})
     }
 
     getMySavedrecipes = async () => {
         const recipes = await service.getSavedRecipes(this.props.user._id)
-
         this.setState({savedRecipes:recipes})
     }
     
@@ -31,7 +29,7 @@ class Profile extends Component {
     render() {
         const displayProfilePicture = profilePictureUrl => {
             if(profilePictureUrl){
-                return <img  className="profile-picture2 profile-stroke" src={profilePictureUrl} alt="profileImg"/>
+                return <img className="profile-picture2 profile-stroke" src={profilePictureUrl} alt="profileImg"/>
             } else {
                 return <div className="profile-picture2 profile-stroke avatar-green"></div>
             }
@@ -41,19 +39,19 @@ class Profile extends Component {
             if(backgroundPictureUrl){
                 return (
                     <>
-                    <div className="logout"><ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon></div>
-                    <span className="bg bg-img">
-                        <img src={backgroundPictureUrl} alt="backgroundImg"/>
-                    </span>
+                        <div className="logout">
+                            <ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon>
+                        </div>
+                        <span className="bg bg-img">
+                            <img src={backgroundPictureUrl} alt="backgroundImg"/>
+                        </span>
                     </>
                 )
             } else {
                 return (
                     <>
-                    <div className="logout"><ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon></div>
-                    <div className="bg bg-color">
-                        
-                    </div>
+                        <div className="logout"><ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon></div>
+                        <div className="bg bg-color"></div>
                     </>
                 )
             }
@@ -61,41 +59,35 @@ class Profile extends Component {
 
         const displayMyRecipes = () =>{
             const recipes = this.state.recipes
-            
-            // console.log("Inside Display My Recipes:", recipes)
             if(recipes!==undefined){
-                // console.log(recipes)
-                // console.log("WE HAVE STATE")
-                return (<>
-                    {recipes.map((recipe,index)=>{
-                        return <ProfileEditCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id} />
-                    })}
-                </>)
+                return (
+                    <>
+                        {recipes.map((recipe,index)=>{
+                            return <ProfileEditCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id} />
+                        })}
+                    </>
+                )
             }
         }
 
         const { profilePictureUrl, backgroundPictureUrl, username } = this.props.user
         const { logout } = this.props;
         const displaySavedRecipes = () =>{
-            // console.log(userId)
-            // const recipes = await service.getSavedRecipes(this.props.user._id)
-            const recipes = this.state.savedRecipes
+        const recipes = this.state.savedRecipes
 
-            // console.log(recipes)
             if(recipes!==undefined){
-                // console.log("WE HAVE STATE")
-                return (<>
-                    {recipes.map((recipe,index)=>{
-                        {/* console.log(recipe) */}
-                        return <ProfileEditCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id} />
-                    })}
-                </>)
+                return (
+                    <>
+                        {recipes.map((recipe,index)=>{
+                            return <ProfileEditCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id} />
+                        })}
+                    </>
+                )
             }
         }
 
         const display = () =>{
             let currentUrl = this.props.location.pathname
-            console.log(currentUrl)
             if (currentUrl === "/profile"){
                 return displayMyRecipes()
             } else if (currentUrl === "/profile/savedRecipes"){
@@ -103,31 +95,27 @@ class Profile extends Component {
             }
         }
 
-        // const { profilePictureUrl, backgroundPictureUrl, username, _id } = this.props.user 
-        
-        // console.log(username)
     return(
         <>
-        <NavbarMobile />
-        {displayBackgroundPicture(backgroundPictureUrl)}
-        <div className="container-profile">
-        <div className="user-info">
-            {displayProfilePicture(profilePictureUrl)}
-            <div className="user-info-container">
-                <h4>@{username}</h4>
-                {/* <p>{username}</p> */}
+            <NavbarMobile />
+            {displayBackgroundPicture(backgroundPictureUrl)}
+            <div className="container-profile">
+                <div className="user-info">
+                    {displayProfilePicture(profilePictureUrl)}
+                    <div className="user-info-container">
+                        <h4>@{username}</h4>
+                    </div>
+                    <Link className="a-btn" to="/profile/edit">edit profile</Link>
+                </div>
+                <div className="nav-profile">
+                    <Link to="/profile" className="active">My recipes</Link>
+                    <Link to="#">My plans</Link>
+                    <Link to="/profile/savedRecipes">Save</Link>
+                </div>
+                <div className="recipes-container">
+                    {display()}
+                </div>
             </div>
-            <Link className="a-btn" to="/profile/edit">edit profile</Link>
-        </div>
-        <div className="nav-profile">
-                <Link to="/profile" className="active">My recipes</Link>
-                <Link to="#">My plans</Link>
-                <Link to="/profile/savedRecipes">Save</Link>
-        </div>
-        <div className="recipes-container">
-            {display()}
-        </div>
-        </div>
         </>
     )
 }}

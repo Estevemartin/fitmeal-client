@@ -1,5 +1,3 @@
-// import { findAllByTitle, render } from '@testing-library/react'
-// import React from "react";
 import React, { Component } from "react";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
@@ -8,22 +6,16 @@ import { Link } from "react-router-dom";
 
 class recipeDetails extends Component {
     state={
-
     }
 
     componentDidMount = async () => {
         const id = this.props.match.params.id
-        // console.log("Id:",id)
         const recipe = await service.getRecipeDetails(id)
-        // console.log("Response from Service en RecipeDetails.js",recipe)
         this.setState(recipe)
     }
     
 
     render (){
-        // console.log("state:",this.state)
-        // console.log("state.ingredients:",this.state.ingredients)
-
         const displayIngredients=(ingredients)=>{
             if (ingredients!==undefined){
                 return (
@@ -67,64 +59,80 @@ class recipeDetails extends Component {
             }
         }
 
+        const displayAvatar = (author, recipe) => {
+            if(author!==undefined){
+                // mirarse las rutas del perfil
+                return <Link to={"/profile/"+author._id}><span className="profile-picture"><img src={author.profilePictureUrl} alt="profile"/></span></Link>
+            } else {
+                return <span className="profile-picture avatar-green"></span>
+            }
+          }
+
         const {title,author,difficulty, ingredients,popularity,portions,prepTime,steps,imageUrl} = this.state
         return (
             <>
-            <div className="image-recipe">
-                <span><Link to="/"><ion-icon name="arrow-back-outline"></ion-icon></Link></span>
-                <img src={imageUrl} alt="Recipe"/>
-            </div>
-            <div className="recipe-wrapped">
-                <div className='container-recipe-details'> 
-                    <h1>{title}</h1>
-                    <div className="media">
-                        <div><ion-icon name="heart-outline"></ion-icon><span>{popularity} likes</span></div>
-                        <div><ion-icon name="bookmark-outline"></ion-icon><span>Save</span></div>
-                        <div><ion-icon name="share-outline"></ion-icon><span>Share</span></div>
-                    </div>
-                    <div className="author">
-                        <span className="profile-picture"></span>
-                        <h4>@{displayAuthorUserName(author)}</h4>
+                <div className="image-recipe">
+                    <span>
+                        <Link to="/">
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                        </Link>
+                    </span>
+                    <img src={imageUrl} alt="Recipe"/>
+                </div>
+                <div className="recipe-wrapped">
+                    <div className='container-recipe-details'> 
+                        <h1>{title}</h1>
+                        <div className="media">
+                            <div>
+                                <ion-icon name="heart-outline"></ion-icon>
+                                <span>{popularity} likes</span>
+                            </div>
+                            <div>
+                                <ion-icon name="bookmark-outline"></ion-icon>
+                                <span>Save</span>
+                            </div>
+                            <div>
+                                <ion-icon name="share-outline"></ion-icon>
+                                <span>Share</span>
+                            </div>
+                        </div>
+                        <div className="author">
+                            <span className="profile-picture">{displayAvatar(author)}</span>
+                            <h4>@{displayAuthorUserName(author)}</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            
-
-            <section className="info-details-recipe">
-                <article>
-                    <span>{difficulty}</span>
-                    <p>Difficulty</p>
-                </article>
-                <article>
-                    <span>{prepTime ? prepTime.replace(" mins", "''").replace(" -", "'' -") : ""}</span>
-                    <p>Prep Time</p>
-                </article>
-                <article>     
-                    <span>{portions ? portions.replace(" serving", "").replace("s", "") : ""}</span>
-                    <p>Serving</p>
-                </article>
-            </section>
-
-            <section className="info-recipe-ingred-steps">
-                <article>
-                    <h3>Ingredients</h3>
-                    <ul>
-                        {displayIngredients(ingredients)}
-                    </ul>
-                </article>
-
-                <article>
-                    <h3>Steps</h3>
-                    <ul>
-                        {displaySteps(steps)}
-                    </ul>
-                </article>
-            </section>
+                <section className="info-details-recipe">
+                    <article>
+                        <span>{difficulty}</span>
+                        <p>Difficulty</p>
+                    </article>
+                    <article>
+                        <span>{prepTime ? prepTime.replace(" mins", "''").replace(" -", "'' -") : ""}</span>
+                        <p>Prep Time</p>
+                    </article>
+                    <article>     
+                        <span>{portions ? portions.replace(" serving", "").replace("s", "") : ""}</span>
+                        <p>Serving</p>
+                    </article>
+                </section>
+                <section className="info-recipe-ingred-steps">
+                    <article>
+                        <h3>Ingredients</h3>
+                        <ul>
+                            {displayIngredients(ingredients)}
+                        </ul>
+                    </article>
+                    <article>
+                        <h3>Steps</h3>
+                        <ul>
+                            {displaySteps(steps)}
+                        </ul>
+                    </article>
+                </section>
             </>
           )
-    }
-    
+        }
     }
 
 export default withAuth(recipeDetails);

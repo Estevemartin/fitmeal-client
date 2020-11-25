@@ -13,7 +13,6 @@ class Signup extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
     const { username, email, password } = this.state;
-    //console.log('Signup -> form submit', { username, password });
     this.props.signup({ username, email, password });
   };
 
@@ -26,31 +25,26 @@ class Signup extends Component {
     const { username, email, password } = this.state;
     return (
       <div className='container-page'>
-            <Navbar/>
-            <div className='signup'>
-                <h1>Sign Up</h1>
-
-                <form className='form-auth' onSubmit={this.handleFormSubmit}>
-                <div className="input-field">
-                    <input id="username" type='text' name='username' value={username} onChange={this.handleChange}  required />
-                    <label htmlFor="username">Username:</label>
-                </div>
-
-                <div className="input-field">
-                  <input id="email" type='text' name='email' value={email} onChange={this.handleChange} required/>
-                  <label htmlFor="email">email:</label>
-                </div>
-
-                <div className="input-field">
-                  <input id="password" type='password' name='password' value={password} onChange={this.handleChange}  required />
-                  <label htmlFor="password">Password:</label>
-                </div>
-
-                <input className="submit-input" type='submit' value='Signup' />
-                </form>
-
-                <p>Already have account? <Link to={"/login"}> Go to Login</Link></p>
-            </div>
+        <Navbar/>
+        <div className='signup'>
+          <h1>Sign Up</h1>
+            <form className='form-auth' onSubmit={this.handleFormSubmit}>
+              <div className="input-field">
+                <input id="username" type='text' name='username' value={username} onChange={this.handleChange}  required />
+                <label htmlFor="username">Username:</label>
+              </div>
+              <div className="input-field">
+                <input id="email" type='text' name='email' value={email} onChange={this.handleChange} required/>
+                <label htmlFor="email">email:</label>
+              </div>
+              <div className="input-field">
+                <input id="password" type='password' name='password' value={password} onChange={this.handleChange}  required />
+                <label htmlFor="password">Password:</label>
+              </div>
+              <input className="submit-input" type='submit' value='Signup' />
+            </form>
+          <p>Already have account? <Link to={"/login"}> Go to Login</Link></p>
+        </div>
       </div>
     );
   }

@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 function landingPage() {
   return (
     <div className='header'> 
-    <Navbar />
+      <Navbar />
         <div className='header-text-container'>
             <h3>welcome to</h3>
             <h1>fitmeal app</h1>
