@@ -8,10 +8,98 @@ class recipeDetails extends Component {
     state={
     }
 
+
+    save = async (recipeId) => {
+        if(this.props.user !== undefined){
+            var userId = this.props.user._id
+            const savedUser = await service.save(userId,recipeId);
+            console.log(savedUser.currentUser.saved)
+            var recipeSaved
+            if (savedUser.currentUser.saved.includes(recipeId)){
+                console.log("Saved")
+                recipeSaved=true
+            } else {
+                console.log("Unsaved")
+                recipeSaved=false
+            }
+            this.setState({
+                user:savedUser,
+                saved:recipeSaved,
+            })
+        }
+   }
+
+    like = async (recipeId) => {
+        if(this.props.user !== undefined){
+            // console.log(this.props)
+            var userId = this.props.user._id
+            // console.log(recipeId)
+            // console.log(userId)
+            const currentRecipe = this.state.savedRecipe
+            // console.log("Current Recipe: ",currentRecipe)
+            // const currentUser = await service.getUserInfo(userId)
+            const res = await service.like(userId,recipeId);
+            const {savedUser, savedRecipe} = res
+            // console.log(currentUser)
+
+            // console.log(res)
+            // console.log(this.props.user)
+            // console.log("USER ID: ",userId)
+
+            // console.log("RECIPE LIKED BY: ",savedRecipe.liked)
+            var recipeLiked
+            if (currentRecipe.liked.includes(userId)){
+                console.log("Disliked")
+                recipeLiked=false
+            } else {
+                console.log("Liked")
+                recipeLiked=true
+            }
+            this.setState({
+                user:savedUser,
+                like:recipeLiked,
+                savedRecipe:savedRecipe
+            })
+            // this.props.user=res.savedUser
+        }
+    }
+
     componentDidMount = async () => {
-        const id = this.props.match.params.id
-        const recipe = await service.getRecipeDetails(id)
+        const recipeId = this.props.match.params.id
+        const recipe = await service.getRecipeDetails(recipeId)
         this.setState(recipe)
+
+                var userId = this.props.user._id
+                // // var recipeId = this.props._id
+                // console.log(userId)
+                const currentUser = await service.getUserInfo(userId)
+                const currentRecipe = await service.getRecipeDetails(recipeId)
+                // console.log(res)
+                // const currentUser = res
+                console.log(currentUser)
+                var iLikeThis
+                if (currentUser.liked.includes(recipeId)){
+                    iLikeThis=true
+                } else {
+                    iLikeThis=false
+                }
+
+                var iSavedThis
+                if (currentUser.saved.includes(recipeId)){
+                    iSavedThis=true
+                } else {
+                    iSavedThis=false
+                }
+
+
+                // console.log("I Like This? ", iLikeThis)
+
+                this.setState({
+                    user:currentUser,
+                    like:iLikeThis,
+                    savedRecipe:currentRecipe,
+                    saved:iSavedThis
+                }) 
     }
     
 
@@ -58,7 +146,6 @@ class recipeDetails extends Component {
                 return ""
             }
         }
-
         const displayAvatar = (author, recipe) => {
             if(author!==undefined){
                 // mirarse las rutas del perfil
@@ -66,9 +153,15 @@ class recipeDetails extends Component {
             } else {
                 return <span className="profile-picture avatar-green"></span>
             }
-          }
-
-        const {title,author,difficulty, ingredients,popularity,portions,prepTime,steps,imageUrl} = this.state
+        }
+        // const displayLike = (like)=>{
+        //     if (like) {
+        //         return <ion-icon name="heart" style={{this.state.like ? "#ec5e5e" : ""}}></ion-icon>
+        //     } else {
+        //         return <ion-icon name={like ? "heart" : "heart-outline"} style={{this.state.like ? "#ec5e5e" : ""}}></ion-icon>
+        //     }
+        // }
+        const {title,author,difficulty, ingredients,popularity,portions,prepTime,steps,imageUrl, like,saved,_id} = this.state
         return (
             <>
                 <div className="image-recipe">
@@ -84,11 +177,11 @@ class recipeDetails extends Component {
                         <h1>{title}</h1>
                         <div className="media">
                             <div>
-                                <ion-icon name="heart-outline"></ion-icon>
+                                <ion-icon name={like ? "heart" : "heart-outline"} style={{color:like ? "#ec5e5e" : ""}} onClick={()=>this.like(_id)} ></ion-icon>
                                 <span>{popularity} likes</span>
                             </div>
                             <div>
-                                <ion-icon name="bookmark-outline"></ion-icon>
+                                <ion-icon name={saved ? "bookmark" : "bookmark-outline"} style={{color:saved ? "var(--green3)" : ""}}  onClick={()=>this.save(_id)} ></ion-icon>
                                 <span>Save</span>
                             </div>
                             <div>

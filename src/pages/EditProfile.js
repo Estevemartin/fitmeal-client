@@ -3,6 +3,7 @@ import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
 // import ProfileEditCard from "../components/ProfileEditCard"
 import service from "../api/service";
+import auth from "../lib/auth-service"; // Importamos funciones para llamadas axios a la API
 
 
 class EditProfile extends Component {
@@ -77,6 +78,7 @@ class EditProfile extends Component {
             var res
             res = await service.updateUserProfile(currentUser);
             console.log("PROFILE UPDATED TO -->", res);
+            this.props.updateUser(currentUser._id)
             // var successMsg = "Recipe Successfully Created!"
             
             // console.log("CREATED / UPDATED RECIPE -->", res);
@@ -104,6 +106,7 @@ class EditProfile extends Component {
             // return this.props.history.push("/")
             // this.props.getRecipes()
             // this.setState({successMsg:"Recipe Successfully Created!"})
+
         } catch (error) {
             this.setState({errorMsg:"Make sure to fullfill all the required fields."})
             // console.log("Error while adding the recipe: ", error);

@@ -102,6 +102,16 @@ class Service {
       console.log(error);
     }
   }
+  deleteRecipe = async (recipeId) =>{
+    try {
+      // console.log("Recipe en service:", recipe)
+      const res = await this.service.post("/recipes/delete", {recipeId:recipeId});
+      // console.log("DELETE RECIPE RESPONSE:",res)
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   // CREATE RECIPE
   handleUpload = async (theFile) => {

@@ -9,23 +9,19 @@ import NavbarMobile from "../components/NavbarMobile";
 class Profile extends Component {
     state={
     }
-
     getMyRecipes = async () => {
         const res = await service.getMyRecipes(this.props.user._id);
         this.setState({recipes: res})
     }
-
     getMySavedrecipes = async () => {
         const recipes = await service.getSavedRecipes(this.props.user._id)
         this.setState({savedRecipes:recipes})
     }
-    
     componentDidMount = () => {
         this.getMyRecipes() 
         this.getMySavedrecipes()
     }
     
-
     render() {
         const displayProfilePicture = profilePictureUrl => {
             if(profilePictureUrl){
@@ -34,7 +30,6 @@ class Profile extends Component {
                 return <div className="profile-picture2 profile-stroke avatar-green"></div>
             }
         }
-
         const displayBackgroundPicture = backgroundPictureUrl => {
             if(backgroundPictureUrl){
                 return (
@@ -56,7 +51,6 @@ class Profile extends Component {
                 )
             }
         }
-
         const displayMyRecipes = () =>{
             const recipes = this.state.recipes
             if(recipes!==undefined){
@@ -69,12 +63,10 @@ class Profile extends Component {
                 )
             }
         }
-
         const { profilePictureUrl, backgroundPictureUrl, username } = this.props.user
         const { logout } = this.props;
         const displaySavedRecipes = () =>{
-        const recipes = this.state.savedRecipes
-
+            const recipes = this.state.savedRecipes
             if(recipes!==undefined){
                 return (
                     <>
@@ -85,7 +77,44 @@ class Profile extends Component {
                 )
             }
         }
-
+        const displaySecondaryNavBar = () => {
+            let currentUrl = this.props.location.pathname
+            if (currentUrl === "/profile"){
+                return (
+                    <>
+                        <Link to="/profile">
+                            <span>My recipes</span>
+                            <hr  className="active"/>
+                        </Link>
+                        <Link to="#">
+                            <span>My plans</span>
+                            <hr/>
+                        </Link>
+                        <Link to="/profile/savedRecipes">
+                            <span>Save</span>
+                            <hr/>
+                        </Link>
+                    </>
+                )
+            } else if (currentUrl === "/profile/savedRecipes"){
+                return (
+                    <>
+                        <Link to="/profile">
+                            <span>My recipes</span>
+                            <hr/>
+                        </Link>
+                        <Link to="#">
+                            <span>My plans</span>
+                            <hr/>
+                        </Link>
+                        <Link to="/profile/savedRecipes">
+                            <span>Save</span>
+                            <hr className="active"/>
+                        </Link>
+                    </>
+                )
+            }
+        }
         const display = () =>{
             let currentUrl = this.props.location.pathname
             if (currentUrl === "/profile"){
@@ -111,20 +140,11 @@ class Profile extends Component {
                 <div className="nav-profile">
                     <hr/>
                     <div className="nav-profile-actions">
-                        <Link to="/profile">
-                            <span>My recipes</span>
-                            <hr className="active"/>
-                        </Link>
-                        <Link to="#">
-                            <span>My plans</span>
-                            <hr/>
-                        </Link>
-                        <Link to="/profile/savedRecipes">
-                            <span>Save</span>
-                            <hr/>
-                        </Link>
+                        {displaySecondaryNavBar()}
                     </div>
+                    
                 </div>
+                
                 <div className="recipes-container">
                     {display()}
                 </div>
