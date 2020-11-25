@@ -48,17 +48,21 @@ class recipeDetails extends Component {
 
             // console.log("RECIPE LIKED BY: ",savedRecipe.liked)
             var recipeLiked
+            var popularity
             if (currentRecipe.liked.includes(userId)){
-                console.log("Disliked")
+                console.log("Disliked") 
+                popularity = this.state.popularity -1
                 recipeLiked=false
             } else {
                 console.log("Liked")
                 recipeLiked=true
+                popularity = this.state.popularity +1
             }
             this.setState({
                 user:savedUser,
                 like:recipeLiked,
-                savedRecipe:savedRecipe
+                savedRecipe:savedRecipe,
+                popularity:popularity
             })
             // this.props.user=res.savedUser
         }
