@@ -5,12 +5,12 @@ The app that allow you to create, discover and share recipes and meal plans to i
 
 ## User Navigation Flow
 
-![alt text](/navigations.png "Title")
+![alt text](public/navigations.png "Title")
 
 
 ## Wireframes low fidelity
 
-![alt text](/wireframes.png "Title")
+![alt text](public/wireframes.png "Title")
 
 
 ## User Stories
@@ -35,7 +35,7 @@ The app that allow you to create, discover and share recipes and meal plans to i
 
 ## User Stories Mapping
 
-![alt text](/user-stories.png "Title")
+![alt text](public/user-stories.png "Title")
 
 
 
