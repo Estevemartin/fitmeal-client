@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
-import ProfileEditCard from "../components/ProfileEditCard"
-import ProfileSavedCard from "../components/ProfileSavedCard"
+import ProfileIdCard from "../components/ProfileIdCard"
+// import ProfileSavedCard from "../components/ProfileSavedCard"
 import service from "../api/service";
+// import CardRecipe from "../components/CardRecipe";
 
 import NavbarMobile from "../components/NavbarMobile";
 
@@ -11,153 +12,94 @@ class ProfileId extends Component {
     state={
 
     }
-    getMyRecipes = async () => {
-        const res = await service.getMyRecipes(this.props.user._id);
-        this.setState({recipes: res})
-    }
-    getMySavedrecipes = async () => {
-        const recipes = await service.getSavedRecipes(this.props.user._id)
-        this.setState({savedRecipes:recipes})
-    }
-    componentDidMount = () => {
-        const recipeId = this.props.match.params.id
-        this.getMyRecipes() 
-        this.getMySavedrecipes()
+    // getMyRecipes = async () => {
+    //     const res = await service.getMyRecipes(this.props.user._id);
+    //     this.setState({recipes: res})
+    // }
+    // getMySavedrecipes = async () => {
+    //     const recipes = await service.getSavedRecipes(this.props.user._id)
+    //     this.setState({savedRecipes:recipes})
+    // }
+    componentDidMount = async () => {
+        const userId = this.props.match.params.id
+        // console.log(userId)
+        const searchedUser = await service.getUserInfo(userId)
+        // console.log(searchedUser)
+        const res = await service.getMyRecipes(userId);
+        // console.log("COMPOENNT DID MOUNT RESPONSE:",res)
+        this.setState({recipes: res,searchedUser:searchedUser})
     }
     
     render() {
-        const displayProfilePicture = profilePictureUrl => {
-            if(profilePictureUrl){
-                return <img className="profile-picture2 profile-stroke" src={profilePictureUrl} alt="profileImg"/>
-            } else {
-                return <div className="profile-picture2 profile-stroke avatar-green"></div>
+        const displayProfilePicture = () => {
+            if (this.state.searchedUser!==undefined){
+                const profilePictureUrl = this.state.searchedUser.profilePictureUrl
+                if(profilePictureUrl){
+                    return <img className="profile-picture2 profile-stroke" src={profilePictureUrl} alt="profileImg"/>
+                } else {
+                    return <div className="profile-picture2 profile-stroke avatar-green"></div>
+                }
             }
+
+            
         }
-        const displayBackgroundPicture = backgroundPictureUrl => {
-            if(backgroundPictureUrl){
-                return (
-                    <>
-                        <div className="logout">
-                            <ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon>
-                        </div>
-                        <span className="bg">
-                            <img src={backgroundPictureUrl} alt="backgroundImg"/>
-                        </span>
-                    </>
-                )
-            } else {
-                return (
-                    <>
-                        <div className="logout"><ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon></div>
-                        <div className="bg bg-color"></div>
-                    </>
-                )
+        const displayBackgroundPicture = () => {
+            if (this.state.searchedUser!==undefined){
+                const backgroundPictureUrl = this.state.searchedUser.backgroundPictureUrl
+                if(backgroundPictureUrl){
+                    // console.log("DISPLAYBGIMAGE:",this.state.searchedUser.backgroundPictureUrl)
+                    return (
+                        <>
+                            <span className="bg">
+                                <img src={backgroundPictureUrl} alt="backgroundImg"/>
+                            </span>
+                        </>
+                    )
+                } else {
+                    return (
+                        <>
+                            <div className="bg bg-color"></div>
+                        </>
+                    )
+                }
+            }
+           
+        }
+        const ddisplaySearchedUserName = () =>{
+            if (this.state.searchedUser!==undefined){
+                return this.state.searchedUser.username
             }
         }
         const displayMyRecipes = () =>{
             const recipes = this.state.recipes
             if(recipes!==undefined){
+                // console.log(this.state.searchedUser)
                 return (
                     <>
                         {recipes.map((recipe,index)=>{
-                            return <ProfileEditCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id} showButtons={this.state.showButtons}/>
+                            return <ProfileIdCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id}/>
                         })}
                     </>
                 )
-            }
-        }
-        const { profilePictureUrl, backgroundPictureUrl, username } = this.props.user
-        const { logout } = this.props;
-        const displaySavedRecipes = () =>{
-            const recipes = this.state.savedRecipes
-            if(recipes!==undefined){
-                return (
-                    <>
-                        {recipes.map((recipe,index)=>{
-                            return <ProfileSavedCard key={index} imageUrl={recipe.imageUrl} title={recipe.title} id={recipe._id} showButtons={this.state.showButtons} />
-                        })}
-                    </>
-                )
-            }
-        }
-        const displaySecondaryNavBar = () => {
-            let currentUrl = this.props.location.pathname
-            if (currentUrl === "/profile"){
-                // this.setState({showButtons:true})
-                return (
-                    <>
-                        <Link to="/profile">
-                            <span>My recipes</span>
-                            <hr  className="active"/>
-                        </Link>
-                        <Link to="#">
-                            <span>My plans</span>
-                            <hr/>
-                        </Link>
-                        <Link to="/profile/savedRecipes">
-                            <span>Save</span>
-                            <hr/>
-                        </Link>
-                    </>
-                )
-            } else if (currentUrl === "/profile/savedRecipes"){
-                // this.setState({showButtons:false})
-                return (
-                    <>
-                        <Link to="/profile">
-                            <span>My recipes</span>
-                            <hr/>
-                        </Link>
-                        <Link to="#">
-                            <span>My plans</span>
-                            <hr/>
-                        </Link>
-                        <Link to="/profile/savedRecipes">
-                            <span>Save</span>
-                            <hr className="active"/>
-                        </Link>
-                    </>
-                )
-            }
-        }
-        const display = () =>{
-            let currentUrl = this.props.location.pathname
-            if (currentUrl === "/profile"){
-                return displayMyRecipes()
-            } else if (currentUrl === "/profile/savedRecipes"){
-                return displaySavedRecipes()
             }
         }
         
-
     return(
         <>
             <NavbarMobile />
-            {displayBackgroundPicture(backgroundPictureUrl)}
+            {displayBackgroundPicture()}
             <div className="container-profile">
                 <div className="user-info">
-                    {displayProfilePicture(profilePictureUrl)}
+                    {displayProfilePicture()}
                     <div className="user-info-container">
-                        <h4>@{username}</h4>
+                        <h4>@{ddisplaySearchedUserName()}</h4>
                     </div>
-                    <Link className="a-btn" to="/profile/edit">edit</Link>
+                    <div></div>
                 </div>
-                
-                {/* <div className="nav-profile">
-                    <hr/>
-                    <div className="nav-profile-actions">
-                        {displaySecondaryNavBar()}
-                    </div>
-                    
-                </div> */}
-                
-                {/* <div className="recipes-container">
-                    {display()}
-                </div> */}
-
-                
-
-
+                <h2>Recipes</h2>
+                <div className="cards-recipes">
+                    {displayMyRecipes()}
+                </div>
             </div>
         </>
     )

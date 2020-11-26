@@ -22,7 +22,7 @@ class Profile extends Component {
         this.getMyRecipes() 
         this.getMySavedrecipes()
     }
-    
+
     render() {
         const displayProfilePicture = profilePictureUrl => {
             if(profilePictureUrl){
@@ -32,6 +32,7 @@ class Profile extends Component {
             }
         }
         const displayBackgroundPicture = backgroundPictureUrl => {
+
             if(backgroundPictureUrl){
                 return (
                     <>
@@ -126,7 +127,7 @@ class Profile extends Component {
                 return displaySavedRecipes()
             }
         }
-        
+
 
     return(
         <>

@@ -121,7 +121,7 @@ class CardRecipe extends Component {
     render() {
 
         const {imageUrl, title, prepTime, popularity, _id} = this.props
-
+        // console.log(title)
         return (
             <div className="card-recipe">
                 <Link to={"/recipes/"+_id}><img src={imageUrl}  alt="img"/></Link>

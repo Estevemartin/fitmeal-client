@@ -155,6 +155,14 @@ class recipeDetails extends Component {
         }
   
         const {title,author,difficulty, ingredients,popularity,portions,prepTime,steps,imageUrl, like,saved,_id} = this.state
+        const getAuthorId = () =>{
+            if(author!==undefined){
+                // console.log(author._id)
+                return author._id
+            }
+        }
+        
+        
         return (
             <>
                 <div className="image-recipe">
@@ -184,7 +192,7 @@ class recipeDetails extends Component {
                         </div>
                         <div className="author">
                             <span className="profile-picture">{displayAvatar(author)}</span>
-                            <Link to="/profile/:id"><h4>@{displayAuthorUserName(author)}</h4></Link>
+                            <Link to={"/profile/"+getAuthorId()}><h4>@{displayAuthorUserName(author)}</h4></Link>
                         </div>
                     </div>
                 </div>

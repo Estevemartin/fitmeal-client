@@ -178,18 +178,18 @@ class AddNewRecipe extends Component {
     event.preventDefault();
     try {
       let currentUrl = this.props.location.pathname
-      console.log("Handle Form Submit, currentUrl:",currentUrl)
+      // console.log("Handle Form Submit, currentUrl:",currentUrl)
       var res
       if (currentUrl.includes("AddNewRecipe")){
-        console.log("Inside AddNewRecipe")
+        // console.log("Inside AddNewRecipe")
         res = await service.saveNewRecipe(this.state);
-        console.log("CREATED RECIPE -->", res);
+        // console.log("CREATED RECIPE -->", res);
         // var successMsg = "Recipe Successfully Created!"
       } else if (currentUrl.includes ("editRecipe")){
-        console.log("Inside editRecipe")
+        // console.log("Inside editRecipe")
 
         res = await service.updateRecipe(this.state);
-        console.log("UPDATED RECIPE -->", res);
+        // console.log("UPDATED RECIPE -->", res);
         // var successMsg = "Recipe Successfully Updated!"
       }
       // console.log("CREATED / UPDATED RECIPE -->", res);

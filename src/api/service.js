@@ -23,8 +23,8 @@ class Service {
   getMyRecipes = async (id) => {
     try{
       // console.log("Inside getMyRecipes")
-      const res = await this.service.post("/myRecipes",{id})
-      // console.log(res.data)
+      const res = await this.service.post("/myRecipes",{id:id})
+      // console.log("Inside getMyRecipes Response:",res.data)
       return res.data;
     }catch(error){
       console.log(error);

@@ -25,21 +25,20 @@ class App extends Component {
     return (
       <AuthProvider>
         <>
-          
-
           <Switch>
             <AnonRoute exact path='/' component={Landingpage} />
             <AnonRoute exact path='/signup' component={Signup} />
             <AnonRoute exact path='/login' component={Login} />
 
             <PrivateRoute exact path='/recipes' component={Recipes} />
-            <PrivateRoute exact path='/addNewRecipe' component={AddNewRecipe}/>
             <PrivateRoute exact path='/recipes/:id' component={RecipeDetails}/>
+            
             <PrivateRoute exact path='/profile' component={Profile}/>
-            <PrivateRoute exact path='/profile/:id' component={ProfileId}/>
             <PrivateRoute exact path='/profile/savedRecipes' component={Profile}/>
-
             <PrivateRoute exact path='/profile/edit' component={EditProfile}/>
+            <PrivateRoute exact path='/profile/:id' component={ProfileId}/>
+
+            <PrivateRoute exact path='/addNewRecipe' component={AddNewRecipe}/>
             <PrivateRoute exact path='/search/:query' component={Search}/>
             <PrivateRoute exact path='/editRecipe/:id' component={AddNewRecipe}/>
           </Switch>
