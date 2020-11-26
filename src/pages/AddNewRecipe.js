@@ -213,11 +213,11 @@ class AddNewRecipe extends Component {
         errorMsg:null,
         successMsg:null
       });
-      this.props.history.push('/recipes/'+res._id)
+      setTimeout(() => this.props.history.push('/recipes/'+res._id), 1500)
 
       // return this.props.history.push("/")
       // this.props.getRecipes()
-        // this.setState({successMsg:"Recipe Successfully Created!"})
+      this.setState({successMsg:"Recipe successfully created!"})
     } catch (error) {
         this.setState({errorMsg:"Make sure to fullfill all the required fields."})
         console.log("Error while adding the recipe: ", error);
@@ -319,7 +319,7 @@ class AddNewRecipe extends Component {
 
     const displayErrorMsg = (errorMsg) => {
       if (errorMsg !==null){
-        return (<div>{errorMsg}</div>)
+        return (<div className="msg msg-error">{errorMsg}</div>)
       } else{
         return ""
       }
@@ -327,7 +327,7 @@ class AddNewRecipe extends Component {
 
     const displaySuccessMsg = (successMsg) => {
       if (successMsg !==null){
-        return (<div>{successMsg}</div>)
+        return (<div className="msg msg-success">{successMsg}</div>)
       } else{
         return ""
       }
@@ -385,7 +385,7 @@ class AddNewRecipe extends Component {
         {/* HEADER */}
         <div className="box">
           <div>
-            <span></span>
+            <span><Link to="/"><img style={{width: "25px"}} src="/favicon2.png" alt=""/></Link></span>
             <h4 className="section-box">add a recipe.</h4>
             <button><Link to="/">Close</Link></button>
           </div>

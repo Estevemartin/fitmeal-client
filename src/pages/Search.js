@@ -23,12 +23,12 @@ class Search extends Component {
             <div className="container">
                 <div className="box">
                     <div>
-                        <span></span>
+                        <span><Link to="/"><img style={{width: "25px"}} src="/favicon2.png" alt=""/></Link></span>
                         <h4>search.</h4>
                         <button><Link to="/">Close</Link></button>
                     </div>
                 </div>
-                <h2>Search</h2>
+                <h2 className="search-title">Search</h2>
                 <SearchBar/>
                 <p style={{marginLeft:"20px", color: "var(--grey3)", fontSize: "14px",marginTop:"10px", marginBottom:"20px"}}>Results for: <i>"{this.state.searchField}"</i></p>
                 <SearchRecipes searchField={this.state.searchField}/>

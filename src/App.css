@@ -103,6 +103,16 @@ button.signup-btn {
   display: inline-flex;
 }
 
+/*-------------------- navbar home desktop --------------------*/
+.profile-navbar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logout-icon{
+  font-size: 20px;
+}
 
 /*-------------------- login / signup --------------------*/
 .container-page{
@@ -249,14 +259,6 @@ color: var(--grey2);
   background-color:var(--green3);
 }
 
-
-
-/*-------------------- navbar home desktop --------------------*/
-.profile-navbar{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
 .avatar-green{
   background: var(--green);
 }
@@ -272,9 +274,6 @@ color: var(--grey2);
   object-fit: cover;
 }
 
-.logout-icon{
-  font-size: 20px;
-}
 
 /*-------------------- profile --------------------*/
 .container-profile{
@@ -359,13 +358,15 @@ color: var(--grey2);
   font-weight: 500;
 }
 
-.profile-picture2{
+.profile-picture2, .profile-picture2 img{
   height: 100px;
-  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
   border-radius:50%;
   margin-top: -30px;
   object-fit: cover;
 }
+
 
 .profile-picture3, .profile-picture3 img{
   height: 35px;
@@ -389,18 +390,18 @@ color: var(--grey2);
 }
 
 .nav-profile>hr{
-  margin-top: 45px;
+  margin-top: 65px;
   border: 3px solid var(--grey1);
   border-radius: 25px;
   margin-bottom: 10px;
   text-align: center;
-  width: 95%;
-  margin-left: 5px;
+  width: 94%;
+  margin-left: 8px;
 }
 
 .nav-profile-actions{
   position: absolute;
-  margin-top: -40px;
+  margin-top: -46px;
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -416,13 +417,13 @@ color: var(--grey2);
   border: none;
   border-radius: 25px;
   position: relative;
-  margin-top: -1px;
+  margin-top: 5px;
 }
 
 .nav-profile-actions .active{
   border: 3px solid var(--green2);
   position: relative;
-  margin-top: -1px;
+  margin-top: 5px;
 }
 
 /*-------------- cards profile -------------*/
@@ -433,13 +434,13 @@ color: var(--grey2);
   flex-wrap: wrap;
   padding-bottom: 90px;
   justify-content: space-between;
-  margin: 10px;
+  margin: 10px 20px 20px 20px;
 }
 
 .card-profile{
   margin:5px;
   margin-bottom: 20px;
-  width: 135px;
+  width: 150px;
   height: 200px;
   font-size: 12px;
   border-radius: 15px;
@@ -645,7 +646,7 @@ color: var(--grey2);
 }
 
 .section-cards article{
-  margin: 50px 0;
+  margin: 40px 0;
 }
 
 
@@ -665,9 +666,10 @@ color: var(--grey2);
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   text-align: justify;
+  align-items: center;
 }
 
-.box .user-mobile{
+.box .alerts{
   float: right;
 }
 
@@ -722,7 +724,29 @@ color: var(--grey2);
   
 }
 
+.img-create, .difficulty-section{
+  margin-top: 10px;
+}
 
+.msg{
+  width: 240px;
+  margin: -20px auto 40px auto;
+  padding: 10px 20px;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.msg-error{
+  background-color: #f0c2c2;
+  border-color: #ec5e5e;
+  color: #8e4545;
+}
+
+.msg-success{
+  background-color: #d9f0c2;
+  border-color: #7ad272;
+  color: #458e66;
+}
 
 /*Name recipe create*/
 .input-title-recipe{

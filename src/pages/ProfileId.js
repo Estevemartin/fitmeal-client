@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ProfileIdCard from "../components/ProfileIdCard"
 // import ProfileSavedCard from "../components/ProfileSavedCard"
 import service from "../api/service";
@@ -94,13 +94,14 @@ class ProfileId extends Component {
                     <div className="user-info-container">
                         <h4>@{ddisplaySearchedUserName()}</h4>
                     </div>
-                    <div></div>
                 </div>
-                <h2>Recipes</h2>
-                <div className="cards-recipes">
+                <h2>Recipes</h2>   
+            </div>
+                
+                <div className="recipes-container">
                     {displayMyRecipes()}
                 </div>
-            </div>
+           
         </>
     )
 }}

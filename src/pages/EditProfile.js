@@ -8,6 +8,8 @@ import service from "../api/service";
 
 class EditProfile extends Component {
     state={
+        errorMsg:null,
+        successMsg:null
     }
 
     getMyRecipes = async () => {
@@ -82,11 +84,13 @@ class EditProfile extends Component {
             // this.props.updateUser(currentUser._id)
             // console.log("PROFILE UPDATED TO -->", res);
             this.props.updateUser(currentUser._id)
-            this.props.history.push('/profile')
-        } catch (error) {
-            this.setState({errorMsg:"Make sure to fullfill all the required fields."})
-            // console.log("Error while adding the recipe: ", error);
-        }
+      
+            setTimeout(() => this.props.history.push('/profile'), 1500)
+            this.setState({successMsg:"Changes successfully saved!"})
+          } catch (error) {
+              this.setState({errorMsg:"Oops, something went wrong."})
+              console.log("Error while adding the recipe: ", error);
+          }
     };
 
     componentDidMount = () => {
@@ -94,6 +98,24 @@ class EditProfile extends Component {
     }
 
     render() {
+        const { errorMsg,successMsg } = this.state
+
+        const displayErrorMsg = (errorMsg) => {
+            if (errorMsg !==null){
+              return (<div className="msg msg-error">{errorMsg}</div>)
+            } else{
+              return ""
+            }
+          }
+      
+          const displaySuccessMsg = (successMsg) => {
+            if (successMsg !==null){
+              return (<div className="msg msg-success">{successMsg}</div>)
+            } else{
+              return ""
+            }
+          }
+
         const displayProfilePicture = profilePictureUrl => {
             if(profilePictureUrl){
                 return (
@@ -177,6 +199,10 @@ class EditProfile extends Component {
                         </div>
                     </div>
                 </form>
+
+                {/* FLASH MESSAGES */}
+                {displayErrorMsg(errorMsg)}
+                {displaySuccessMsg(successMsg)}
             </>
         )
     }

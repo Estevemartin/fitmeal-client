@@ -74,9 +74,9 @@ class SearchRecipes extends Component {
     return (
        <div className="cards-recipes">
           {
-            this.state.recipes.map((recipe) => {
+            this.state.recipes.map((recipe => {
             return (<CardRecipe key={recipe._id} {...recipe}/>
-            )})
+            )}))
           }
         </div>
     );
