@@ -687,8 +687,8 @@ color: var(--grey2);
   padding: 0 20px;
 }
 
-.container>.section-cards{
-  padding-bottom: 70px;
+.container .section-cards{
+  padding-bottom: 90px;
 }
 
 .section-cards article{

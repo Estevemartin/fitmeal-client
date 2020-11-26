@@ -217,7 +217,7 @@ class AddNewRecipe extends Component {
 
       // return this.props.history.push("/")
       // this.props.getRecipes()
-      this.setState({successMsg:"Recipe successfully created!"})
+      this.setState({successMsg:"Well done!"})
     } catch (error) {
         this.setState({errorMsg:"Make sure to fullfill all the required fields."})
         console.log("Error while adding the recipe: ", error);
