@@ -9,7 +9,7 @@ class Ingredients extends Component{
         <div className="ingredients-options" key={this.props.index}>
             <input className="amount select-underline" type="text" name="amount" placeholder="Amount" value={this.props.amount} onChange={this.props.handleChangeAmount} id={"ingredient-amount-" +this.props.index}/>
             <select className="select-underline unit" name='unit' type='text' onChange={this.props.handleChangeUnits} id={"ingredient-units-" +this.props.index} value={this.props.units}>
-                        <option hidden>Unit</option>
+                        <option  hidden value="">Unit</option>
                         <option value=""> - </option>
                         <option value="tbsp">tbsp</option>
                         <option value="tbs">tbs</option>

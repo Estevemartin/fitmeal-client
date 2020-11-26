@@ -167,10 +167,15 @@ class recipeDetails extends Component {
             <>
                 <div className="image-recipe">
                     <span>
+                        <button onClick={() => this.props.history.goBack()}>
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                        </button>
+                    </span>
+                    {/* <span>
                         <Link to="/">
                             <ion-icon name="arrow-back-outline"></ion-icon>
                         </Link>
-                    </span>
+                    </span> */}
                     <img src={imageUrl} alt="Recipe"/>
                 </div>
                 <div className="recipe-wrapped">

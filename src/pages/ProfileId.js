@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
-// import { Link } from "react-router-dom";
 import ProfileIdCard from "../components/ProfileIdCard"
-// import ProfileSavedCard from "../components/ProfileSavedCard"
 import service from "../api/service";
-// import CardRecipe from "../components/CardRecipe";
 
 import NavbarMobile from "../components/NavbarMobile";
 
@@ -50,6 +47,11 @@ class ProfileId extends Component {
                     // console.log("DISPLAYBGIMAGE:",this.state.searchedUser.backgroundPictureUrl)
                     return (
                         <>
+                            <span className="goBack">
+                                <button  onClick={() => this.props.history.goBack()}>
+                                    <ion-icon name="arrow-back-outline"></ion-icon>
+                                </button>
+                            </span>
                             <span className="bg">
                                 <img src={backgroundPictureUrl} alt="backgroundImg"/>
                             </span>
@@ -58,7 +60,13 @@ class ProfileId extends Component {
                 } else {
                     return (
                         <>
-                            <div className="bg bg-color"></div>
+                             <span className="goBack">
+                                <button  onClick={() => this.props.history.goBack()}>
+                                    <ion-icon name="arrow-back-outline"></ion-icon>
+                                </button>
+                            </span>
+                            <div className="bg bg-color">
+                            </div>
                         </>
                     )
                 }

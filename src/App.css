@@ -45,6 +45,7 @@ body{
 /*-------------------- landing page --------------------*/
 /*-------------------- navbar landing page desktop --------------------*/
 
+
 nav.navbar { 
   position: fixed;
   top:0;
@@ -101,6 +102,95 @@ button.signup-btn {
 
 .auth-section{
   display: inline-flex;
+}
+
+
+/*-------------------- landing page container --------------------*/
+.header{
+  height: 100vh;
+  background: url("/img/mockup.png") no-repeat 50% 90%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+.header-text-container{
+  display: flex;
+  flex-direction: column;
+  width: 290px;
+  margin: -120px 0 0 40px;
+  color: black;
+}
+.header-text-container h3{
+  font-weight: 200;
+  font-size: 16px;
+  margin-bottom: -5px;
+}
+.header-text-container h1{
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: 1px;
+}
+.header-text-container h2{
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 25px;
+}
+.join-signup{
+  background-color: black;
+  text-align: center;
+  width: 150px;
+  padding: 10px 15px;
+  margin-top: 20px;
+}
+.join-signup-btn{
+  background-color: transparent;
+  color: var(--white);
+  border: none;
+  outline: none;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.join-signup:hover{
+  background-color:var(--green3);
+}
+
+.avatar-green{
+  background: var(--green);
+}
+
+.avatar-green1{
+  background: var(--green1);
+}
+
+.profile-picture, .profile-picture img{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+
+@media(min-width: 1024px) and (max-width: 1440px){
+  nav.navbar { 
+    padding: 20px 5% 10px 5%;
+  }
+  .header{
+    height: 100vh;
+    background: url("/img/mockup.png") no-repeat 80% 70%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+  }
+  .header-text-container{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: -100px 0 0 100px;
+    color: black;
+  }
 }
 
 /*-------------------- navbar home desktop --------------------*/
@@ -208,71 +298,6 @@ color: var(--grey2);
 
 
 
-/*-------------------- landing page container --------------------*/
-.header{
-  height: 100vh;
-  background: url("/img/mockup.png") no-repeat 50% 90%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-}
-.header-text-container{
-  display: flex;
-  flex-direction: column;
-  width: 290px;
-  margin: -120px 0 0 40px;
-  color: black;
-}
-.header-text-container h3{
-  font-weight: 200;
-  font-size: 16px;
-  margin-bottom: -5px;
-}
-.header-text-container h1{
-  font-weight: 600;
-  font-size: 30px;
-  letter-spacing: 1px;
-}
-.header-text-container h2{
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 25px;
-}
-.join-signup{
-  background-color: black;
-  text-align: center;
-  width: 150px;
-  padding: 10px 15px;
-  margin-top: 20px;
-}
-.join-signup-btn{
-  background-color: transparent;
-  color: var(--white);
-  border: none;
-  outline: none;
-  font-size: 20px;
-  font-weight: 500;
-  cursor: pointer;
-}
-.join-signup:hover{
-  background-color:var(--green3);
-}
-
-.avatar-green{
-  background: var(--green);
-}
-
-.avatar-green1{
-  background: var(--green1);
-}
-
-.profile-picture, .profile-picture img{
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  object-fit: cover;
-}
 
 
 /*-------------------- profile --------------------*/
@@ -287,6 +312,26 @@ color: var(--grey2);
   position: relative;
   z-index: -9999;
   }
+
+
+.goBack{
+  position: absolute;
+  padding-top: 5px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 0 30px;
+  background-color: rgba( 0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.goBack button {
+  border: none;
+  background-color: transparent;
+}
 
 .bg-color{
   background-color: var(--green);
@@ -503,7 +548,8 @@ color: var(--grey2);
   z-index: 1;
 }
 
-.bg-edit ion-icon{
+
+.bg-edit ion-icon, .goBack ion-icon{
   color: var(--white);
   font-size: 26px;
   z-index: 1;
@@ -698,6 +744,7 @@ color: var(--grey2);
   font-size: 26px;
   color: var(--green3);
 }
+
 
 /*-------------------- add new recipe mobile --------------------*/
 
@@ -985,6 +1032,11 @@ input{
   position: relative;
 }
 
+.image-recipe button{
+  border: none;
+  background-color: transparent;
+}
+
 .image-recipe span{
   position: absolute;
   padding-top: 5px;
@@ -994,7 +1046,7 @@ input{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 60px 0 0 30px;
+  margin: 20px 0 0 30px;
   background-color: rgba( 0, 0, 0, 0.6);
 }
 
@@ -1330,3 +1382,60 @@ justify-content: space-between;
   color: var(--grey2);
 }
 
+
+@media (min-width: 1024px) and (max-width: 1440px){
+  .box{
+    width: 100%;
+    min-height: 65px;
+    padding: 20px 5% 10px 5%;
+  }
+  .container-home{
+    padding: 0 20%;
+  }
+  .discover-img{
+    height: 300px;
+  }
+
+  .scrollable {
+    width: 500px;
+    overflow-x: scroll;   
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .scrollable::-webkit-scrollbar {
+    display: none;
+  } 
+
+  /*-------------------- card recipe (home, search) --------------------*/
+  .card-recipe{
+    width: 392px;
+    border-radius:10px;
+    margin: 0 20px 50px 20px;
+    background: var(--white);
+    box-shadow: 0 0px 10px var(--grey1);
+  }
+  
+  .card-recipe img{
+    border-radius:10px 10px 0px 0px;
+    background-color: rgb(206, 233, 213);
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .cards-recipes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .searchbar ion-icon{
+    position: absolute;
+    z-index: 1;
+    right: 350px;
+    font-size: 20px;
+    color: var(--green3);
+  }
+}

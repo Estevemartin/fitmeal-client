@@ -75,12 +75,13 @@ class Recipes extends Component {
               <h4>fitmeal.</h4>
               <div>
                 <div className="navbar-icons-mobile alerts">
-                  <ion-icon name="notifications-outline"></ion-icon>
-                  {/* <p className='icons-text'>Alerts</p>   */}
+                    <ion-icon name="notifications-outline"></ion-icon>
+                    {/* <p className='icons-text'>Alerts</p>   */}
                 </div>
               </div>
             </div>
           </div>
+          <div className="container-home">
           <h2>Search</h2>
           <SearchBar />
           
@@ -96,15 +97,16 @@ class Recipes extends Component {
 
               <article>
                 <h2>Popular recipes</h2>
-                <div className="cards-recipes">
-                  {
-                    this.state.recipes.map((recipe) => {
-                    return (<CardRecipe key={recipe._id} {...recipe}/>
-                    )})
-                  }
-                </div>
+                  <div className="cards-recipes">
+                    {
+                      this.state.recipes.map((recipe) => {
+                      return (<CardRecipe key={recipe._id} {...recipe}/>
+                      )})
+                    }
+                  </div>
               </article>
           </section>
+          </div>
         </div>
     );
   }
