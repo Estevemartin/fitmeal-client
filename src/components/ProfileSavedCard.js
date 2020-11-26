@@ -36,7 +36,7 @@ class ProfileSavedCard extends Component {
                 <Link to={"/recipes/"+this.props.id}> <img src={this.props.imageUrl}  alt="img"/></Link>
                 <div className="info-card-profile">
                     <h3>{this.props.title}</h3>
-                    <div className="icons-actions">
+                    <div className="icons-actions2">
                         <ion-icon name="bookmark" onClick={()=>this.save(this.props.id)}></ion-icon>
                     </div>
                 </div>

@@ -5,22 +5,22 @@ import { withAuth } from "../lib/AuthProvider";
 class NavbarMobile extends Component {
 
   render() {
-    const displayAvatar = user => {
-      if(user.profilePictureUrl){
-          return <span className="profile-picture"><img src={user.profilePictureUrl} alt="profile"/></span>
-      } else {
-          return <span className="profile-picture avatar-green1"></span>
-      }
-    }
+    // const displayAvatar = user => {
+    //   if(user.profilePictureUrl){
+    //       return <span className="profile-picture"><img src={user.profilePictureUrl} alt="profile"/></span>
+    //   } else {
+    //       return <span className="profile-picture avatar-green1"></span>
+    //   }
+    // }
 
 
 
-    const { user } = this.props;
+    // const { user } = this.props;
     return (
       <nav className='navbar-mobile'>
         <Link to="/" className="navbar-icons-mobile">
-            <ion-icon name="nutrition-outline"></ion-icon>
-            <p className='icons-text'>Recipes</p>
+        <ion-icon name="restaurant-outline"></ion-icon>
+            <p className='icons-text'>Meals</p>
         </Link>
         <div className="navbar-icons-mobile">
             <ion-icon name="reader-outline"></ion-icon>
@@ -34,12 +34,6 @@ class NavbarMobile extends Component {
             <ion-icon name="notifications-outline"></ion-icon>
             <p className='icons-text'>Alerts</p>  
         </div>
-        <Link to="/profile" className="user-mobile">
-            <div className='navbar-icons-mobile'>
-                {displayAvatar(user)}
-                <p className='icons-text'>Me</p>
-            </div>
-        </Link>
       </nav>
     );
   }

@@ -125,7 +125,7 @@ class EditProfile extends Component {
                             </Link>
                         </span>
                         <label htmlFor="bg-pic-url">
-                            <ion-icon name="image-outline"></ion-icon>
+                            <div className="image-upload-bg"><ion-icon name="image-outline"></ion-icon></div>
                             <div className="bg">
                                 <img src={backgroundPictureUrl} alt="backgroundImg"/>
                                 <input  style={{display:"none"}} id="bg-pic-url" className='image-selector'  type='file' name='backgroundPictureUrl' onChange={(e) => this.handleBackgroundFileUpload(e)} />
@@ -164,14 +164,15 @@ class EditProfile extends Component {
                     <div className="container-profile">
                         <div className="user-info">
                             {displayProfilePicture(profilePictureUrl)}
-                            <div className="user-info-container">
+                            <div className="user-info-container edit-user-info">
                                 <h4>@{username}</h4>
                             </div>
-                            <button className="a-btn user-info-edit" type="submit">save</button>
+                            <button className="a-btn  edit-user-info" type="submit">save</button>
                         </div>
 
                         {/* FIELDS */}
                         <div className="create-section">
+                            <label className="create-recipe-titles">Change your email</label>
                             <input className="input-title-recipe" type='text' name='email' placeholder="Write your new email" onChange={this.handleChange} /><br></br>
                         </div>
                     </div>

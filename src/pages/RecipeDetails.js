@@ -150,7 +150,7 @@ class recipeDetails extends Component {
                 // mirarse las rutas del perfil
                 return <Link to={"/profile/"+author._id}><img className="profile-picture3 profile-stroke1" src={author.profilePictureUrl} alt="profile"/></Link>
             } else {
-                return <span className="profile-picture3 avatar-green"></span>
+                return <span className="profile-picture3 avatar-green1"></span>
             }
         }
   
@@ -183,7 +183,7 @@ class recipeDetails extends Component {
                             </div>
                         </div>
                         <div className="author">
-                            <span className="profile-picture">{displayAvatar(author)}</span>
+                            {displayAvatar(author)}
                             <h4>@{displayAuthorUserName(author)}</h4>
                         </div>
                     </div>

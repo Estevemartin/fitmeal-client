@@ -35,25 +35,35 @@ class Recipes extends Component {
         const currentRecipe = recipes[randomRecipeId]
         // console.log(currentRecipe)
 
-
         return (
+          <section className="discover-section">
+            <div className="text-discover">
+              <p className="discover-title">{currentRecipe.title}</p>
+              <div className="info-icons-recipe">
+                  <div><ion-icon name="time-outline"></ion-icon><span>{currentRecipe.prepTime.replace(" mins", "''").replace(" -", "'' -")}</span></div>
+                  <div><ion-icon name="heart-outline"></ion-icon><span>{currentRecipe.popularity}</span></div>
+                  <ion-icon name="bookmark-outline"></ion-icon>
+              </div>
+          </div>
           <Link to = {"/recipes/"+currentRecipe._id} >
             <article style={{margin: "20px"}}>
               <div className="discover-img" style={{backgroundImage: "linear-gradient(0deg, rgba(95, 163, 151, 1) 10%, rgba(0, 0, 0, 0) 60%), url('"+currentRecipe.imageUrl+"')", backgroundSize: "cover", backgroundPosition: "50% 50%", backgroundRepeat: "no-repeat"}}>
-                  <div>
-                    <div className="discover-title">{currentRecipe.title}</div>
-                    <div className="info-icons-recipe">
-                        <div><ion-icon name="time-outline"></ion-icon><span>{currentRecipe.prepTime.replace(" mins", "''").replace(" -", "'' -")}</span></div>
-                        <div><ion-icon name="heart-outline"></ion-icon><span>{currentRecipe.popularity}</span></div>
-                        <ion-icon name="bookmark-outline"></ion-icon>
-                    </div>
-                  </div>
               </div>
             </article>
           </Link>
+          </section>
         )
       }
     }
+
+    const displayAvatar = user => {
+      if(user.profilePictureUrl){
+          return <span className="profile-picture"><img src={user.profilePictureUrl} alt="profile"/></span>
+      } else {
+          return <span className="profile-picture avatar-green1"></span>
+      }
+    }
+    const { user } = this.props;
     return (
       <div className="container">
           <NavbarMobile />
@@ -63,11 +73,19 @@ class Recipes extends Component {
             <div>
               <span><img style={{width: "25px"}} src="/favicon2.png" alt=""/></span>
               <h4>fitmeal.</h4>
-              <span></span>
+              <span>
+                  <Link to="/profile" className="user-mobile">
+                    {/* <div className='navbar-icons-mobile'> */}
+                      {displayAvatar(user)}
+                    {/* <p className='icons-text'>Me</p> */}
+                    {/* </div> */}
+                </Link>
+              </span>
             </div>
           </div>
-          
+          <h2>Search</h2>
           <SearchBar />
+          
 
           <section className="section-cards">
               <h2>Discover</h2>
