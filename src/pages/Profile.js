@@ -37,7 +37,7 @@ class Profile extends Component {
                 return (
                     <>
                         <div className="logout">
-                            <ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon>
+                            <ion-icon name="log-out-outline" onClick={logout}></ion-icon>
                         </div>
                         <span className="bg">
                             <img src={backgroundPictureUrl} alt="backgroundImg"/>
@@ -47,7 +47,7 @@ class Profile extends Component {
             } else {
                 return (
                     <>
-                        <div className="logout"><ion-icon className='logout-icon' name="log-out-outline" onClick={logout}></ion-icon></div>
+                        <div className="logout"><ion-icon name="log-out-outline" onClick={logout}></ion-icon></div>
                         <div className="bg bg-color"></div>
                     </>
                 )
@@ -86,11 +86,11 @@ class Profile extends Component {
                 return (
                     <>
                         <Link to="/profile">
-                            <span>My recipes</span>
+                            <span>Recipes</span>
                             <hr  className="active"/>
                         </Link>
                         <Link to="#">
-                            <span>My plans</span>
+                            <span>Plans</span>
                             <hr/>
                         </Link>
                         <Link to="/profile/savedRecipes">
@@ -104,11 +104,11 @@ class Profile extends Component {
                 return (
                     <>
                         <Link to="/profile">
-                            <span>My recipes</span>
+                            <span>Recipes</span>
                             <hr/>
                         </Link>
                         <Link to="#">
-                            <span>My plans</span>
+                            <span>Plans</span>
                             <hr/>
                         </Link>
                         <Link to="/profile/savedRecipes">
@@ -147,13 +147,12 @@ class Profile extends Component {
                     <div className="nav-profile-actions">
                         {displaySecondaryNavBar()}
                     </div>
-                    
-                </div>
-                
-                <div className="recipes-container">
-                    {display()}
                 </div>
             </div>
+            <div className="recipes-container">
+                {display()}
+            </div>
+            
         </>
     )
 }}

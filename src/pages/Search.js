@@ -28,8 +28,9 @@ class Search extends Component {
                         <button><Link to="/">Close</Link></button>
                     </div>
                 </div>
+                <h2>Search</h2>
                 <SearchBar/>
-                <p style={{marginLeft:"20px", color: "var(--grey3)", fontSize: "14px",marginTop:"10px", marginBottom:"20px"}}>Search results for: <i>"{this.state.searchField}"</i></p>
+                <p style={{marginLeft:"20px", color: "var(--grey3)", fontSize: "14px",marginTop:"10px", marginBottom:"20px"}}>Results for: <i>"{this.state.searchField}"</i></p>
                 <SearchRecipes searchField={this.state.searchField}/>
             </div>
         );
